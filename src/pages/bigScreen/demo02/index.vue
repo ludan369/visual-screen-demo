@@ -1,12 +1,15 @@
 <template>
-    <div class="main">
-        <div class="mainbox">
-
+    <screen-adapter :width="1920" :height="1080">
+        <div class="main">
+            <div class="mainbox">
+                
+            </div>
         </div>
-    </div>
+    </screen-adapter>
 </template>
 
 <script setup lang="ts">
+import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue'
 
 </script>
 

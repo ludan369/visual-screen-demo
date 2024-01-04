@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive,onMounted, onUnmounted } from 'vue'
+import { ref, onUnmounted } from 'vue'
 import { RouterView } from 'vue-router'
 import { Fold } from '@element-plus/icons-vue'
 import AppMenu from '@/components/layout/AppMenu.vue'
