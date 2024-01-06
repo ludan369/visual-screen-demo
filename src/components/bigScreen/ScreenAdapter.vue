@@ -96,10 +96,6 @@ onMounted(() => {
   setScale()
   window.onresize = debounce(setScale, 1000);
 })
-
-onUnmounted(() => {
-  emitter.off('mitt-screen-adapter')
-})
 </script>
 
 <style scoped>
