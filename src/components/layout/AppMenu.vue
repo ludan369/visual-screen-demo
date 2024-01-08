@@ -6,8 +6,9 @@
     <el-menu default-active="2" :collapse="props.isCollapse" :collapse-transition="false" @open="handleOpen"
         @close="handleClose" background-color="#ebf1f5" text-color="#606266" active-text-color="#2F74FF" class="menu"
         router>
-        <el-menu-item :route="{ name: 'home' }" index="0-1">
-            <el-icon>
+        <template v-for="(item, index) in routes">
+            <el-menu-item v-if="item.path === '/'" :index="item.path" :key="'item' + index">
+                <el-icon>
                 <location />
             </el-icon>
             <span>首页</span>
