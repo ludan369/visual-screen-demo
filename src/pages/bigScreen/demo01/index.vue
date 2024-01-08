@@ -107,8 +107,8 @@ import { ref, onMounted, reactive } from 'vue'
 import * as echarts from "echarts"
 import options from '@/pages/bigScreen/demo01/options/options'
 import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue'
-import HeaderTitle from '@/pages/bigScreen/demo01/components/HeaderTitle.vue'
-import BoxContent from '@/pages/bigScreen/demo01/components/BoxContent.vue'
+import HeaderTitle from '@/pages/bigScreen/components/head/HeaderTitle.vue'
+import BoxContent from '@/pages/bigScreen/components/box/BoxContent.vue'
 
 let tableData = reactive([
     { col1: '数据', col2: '数据', col3: '数据', col4: '数据' },

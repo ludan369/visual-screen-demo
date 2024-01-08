@@ -116,8 +116,8 @@ import { ref, onMounted } from 'vue'
 import * as echarts from "echarts"
 import options from '../demo02/options/options'
 import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue'
-import HeaderTitle from '@/pages/bigScreen/demo02/components/HeaderTitle.vue'
-import BoxContent from '@/pages/bigScreen/demo02/components/BoxContent.vue'
+import HeaderTitle from '@/pages/bigScreen/components/head/HeaderTitle.vue'
+import BoxContent from '@/pages/bigScreen/components/box/BoxContent.vue'
 
 let echarts1 = ref()
 let echarts2 = ref()
