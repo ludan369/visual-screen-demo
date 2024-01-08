@@ -9,20 +9,22 @@
         <template v-for="(item, index) in routes">
             <el-menu-item v-if="item.path === '/'" :index="item.path" :key="'item' + index">
                 <el-icon>
-                <location />
-            </el-icon>
-            <span>首页</span>
-        </el-menu-item>
-        <el-sub-menu index="1">
-            <template #title>
-                <el-icon>
                     <location />
                 </el-icon>
-                <span>大屏demo</span>
-            </template>
-            <el-menu-item :route="{ name: 'demo01' }" index="1-1">demo01</el-menu-item>
-            <el-menu-item :route="{ name: 'demo02' }" index="1-2">demo02</el-menu-item>
-        </el-sub-menu>
+                <span>{{ item.name }}</span>
+            </el-menu-item>
+            <el-sub-menu :index="item.path" v-if="item.children.length > 0" :key="index">
+                <template #title>
+                    <el-icon>
+                        <location />
+                    </el-icon>
+                    <span>{{ item.meta!.title }}</span>
+                </template>
+                <template v-for="citem in item.children">
+                    <el-menu-item :index="citem.name" :route="{ name: citem.name }">{{ citem.meta!.title }}</el-menu-item>
+                </template>
+            </el-sub-menu>
+        </template>
     </el-menu>
 </template>
 
@@ -37,6 +39,7 @@ import {
 import router from '@/router';
 
 let routes = router.getRoutes()
+console.log(routes)
 
 const props = defineProps(['isCollapse'])
 const handleOpen = (key: string, keyPath: string[]) => {

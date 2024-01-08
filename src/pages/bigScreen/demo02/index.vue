@@ -36,7 +36,7 @@
                         </box-content>
                     </li>
                     <li>
-                        <box-content  style="height: 20%;">
+                        <box-content style="height: 20%;">
                             <ul class="clearstyle rowpie">
                                 <li style="width: 50%;">
                                     <div class="num">
@@ -101,8 +101,8 @@
                         <box-content title="这是一个标题" style="height:calc(43% - 20px);margin-top: 20px;">
                             <div ref="echarts7" style="height: 100%;"></div>
                         </box-content>
-                        <box-content style="height:calc(42% - 40px);margin-top: 20px;">
-
+                        <box-content title="排行榜" style="height:calc(42% - 40px);margin-top: 20px;">
+                            <bar01 v-for="(i,index) in 5" :index="i" :num="500" title="标题标题"></bar01>
                         </box-content>
                     </li>
                 </ul>
@@ -118,6 +118,7 @@ import options from '../demo02/options/options'
 import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue'
 import HeaderTitle from '@/pages/bigScreen/components/head/HeaderTitle.vue'
 import BoxContent from '@/pages/bigScreen/components/box/BoxContent.vue'
+import Bar01 from '@/pages/bigScreen/components/bar/Bar01.vue'
 
 let echarts1 = ref()
 let echarts2 = ref()
@@ -157,7 +158,9 @@ onMounted(() => {
 }
 
 .main {
-    background:#000d4a url(@/assets/images/bg/bg02.jpg) center center; background-size:cover;color:#fff;
+    background: #000d4a url(@/assets/images/bg/bg02.jpg) center center;
+    background-size: cover;
+    color: #fff;
     width: 1920px;
     height: 1080px;
     background-size: cover;
@@ -249,7 +252,7 @@ onMounted(() => {
     height: 80%;
 }
 
-.rowpie >li {
+.rowpie>li {
     float: left;
     height: 100%;
 }
