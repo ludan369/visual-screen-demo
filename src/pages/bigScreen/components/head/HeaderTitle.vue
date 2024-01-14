@@ -1,18 +1,35 @@
 <template>
-    <div class="head">
+    <div class="head" :style="data.style">
         <h1>{{ props.title }}</h1>
     </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps(['title'])
+import { reactive } from "vue";
+
+
+interface PropsInterface {
+  title?: string,
+  height?: string
+}
+
+const props = withDefaults(defineProps<PropsInterface>(), {
+  title: '这是一个banner标题',
+  height: '80px'
+})
+
+let data = reactive({
+    style: {
+        height: props.height
+    }
+})
+
 </script>
 
 <style scoped>
 .head {
-    background: url(@/assets/images/head/head_bg01.png) no-repeat center center;
+    background: url('@/assets/images/head/head_bg01.png') no-repeat center center;
     width: 100%;
-    height: 80px;
 }
 
 .head h1 {

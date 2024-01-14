@@ -1,27 +1,21 @@
 <template>
     <screen-adapter :width="1920" :height="1080">
         <div class="main">
-            <!-- 头部标题 -->
-            <header-title title="大数据可视化系统数据分析通用模版"></header-title>
+            <header-title title="数据可视化系统数据分析通用模版"></header-title>
             <div class="mainbox">
-                <ul class="clearstyle">
-                    <!-- 左边 -->
+                <ul>
                     <li>
-                        <box-content title="排行信息" style="height: calc(58% - 15px)">
-                            <div ref="echarts1"
-                                style="height: 500px;padding-left: 20px;padding-right: 20px;padding-top: 15px;">
-                            </div>
+                        <box-content title="排行信息" style="height:  calc(58% - 15px);margin-bottom: 15px;">
+                            <!-- 50 = box的头部标题的40px+padding的10px -->
+                            <div ref="echarts1" style="height: calc(100% - 50px);padding: 10px 10px 0px 10px"></div>
                         </box-content>
-                        <box-content title="信息一览" style="height: calc(42% - 6px)">
-                            <div ref="echarts2"
-                                style="height: 360px;padding-left: 20px;padding-right: 20px;padding-top: 15px;padding-bottom: 15px;">
-                            </div>
+                        <box-content title="信息一览" style="height:  42%;">
+                            <div ref="echarts2" style="height: calc(100% - 50px);padding: 10px 10px 0px 10px"> </div>
                         </box-content>
                     </li>
-                    <!-- 中间 -->
                     <li>
-                        <box-content style="height: calc(20% - 15px)">
-                            <ul class="clearstyle row">
+                        <box-content style="height:  calc(20% - 15px);margin-bottom: 15px;">
+                            <ul class="row">
                                 <li style="width: 50%;">
                                     <div class="num">
                                         <p>业绩总览</p>
@@ -29,7 +23,7 @@
                                     </div>
                                 </li>
                                 <li style="width: 50%;">
-                                    <ul class="clearstyle row">
+                                    <ul class="row">
                                         <li style="width:33.33333%;">
                                             <div class="pieTitle">
                                                 标题1
@@ -52,25 +46,21 @@
                                 </li>
                             </ul>
                         </box-content>
-                        <box-content title="趋势展示" style="height: calc(38% - 6px)">
-                            <div ref="echarts6"
-                                style="height: 300px;padding-left: 20px;padding-right: 20px;padding-top: 15px;padding-bottom: 15px;">
+                        <box-content title="这是一个标题" style="height:  calc(38% - 15px);margin-bottom: 15px;">
+                            <div ref="echarts6" style="height: calc(100% - 50px);padding: 10px 10px 0px 10px">
                             </div>
                         </box-content>
-                        <box-content title="标题名称" style="height: calc(42% - 6px)">
-                            <div ref="echarts7"
-                                style="height: 320px;padding-left: 20px;padding-right: 20px;padding-top: 15px;padding-bottom: 15px;">
+                        <box-content title="这是一个标题" style="height:  42%;">
+                            <div ref="echarts7" style="height: calc(100% - 50px);padding: 10px 10px 0px 10px">
                             </div>
                         </box-content>
                     </li>
-                    <!-- 右边 -->
                     <li>
-                        <box-content title="标题名称" style="height: calc(33.33333% - 6px)">
-                            <div ref="echarts8"
-                                style="height: 250px;padding-left: 20px;padding-right: 20px;padding-top: 15px;">
+                        <box-content title="这是一个标题" style="height: calc(33.33% - 15px);margin-bottom: 15px;">
+                            <div ref="echarts8" style="height: calc(100% - 50px);padding: 10px 10px 0px 10px">
                             </div>
                         </box-content>
-                        <box-content title="数据表展示" style="height: calc(33.33333% - 6px)">
+                        <box-content title="这是一个标题" style="height: calc(33.33% - 15px);margin-bottom: 15px;">
                             <table border="0" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -90,9 +80,8 @@
                                 </tbody>
                             </table>
                         </box-content>
-                        <box-content title="标题名称" style="height: calc(33.33333%  - 15px)">
-                            <div ref="echarts9"
-                                style="height: 250px;padding-left: 20px;padding-right: 20px;padding-top: 15px;">
+                        <box-content title="这是一个标题" style="height: 33.33%;">
+                            <div ref="echarts9" style="height: calc(100% - 50px);padding: 10px 10px 0px 10px">
                             </div>
                         </box-content>
                     </li>
@@ -169,14 +158,9 @@ onMounted(() => {
         chart9.resize()
     })
 })
-
 </script>
 
-<style lang="less" scoped>
-.clearstyle {
-    list-style: none;
-}
-
+<style scoped>
 .main {
     background: #000d4a url(@/assets/images/bg/bg01.jpg) center center;
     background-size: cover;
@@ -187,29 +171,30 @@ onMounted(() => {
 }
 
 .mainbox {
-    padding: 0 6px 0 6px;
-    height: calc(100% - 80px);
-    width: 100%;
+    height: calc(100% - 110px);
+    padding: 15px;
 }
 
 .mainbox>ul {
     height: 100%;
-    width: 100%;
+    list-style: none;
 }
 
 .mainbox>ul>li {
     float: left;
-    padding: 6px 3px 0px 3px;
     height: 100%;
-    width: calc(30% - 15px);
+    width: 30%;
 }
 
 .mainbox>ul>li:nth-child(2) {
-    width: 40%;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: calc(40% - 30px);
 }
 
 .row {
     height: 100%;
+    list-style: none;
 }
 
 .row>li {
@@ -218,11 +203,11 @@ onMounted(() => {
 }
 
 .num {
-    margin-right: 0px;
+    padding-top: 30px;
+    padding-left: 20px;
 }
 
 .num p {
-    padding: 20px 0px 10px 30px;
     font-size: 25px;
 }
 
@@ -243,15 +228,12 @@ onMounted(() => {
 }
 
 .pieTitle {
-    text-align: center;
-    color: white;
-    font-size: 15px;
-    padding: 25px 0px 10px 0px;
+    padding-top: 30px;
+    align-items: center;
 }
 
 .piebox {
     height: calc(100% - 80px);
-    position: relative;
 }
 
 table {

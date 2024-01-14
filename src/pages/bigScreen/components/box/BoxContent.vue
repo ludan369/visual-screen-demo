@@ -1,6 +1,6 @@
 <template>
     <div class="boxall">
-        <div :class="[ props.title ? 'alltitle' : '' ]">
+        <div :class="[ props.title ? 'alltitle' : 'hidden' ]">
            <span style="padding-left: 10px;">{{ props.title }}</span>
         </div>
         <slot></slot>
@@ -14,6 +14,9 @@ const props = defineProps(['title'])
 </script>
 
 <style scoped>
+.hidden {
+    display: none;
+}
 .boxall {
     background: rgba(6, 48, 109, .5);
     position: relative;
@@ -24,8 +27,8 @@ const props = defineProps(['title'])
     color: #fff;
     font-family: "微软雅黑";
     position: relative;
-    padding-left: 20px;
-    padding-top: 10px
+    padding-left: 10px; /* 默认左边距 */
+    padding-top: 10px;
 }
 
 .alltitle:before {

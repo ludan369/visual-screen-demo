@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, nextTick, onMounted, onUnmounted } from "vue"
+import { reactive, nextTick, onMounted} from "vue"
 import emitter from '@/utils/emitter'
 
 interface PropsInterface {
