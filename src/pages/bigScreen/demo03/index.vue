@@ -27,7 +27,7 @@
             <!-- 下 -->
             <div class="main_bottom">
 
-</div>
+            </div>
         </div>
     </div>
 </template>
@@ -100,6 +100,7 @@
     width: 100%;
     background: goldenrod;
 }
+
 .main_bottom {
     height: 55.9%;
     width: 100%;
