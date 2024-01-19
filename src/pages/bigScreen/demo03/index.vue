@@ -8,6 +8,12 @@
                     <div class="main_top_left_top">
                         <img src="../../../assets/images/box/main_top_left.png" />
                         <div class="main_top_left_top_title">公开数据展示</div>
+                        <div class="main_top_left_top_con">
+                            <div v-for="i in 3" class="main_top_left_top_con_list">
+                                <span class="main_top_left_c_l_n ">{{ i }}</span>
+                                <p>XX信息</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="main_top_left_top main_top_left_bottom">
                         <img src="../../../assets/images/box/main_top_left.png" />
@@ -469,5 +475,56 @@
     position: absolute;
     width: 100%;
     height: 100%;
+}
+
+.main_top_left_top_con {
+    width: 92%;
+    height: 71%;
+    margin: auto;
+    margin-top: 3%;
+    color: white;
+    /* margin-left: 4%; */
+    /* text-indent: .5vw; */
+    font-size: .7vw;
+    /* letter-spacing: .15vw; */
+}
+
+.main_top_left_top_con span {
+    display: inline-block;
+    margin-top: .4vw;
+    text-indent: 0vw;
+}
+
+.main_top_left_top_con_list {
+    float: left;
+    height: 48%;
+    width: 32%;
+    text-align: center;
+    margin-left: 2%;
+}
+
+.main_top_left_top_con_list .main_top_left_c_l_n {
+    /* -webkit-transform-origin-x: 0; */
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+}
+
+.main_top_left_top_con_list p {
+    /* -webkit-transform-origin-x: 0; */
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+}
+
+.main_top_left_top_con_list:nth-child(1) {
+    background: #37D2D4;
+    margin-left: 0;
+}
+
+.main_top_left_top_con_list:nth-child(2) {
+    background: #19CA88;
+}
+
+.main_top_left_top_con_list:nth-child(3) {
+    background: #858FF8;
 }
 </style>
