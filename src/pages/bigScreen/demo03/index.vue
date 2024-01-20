@@ -13,11 +13,32 @@
                                 <span class="main_top_left_c_l_n ">{{ i }}</span>
                                 <p>XX信息</p>
                             </div>
+                            <div class="main_top_left_top_con_left">
+                                <div class="main_top_left_t_c_l_left">
+                                    <span class="main_top_left_c_l_n ">0</span>
+                                    <p>村务公开</p>
+                                </div>
+                                <div class="main_top_left_t_c_l_right">
+                                    <span class="main_top_left_c_l_n ">0</span>
+                                    <p>居务公开</p>
+                                </div>
+                            </div>
+                            <div class="main_top_left_top_con_right main_top_left_top_con_right2">
+                                <div class="main_top_left_t_c_r_left">
+                                    <span class="main_top_left_c_l_n">0</span>
+                                    <p>占位公开</p>
+                                </div>
+                                <div class="main_top_left_t_c_r_right">
+                                    <span class="main_top_left_c_l_n">0</span>
+                                    <p>占位公开</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="main_top_left_top main_top_left_bottom">
                         <img src="../../../assets/images/box/main_top_left.png" />
                         <div class="main_top_left_top_title">XX信息员添加数据展示</div>
+                        <div ref="echarts1" class="main_top_left_top_con"></div>
                     </div>
                 </div>
                 <!-- 上中 -->
@@ -40,14 +61,14 @@
                             <img class="title_bg" src="../../../assets/images/box/main_top_bottom.png">
                             <div class="main_top_echarts_con">
                                 <div class="main_top_echarts_con_title">XX公开数量占比</div>
-                                <div id="threeTasksId" class="main_top_echarts_pie"></div>
+                                <div ref="echarts2" class="main_top_echarts_pie"></div>
                             </div>
                         </div>
                         <div class="main_top_middle_bottom_echarts main_top_middle_bottom_echarts_right">
                             <img class="title_bg" src="../../../assets/images/box/main_top_bottom.png">
                             <div class="main_top_echarts_con">
                                 <div class="main_top_echarts_con_title">XX公开数量占比</div>
-                                <div id="publicityId" class="main_top_echarts_pie"></div>
+                                <div ref="echarts3" class="main_top_echarts_pie"></div>
                             </div>
                         </div>
                     </div>
@@ -57,10 +78,34 @@
                     <div class="main_top_left_top">
                         <img src="../../../assets/images/box/main_top_left.png" />
                         <div class="main_top_left_top_title">公开数据展示</div>
+                        <div class="main_top_left_top_con">
+                            <div class="main_top_left_top_con_left">
+                                <span class="daysData">0</span>
+                                <p>今日公开</p>
+                            </div>
+                            <div class="main_top_left_top_con_right">
+                                <span class="weekData">0</span>
+                                <p>本周公开</p>
+                            </div>
+                            <div class="main_top_left_top_con_list">
+                                <span class="monthData">0</span>
+                                <p>本月公开</p>
+                            </div>
+                            <div class="main_top_left_top_con_list">
+                                <span class="someThing">0</span>
+                                <p>办事指南</p>
+                            </div>
+                            <div class="main_top_left_top_con_list">
+                                <span class="policyData">0</span>
+                                <p>政策解读</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="main_top_left_top main_top_left_bottom">
                         <img src="../../../assets/images/box/main_top_left.png" />
                         <div class="main_top_left_top_title">XXXX数量类型占比</div>
+                        <div ref="echarts4" class="main_top_left_top_con">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -70,7 +115,7 @@
                 <div v-for="i in 5" class="main_middle_list">
                     <img src="../../../assets/images/box/main_middle.png">
                     <div class="main_list_title">XXX镇</div>
-                    <span class="main_list_title_num">0</span>
+                    <span class="main_list_title_num">{{ i }}</span>
                 </div>
             </div>
 
@@ -110,7 +155,36 @@
 </template>
 
 <script setup lang="ts">
+import {ref,onMounted} from 'vue'
+import * as echarts from "echarts"
+import options from '../demo03/options/options'
 
+// 基础信息
+let echarts1 = ref()
+let echarts2 = ref()
+let echarts3 = ref()
+let echarts4 = ref()
+
+onMounted(() => {
+    let chart1 = echarts.init(echarts1.value)
+    chart1.setOption(options.echarts1)
+
+    let chart2 = echarts.init(echarts2.value)
+    chart2.setOption(options.echarts2)
+
+    let chart3 = echarts.init(echarts3.value)
+    chart3.setOption(options.echarts2)
+
+    let chart4 = echarts.init(echarts4.value)
+    chart4.setOption(options.echarts4)
+
+    window.addEventListener("resize", function () {
+        chart1.resize()
+        chart2.resize()
+        chart3.resize()
+        chart4.resize()
+    })
+})
 </script>
 
 <style lang="less" scoped>
@@ -342,7 +416,7 @@
     height: 100%;
     // background: blue;
     margin-left: 1.875%;
-    // box-shadow: 1px 2px 10px 1px rgba(14, 252, 255, 0.53), inset 5px 4px 100px 1px rgba(14, 252, 255, 0.34);
+    box-shadow: 1px 2px 10px 1px rgba(14, 252, 255, 0.53), inset 5px 4px 100px 1px rgba(14, 252, 255, 0.34);
 }
 
 .main_middle_list:nth-child(1) {
@@ -476,17 +550,50 @@
     width: 100%;
     height: 100%;
 }
+.main_top_right .main_top_left_top_con_left {
+    float: left;
+    height: 48%;
+    width: 49%;
+    background: #37D2D4;
 
+}
+
+.main_top_right .main_top_left_top_con_right {
+    float: right;
+    height: 48%;
+    width: 49%;
+    background: #19CA88;
+}
+.main_top_right .main_top_left_top_con_list {
+    float: left;
+    height: 48%;
+    width: 32%;
+    margin-left: 2%;
+    margin-top: 1.5%;
+}
+
+.main_top_right .main_top_left_top_con_list:nth-child(3) {
+    background: #858FF8;
+    margin-left: 0;
+}
+
+.main_top_right .main_top_left_top_con_list:nth-child(4) {
+    background: #2E8CFF;
+}
+
+.main_top_right .main_top_left_top_con_list:nth-child(5) {
+    background: #FD9133;
+}
 .main_top_left_top_con {
     width: 92%;
     height: 71%;
     margin: auto;
     margin-top: 3%;
     color: white;
-    /* margin-left: 4%; */
-    /* text-indent: .5vw; */
+    margin-left: 4%;
+    text-indent: .5vw;
     font-size: .7vw;
-    /* letter-spacing: .15vw; */
+    letter-spacing: .15vw;
 }
 
 .main_top_left_top_con span {
@@ -526,5 +633,82 @@
 
 .main_top_left_top_con_list:nth-child(3) {
     background: #858FF8;
+}
+
+.main_top_left_top_con_left {
+    float: left;
+    height: 48%;
+    width: 49%;
+    text-align: center;
+    margin-top: 1.5%;
+}
+
+.main_top_left_top_con_left .main_top_left_c_l_n {
+    /* -webkit-transform-origin-x: 0; */
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+}
+
+.main_top_left_top_con_left p {
+    /* -webkit-transform-origin-x: 0; */
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.main_top_left_t_c_l_left,
+.main_top_left_t_c_l_right,
+.main_top_left_t_c_r_right,
+.main_top_left_t_c_r_left {
+    float: left;
+    width: 48%;
+    height: 100%;
+    text-align: center;
+    background: #FD9133;
+    font-size: .7vw;
+}
+.main_top_left_t_c_l_right,
+.main_top_left_t_c_r_right {
+    background: #F6D10E;
+    margin-left: 4%;
+}
+
+.main_top_left_t_c_r_right {
+    background: #F6580E;
+}
+
+.main_top_left_t_c_r_left {
+    background: #2E8CFF;
+}
+.main_top_left_top_con_right {
+    float: right;
+    height: 48%;
+    width: 49%;
+    text-align: center;
+    margin-top: 1.5%;
+}
+
+.main_top_left_top_con_right .main_top_left_c_l_n {
+    /* -webkit-transform-origin-x: 0; */
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.main_top_left_top_con_right p {
+    /* -webkit-transform-origin-x: 0; */
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.main_top_left_top_con_right2 p {
+    margin-top: -7%;
 }
 </style>
