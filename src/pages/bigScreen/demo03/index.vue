@@ -122,31 +122,62 @@
             <!-- 下 -->
             <div class="main_bottom">
                 <div class="main_bottom_top">
-                    <div v-for="i in 3" class="main_bottom_top_list">
+                    <div class="main_bottom_top_list">
                         <img src="../../../assets/images/box/main_bottopm_top1.png">
                         <div class="main_bottom_t_l_title">XX指南</div>
+                        <div class="main_bottom_t_l_con" style="top: -15px">
+                            <ul style="list-style: none;">
+                                <li v-for="i in 5">
+                                    <div class="main_bottom_t_l_main_list">
+                                        <div class="main_bottom_t_list_title">xxxxxxxxxxxxx</div>
+                                        <div class="main_bottom_t_list_time">2024/1/21 </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="main_bottom_top_list">
+                        <img src="../../../assets/images/box/main_bottopm_top1.png">
+                        <div class="main_bottom_t_l_title">XX公开占比</div>
+                        <div ref="echarts5" class="main_bottom_t_l_chart"></div>
+                    </div>
+                    <div class="main_bottom_top_list">
+                        <img src="../../../assets/images/box/main_bottopm_top1.png">
+                        <div class="main_bottom_t_l_title">XX政策</div>
+                        <div class="main_bottom_t_l_con" style="top: -15px">
+                            <div class="main_bottom_t_l_main2">
+                                <ul style="list-style: none;">
+                                    <li v-for="i in 5">
+                                        <div class="main_bottom_t_l_main_list">
+                                            <div class="main_bottom_t_list_title">xxxxxxxxxxxxx</div>
+                                            <div class="main_bottom_t_list_time">2024/1/21 </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="main_bottom_bottom">
                     <div class="main_bottom_b_left">
                         <img src="../../../assets/images/box/main_bottom_bottom.png">
                         <div class="main_bottom_b_title">XXXX数量信息</div>
-                        <div id="coverageId" class="main_bottom_b_con"></div>
+                        <div ref="echarts6" class="main_bottom_b_con"></div>
                     </div>
                     <div class="main_bottom_b_middle1">
                         <img src="../../../assets/images/box/main_bootm_middle.png">
                         <div class="main_bottom_b_title">关注XXXX占比</div>
-                        <div id="contentId" class="main_bottom_b_con main_bottom_b_con2"></div>
+                        <div ref="echarts7" class="main_bottom_b_con main_bottom_b_con2"></div>
                     </div>
                     <div class="main_bottom_b_middle2">
                         <img src="../../../assets/images/box/main_bootm_middle.png">
                         <div class="main_bottom_b_title">XXXX发布量</div>
-                        <div id="publicNumId" class="main_bottom_b_con main_bottom_b_con2"></div>
+                        <div ref="echarts8" class="main_bottom_b_con main_bottom_b_con2"></div>
                     </div>
                     <div class="main_bottom_b_right">
                         <img src="../../../assets/images/box/main_bottom_bottom.png">
                         <div class="main_bottom_b_title">XXXX数量信息</div>
-                        <div id="coverageId" class="main_bottom_b_con main_bottom_b_con2"></div>
+                        <div ref="echarts9" class="main_bottom_b_con main_bottom_b_con2"></div>
                     </div>
                 </div>
             </div>
@@ -155,7 +186,7 @@
 </template>
 
 <script setup lang="ts">
-import {ref,onMounted} from 'vue'
+import { ref, onMounted } from 'vue'
 import * as echarts from "echarts"
 import options from '../demo03/options/options'
 
@@ -164,6 +195,11 @@ let echarts1 = ref()
 let echarts2 = ref()
 let echarts3 = ref()
 let echarts4 = ref()
+let echarts5 = ref()
+let echarts6 = ref()
+let echarts7 = ref()
+let echarts8 = ref()
+let echarts9 = ref()
 
 onMounted(() => {
     let chart1 = echarts.init(echarts1.value)
@@ -178,11 +214,31 @@ onMounted(() => {
     let chart4 = echarts.init(echarts4.value)
     chart4.setOption(options.echarts4)
 
+    let chart5 = echarts.init(echarts5.value)
+    chart5.setOption(options.echarts5)
+
+    let chart6 = echarts.init(echarts6.value)
+    chart6.setOption(options.echarts6)
+
+    let chart7 = echarts.init(echarts7.value)
+    chart7.setOption(options.echarts7)
+
+    let chart8 = echarts.init(echarts8.value)
+    chart8.setOption(options.echarts8)
+
+    let chart9 = echarts.init(echarts9.value)
+    chart9.setOption(options.echarts6)
+
     window.addEventListener("resize", function () {
         chart1.resize()
         chart2.resize()
         chart3.resize()
         chart4.resize()
+        chart5.resize()
+        chart6.resize()
+        chart7.resize()
+        chart8.resize()
+        chart9.resize()
     })
 })
 </script>
@@ -486,6 +542,64 @@ onMounted(() => {
     text-indent: 3.2vw;
 }
 
+.main_bottom_t_l_chart {
+    z-index: 77;
+    position: relative;
+    width: 90%;
+    height: 84%;
+    margin: auto;
+    margin-top: -5%;
+}
+
+.main_bottom_t_l_con {
+    z-index: 77;
+    position: relative;
+    width: 92%;
+    height: 60%;
+    margin: auto;
+    margin-top: 3%;
+    /* overflow: hidden; */
+}
+
+.main_bottom_t_l_main,
+.main_bottom_t_l_main2 {
+    width: 100%;
+    /* height: 100%; */
+}
+
+.main_bottom_t_l_main_list {
+    font-size: .7vw;
+    line-height: 1.6vw;
+    height: 1.6vw;
+    color: white;
+}
+
+.main_bottom_t_list_title {
+    float: left;
+    width: 70%;
+    height: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.main_bottom_t_list_time {
+    float: left;
+    width: 30%;
+    height: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
+}
+
+.main_bottom_t_l_main2 .main_bottom_t_l_main_list {
+    font-size: .7vw;
+    line-height: 1.6vw;
+    height: 1.6vw;
+    color: white;
+}
+
 .main_bottom_b_left,
 .main_bottom_b_right {
     position: relative;
@@ -550,6 +664,7 @@ onMounted(() => {
     width: 100%;
     height: 100%;
 }
+
 .main_top_right .main_top_left_top_con_left {
     float: left;
     height: 48%;
@@ -564,6 +679,7 @@ onMounted(() => {
     width: 49%;
     background: #19CA88;
 }
+
 .main_top_right .main_top_left_top_con_list {
     float: left;
     height: 48%;
@@ -584,6 +700,7 @@ onMounted(() => {
 .main_top_right .main_top_left_top_con_list:nth-child(5) {
     background: #FD9133;
 }
+
 .main_top_left_top_con {
     width: 92%;
     height: 71%;
@@ -669,6 +786,7 @@ onMounted(() => {
     background: #FD9133;
     font-size: .7vw;
 }
+
 .main_top_left_t_c_l_right,
 .main_top_left_t_c_r_right {
     background: #F6D10E;
@@ -682,6 +800,7 @@ onMounted(() => {
 .main_top_left_t_c_r_left {
     background: #2E8CFF;
 }
+
 .main_top_left_top_con_right {
     float: right;
     height: 48%;

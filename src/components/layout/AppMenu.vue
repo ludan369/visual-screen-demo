@@ -39,7 +39,6 @@ import {
 import router from '@/router';
 
 let routes = router.getRoutes()
-console.log(routes)
 
 const props = defineProps(['isCollapse'])
 const handleOpen = (key: string, keyPath: string[]) => {
