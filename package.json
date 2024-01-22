@@ -14,8 +14,7 @@
     "echarts": "^5.4.3",
     "element-plus": "^2.4.4",
     "mitt": "^3.0.1",
-    "particles.vue3": "^2.9.3",
-    "tsparticles": "^2.9.3",
+    "particles.vue3": "^1.22.0",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5"
   },
