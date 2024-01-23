@@ -363,7 +363,8 @@ const poptions = {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1; /* 把“particles.js”控件层级调整到最低，以便其他卡片内容出现在上面 */
+  z-index: -100; 
+  background-color: #1D2B56;
 }
 .main {
     width: 100%;
@@ -372,7 +373,7 @@ const poptions = {
     position: relative;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: #1D2B56;
+    
 }
 
 .main_con {
