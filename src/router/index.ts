@@ -42,6 +42,20 @@ let router = createRouter({
                 }
             ]
         },
+        {
+            name: 'chartsModules',
+            path: '/chartsModules',
+            meta: { title: '模块组件demo', icon: 'Fold' },
+            component: RouterView,
+            children: [
+                {
+                    name: 'scrollDemo',
+                    path: 'scrollDemo',
+                    meta: { title: 'scrollDemo-行数据滚动', icon: 'location' },
+                    component: () => import('@/pages/chartsModules/ScrollDemo.vue')
+                },
+            ]
+        }
     ]
 })
 
