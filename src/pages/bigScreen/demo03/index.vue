@@ -126,14 +126,15 @@
                         <img src="../../../assets/images/box/main_bottopm_top1.png">
                         <div class="main_bottom_t_l_title">XX指南</div>
                         <div class="main_bottom_t_l_con" style="top: -15px">
-                            <ul style="list-style: none;">
-                                <li v-for="i in 5">
-                                    <div class="main_bottom_t_l_main_list">
-                                        <div class="main_bottom_t_list_title">xxxxxxxxxxxxx</div>
-                                        <div class="main_bottom_t_list_time">2024/1/21 </div>
+                            <div class="main_bottom_t_l_main">
+                                <vue3-seamless-scroll class="scroll" :list="data.list" :step="0.5">
+                                    <div class="item main_bottom_t_l_main_list" v-for="(item, index) in data.list"
+                                        :key="index">
+                                        <div class="main_bottom_t_list_title">{{ item.title }}</div>
+                                        <div class="main_bottom_t_list_time">{{ item.date }} </div>
                                     </div>
-                                </li>
-                            </ul>
+                                </vue3-seamless-scroll>
+                            </div>
                         </div>
                     </div>
                     <div class="main_bottom_top_list">
@@ -146,14 +147,13 @@
                         <div class="main_bottom_t_l_title">XX政策</div>
                         <div class="main_bottom_t_l_con" style="top: -15px">
                             <div class="main_bottom_t_l_main2">
-                                <ul style="list-style: none;">
-                                    <li v-for="i in 5">
-                                        <div class="main_bottom_t_l_main_list">
-                                            <div class="main_bottom_t_list_title">xxxxxxxxxxxxx</div>
-                                            <div class="main_bottom_t_list_time">2024/1/21 </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                <vue3-seamless-scroll class="scroll" :list="data.list" :step="0.5">
+                                    <div class="item main_bottom_t_l_main_list" v-for="(item, index) in data.list"
+                                        :key="index">
+                                        <div class="main_bottom_t_list_title">{{ item.title }}</div>
+                                        <div class="main_bottom_t_list_time">{{ item.date }} </div>
+                                    </div>
+                                </vue3-seamless-scroll>
                             </div>
                         </div>
                     </div>
@@ -187,9 +187,51 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, reactive } from 'vue'
 import * as echarts from "echarts"
 import options from '../demo03/options/options'
+import { Vue3SeamlessScroll } from "vue3-seamless-scroll"
+
+const data = reactive({
+    list: [
+        {
+            title: "无缝滚动第一行无缝滚动第一行",
+            date: "2024-01-25",
+        },
+        {
+            title: "无缝滚动第二行无缝滚动第二行",
+            date: "2024-01-25",
+        },
+        {
+            title: "无缝滚动第三行无缝滚动第三行",
+            date: "2024-01-25",
+        },
+        {
+            title: "无缝滚动第四行无缝滚动第四行",
+            date: "2024-01-25",
+        },
+        {
+            title: "无缝滚动第五行无缝滚动第五行",
+            date: "2024-01-25",
+        },
+        {
+            title: "无缝滚动第六行无缝滚动第六行",
+            date: "2024-01-25",
+        },
+        {
+            title: "无缝滚动第七行无缝滚动第七行",
+            date: "2024-01-25",
+        },
+        {
+            title: "无缝滚动第八行无缝滚动第八行",
+            date: "2024-01-25",
+        },
+        {
+            title: "无缝滚动第九行无缝滚动第九行",
+            date: "2024-01-25",
+        },
+    ],
+})
 
 // 基础信息
 let echarts1 = ref()
@@ -357,15 +399,30 @@ const poptions = {
 </script>
 
 <style lang="less" scoped>
-#tsparticles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -100; 
-  background-color: #1D2B56;
+.scroll {
+    font-size: .7vw;
+    height: 6vw;
+    margin-top: 1.5vw;
+    overflow: hidden;
 }
+
+.scroll .item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px 0;
+}
+
+#tsparticles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -100;
+    background-color: #1D2B56;
+}
+
 .main {
     width: 100%;
     height: 100%;
@@ -373,7 +430,7 @@ const poptions = {
     position: relative;
     background-repeat: no-repeat;
     background-size: cover;
-    
+
 }
 
 .main_con {
