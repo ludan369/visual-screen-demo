@@ -346,7 +346,7 @@ function echarts3(): { [key: string]: any } {
                                 fontSize: 12
                             }
                         },
-                        formatter: function (params) {
+                        formatter: function (params:any) {
                             return "{b|饮用水质}\n\n" + "{a|" + params.value + "个}" + "\n\n{b|增长2%}";
                         },
                         position: 'center',
@@ -402,7 +402,7 @@ function echarts3(): { [key: string]: any } {
                                 fontSize: 12
                             }
                         },
-                        formatter: function (params) {
+                        formatter: function (params:any) {
                             return "{b|生活用水}\n\n" + "{a|" + params.value + "个}" + "\n\n{b|增长2%}";
                         },
                         position: 'center',
@@ -458,7 +458,7 @@ function echarts3(): { [key: string]: any } {
                                 fontSize: 12
                             }
                         },
-                        formatter: function (params) {
+                        formatter: function (params:any) {
                             return "{b|自来水}\n\n" + "{a|" + params.value + "个}" + "\n\n{b|增长2%}";
                         },
                         position: 'center',
@@ -548,10 +548,8 @@ function echarts4(): { [key: string]: any } {
             }]
         }
     }
-    let dataArr = []
-
+    let dataArr:any = []
     dataObj.data.value.map(item => {
-        let datachild = []
         let newArr = {
             name: item.name,
             type: 'line',

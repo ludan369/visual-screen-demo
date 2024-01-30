@@ -14,6 +14,22 @@
                 <div class="left">
                     <div class="left-top">
                         <box-content title="重点水质量检测区" style="height: 100%;">
+                            <div class="top-body">
+                                <div class="top-left">
+                                    <div class="top-left-title">
+                                        <h2>注水量</h2>
+                                        <span><b>1756</b>m3/h</span>
+                                        <img src="../../../assets/images/icon/pictre.png">
+                                    </div>
+                                </div>
+                                <div class="top-right">
+                                    <div class="top-left-title">
+                                        <h2>泄水量</h2>
+                                        <span><b>3520</b>m3/h</span>
+                                        <img src="../../../assets/images/icon/pictre.png">
+                                    </div>
+                                </div>
+                            </div>
                         </box-content>
                     </div>
                     <div class="left-middle">
@@ -33,6 +49,52 @@
                 <div class="right">
                     <div class="right-top">
                         <box-content title="水质污染TOP5" style="height: 100%;">
+                            <div class="title-nav">
+                                <div class="top5-ul">
+                                    <ul>
+                                <li>
+                                    <span>1</span>
+                                    <span>严重</span>
+                                    <span>北京市</span>
+                                    <span>房山区</span>
+                                    <span>重度污染</span>
+                                    <span>15公里</span>
+                                </li>
+                                <li>
+                                    <span>2</span>
+                                    <span>严重</span>
+                                    <span>上海市</span>
+                                    <span>闵行区</span>
+                                    <span>重度污染</span>
+                                    <span>10公里</span>
+                                </li>
+                                <li>
+                                    <span>3</span>
+                                    <span>严重</span>
+                                    <span>北京市</span>
+                                    <span>朝阳区</span>
+                                    <span>重度污染</span>
+                                    <span>9.3公里</span>
+                                </li>
+                                <li>
+                                    <span>4</span>
+                                    <span>中度</span>
+                                    <span>广东省</span>
+                                    <span>广州市</span>
+                                    <span>中度污染</span>
+                                    <span>8.6公里</span>
+                                </li>
+                                <li>
+                                    <span>5</span>
+                                    <span>中度</span>
+                                    <span>浙江省</span>
+                                    <span>杭州市</span>
+                                    <span>中度污染</span>
+                                    <span>6.6公里</span>
+                                </li>
+                            </ul>
+                                </div>
+                            </div>
                         </box-content>
                     </div>
                     <div class="right-middle">
@@ -185,6 +247,50 @@ onMounted(() => {
     height: 30%;
 }
 
+.top-body {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.top-left {
+    float: left;
+    width: 50%;
+}
+
+.top-right {
+    float: left;
+    width: 50%;
+}
+
+.top-left-title {
+    width: 100%;
+    height: 100%;
+    padding-top: 30px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.top-left-title h2 {
+    color: #bad0e2;
+}
+
+.top-left-title span {
+    margin-top: 30px;
+    display: inline-block;
+    color: #2aa4f1;
+    font-size: 25px;
+}
+
+.top-left-title span b {
+    font-size: 40px;
+    letter-spacing: 5px;
+}
+
+.top-left-title img {
+    width: 80%;
+}
+
 .left-middle {
     width: 100%;
     height: 37%;
@@ -224,5 +330,88 @@ onMounted(() => {
     width: 100%;
     height: 37%;
     padding-top: 3%;
+}
+
+.title-nav{
+    width: 100%;
+    height: calc(100% - 30px);
+}
+
+.title-nav .top5-ul{
+    width: calc(100% - 20px);
+    height: calc(100% - 30px);
+    padding: 10px;
+}
+.title-nav .top5-ul ul{
+    width: 100%;
+    height: 100%;
+}
+.title-nav .top5-ul ul,li{
+    list-style: none;
+}
+.title-nav .top5-ul ul>li{
+    width: 100%;
+    height: 20%;
+    color: #ffffff;
+    line-height: 68px;
+    justify-content: center;
+}
+.title-nav .top5-ul ul li span{
+    margin-left: 3%;
+    font-size: 14px;
+}
+.title-nav .top5-ul ul li span:nth-child(1){
+    color:  #EB6841;
+    font-style: oblique;
+    /*width: 10%;*/
+    /*#20a8fe
+            #EB6841
+            #3FB8AF
+            #FE4365
+            #FC9D9A*/
+    display: inline-block;
+    text-align: center;
+    font-size: 20px;
+}
+
+.title-nav .top5-ul ul li span:nth-child(2){
+    width: 10%;
+    display: inline-block;
+    text-align: center;
+
+    height: 30px;
+    line-height: 30px;
+/*    height: 100%;*/
+    /*line-height: 100%;*/
+    vertical-align: center;
+    border-radius: 5px;
+    color: #ffffff;
+}
+.title-nav .top5-ul ul li:nth-child(1) span:nth-child(2),.title-nav .top5-ul ul li:nth-child(2) span:nth-child(2)
+,.title-nav .top5-ul ul li:nth-child(3) span:nth-child(2){
+    background: #d89346;
+}
+.title-nav .top5-ul ul li:nth-child(4) span:nth-child(2)
+,.title-nav .top5-ul ul li:nth-child(5) span:nth-child(2){
+    background: #1db5ea;
+}
+.title-nav .top5-ul ul li span:nth-child(3){
+    /*width: 15%;*/
+    display: inline-block;
+    text-align: center;
+}
+.title-nav .top5-ul ul li span:nth-child(4){
+    /*width: 15%;*/
+    display: inline-block;
+    text-align: center;
+}
+.title-nav .top5-ul ul li span:nth-child(5){
+    /*width: 20%;*/
+    display: inline-block;
+    text-align: center;
+}
+.title-nav .top5-ul ul li span:nth-child(6){
+    display: inline-block;
+    text-align: center;
 }
 </style>

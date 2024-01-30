@@ -29,7 +29,7 @@
                             </ul>
                         </box-content>
                         <box-content title="这是一个标题" style="height:calc(43% - 20px);margin-top: 20px;">
-
+                            <div ref="echarts8" style="height: 340px;"></div>
                         </box-content>
                         <box-content title="这是一个标题" style="height:calc(42% - 40px);margin-top: 20px;">
                             <div ref="echarts1" style="height: 340px;"></div>
@@ -127,6 +127,7 @@ let echarts4 = ref()
 let echarts5 = ref()
 let echarts6 = ref()
 let echarts7 = ref()
+let echarts8 = ref()
 
 onMounted(() => {
     let chart1 = echarts.init(echarts1.value)
@@ -149,6 +150,9 @@ onMounted(() => {
 
     let chart7 = echarts.init(echarts7.value)
     chart7.setOption(options.echarts7)
+
+    let chart8 = echarts.init(echarts8.value)
+    chart8.setOption(options.echarts8)
 })
 </script>
 

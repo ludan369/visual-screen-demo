@@ -8,6 +8,7 @@ let options = {
     echarts5: echarts5(),
     echarts6: echarts6(),
     echarts7: echarts7(),
+    echarts8: echarts8()
 }
 
 function echarts1(): { [key: string]: any } {
@@ -26,7 +27,7 @@ function echarts1(): { [key: string]: any } {
             axisLabel: {
                 textStyle: {
                     color: "rgba(255,255,255,.6)",
-                    fontSize: 14,
+                    fontSize: 18,
                 },
             },
             axisLine: {
@@ -60,7 +61,7 @@ function echarts1(): { [key: string]: any } {
             axisLabel: {
                 textStyle: {
                     color: "rgba(255,255,255,.6)",
-                    fontSize: 14,
+                    fontSize: 18,
                 },
             },
 
@@ -138,7 +139,7 @@ function echarts2(): { [key: string]: any } {
             axisLabel: {
                 textStyle: {
                     color: 'rgba(255,255,255,.6)',
-                    fontSize: 14
+                    fontSize: 18
                 }
             },
         },
@@ -157,7 +158,7 @@ function echarts2(): { [key: string]: any } {
             axisLabel: {
                 textStyle: {
                     color: 'rgba(255,255,255,.6)',
-                    fontSize: 14
+                    fontSize: 18
                 },
             },
         },
@@ -412,7 +413,7 @@ function echarts6(): { [key: string]: any } {
             axisLabel: {
                 textStyle: {
                     color: "rgba(255,255,255,.6)",
-                    fontSize: 14,
+                    fontSize: 18,
                 },
             },
             axisLine: {
@@ -447,7 +448,7 @@ function echarts6(): { [key: string]: any } {
             axisLabel: {
                 textStyle: {
                     color: "rgba(255,255,255,.6)",
-                    fontSize: 14,
+                    fontSize: 18,
                 },
             },
 
@@ -570,7 +571,7 @@ function echarts7(): { [key: string]: any } {
                 padding: -5,
                 formatter: '{value}',
                 textStyle: {
-                    fontSize: 14,
+                    fontSize: 18,
                     color: 'rgba(255,255,255,.6)'
                 }
             },
@@ -633,4 +634,154 @@ function echarts7(): { [key: string]: any } {
     }
 }
 
+function echarts8(): { [key: string]: any } {
+    let dataText = [{
+        name: '第一季度',
+        type: 'line',
+        smooth: true,
+        symbolSize: 8,
+        data: [127, 224, 120, 278, 227, 237],
+        barWidth: '30%',
+        itemStyle: {
+            normal: {
+                color: '#f0c725'
+            }
+        }
+    }, {
+        name: '第二季度',
+        type: 'line',
+        smooth: true,
+        symbolSize: 8,
+        data: [27, 124, 70, 178, 127, 157],
+        barWidth: '30%',
+        itemStyle: {
+            normal: {
+                color: '#16f892'
+            }
+        }
+    },
+    {
+        name: '第三季度',
+        type: 'line',
+        smooth: true,
+        symbolSize: 8,
+        data: [127, 74, 120, 99, 130, 355],
+        barWidth: '30%',
+        itemStyle: {
+            normal: {
+                color: '#0BE3FF'
+            }
+        }
+    }
+    ]
+    let dataObj = {
+        year: ['2015', '2016', '2017', '2018', '2019', '2020'],
+        data: {
+            value: [{
+                name: '第一季度',
+                value: [127, 224, 250, 278, 227, 355]
+            }, {
+                name: '第二季度',
+                value: [27, 124, 70, 178, 127, 157]
+            }, {
+                name: '第三季度',
+                value: [127, 74, 120, 99, 130, 50]
+            }]
+        }
+    }
+    let dataArr:any = []
+    dataObj.data.value.map(item => {
+        let newArr = {
+            name: item.name,
+            type: 'line',
+            smooth: true,
+            symbolSize: 8,
+            data: item.value,
+            barWidth: '30%',
+            itemStyle: {
+                normal: {
+                    color: item.name === '第一季度' ? '#f0c725' : item.name === '第二季度' ? '#0BE3FF' : '#16f892'
+                }
+            }
+        }
+
+        dataArr.push(newArr)
+    })
+    return {
+        color: ['#f0c725', '#16f892'],
+        title: {
+            left: 'center',
+            text: '',
+            textStyle: {
+                color: '#FFFFFF',
+                fontSize: '18',
+            }
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        legend: {
+            x: 'center',
+            top: '15',
+            textStyle: {
+                color: '#c1cadf',
+                "fontSize": 18
+            }
+        },
+        grid: {
+            left: '2%',     // 增加左边距
+            right: '5%',    // 增加右边距
+            top: '25%',      // 可以适当调整顶部边距
+            bottom: '1%',   // 增加底部边距以留出更多空间
+            containLabel: true
+        },
+        toolbox: {
+            show: true,
+            orient: 'vertical',
+            x: 'right',
+            y: 'center'
+        },
+        xAxis: [{
+            type: 'category',
+            boundaryGap: false,
+            data: dataObj.year,
+            axisLine: {
+                lineStyle: {
+                    color: 'rgba(240,199,37,0.5)'
+                }
+            },
+            axisLabel: {
+                interval: 0,
+                color: '#c1cadf',
+                fontSize: '18'
+            }
+        }],
+        yAxis: [{
+            type: 'value',
+            name: '(m3)',
+            nameTextStyle: {
+                color: '#c1cadf',
+                align: 'right',
+                lineHeight: 10
+            },
+            axisLine: {
+                lineStyle: {
+                    color: 'rgba(240,199,37,0.5)'
+                }
+            },
+            axisLabel: {
+                interval: 0,
+                color: '#c1cadf',
+                fontSize: '18'
+            },
+            splitLine: {
+                show: false
+            }
+        }],
+        series: dataArr
+    }
+}
 export default options
