@@ -245,28 +245,28 @@ let echarts8 = ref()
 let echarts9 = ref()
 
 onMounted(() => {
-    let chart1 = echarts.init(echarts1.value)
+    let chart1 = echarts.init(echarts1.value,null, {devicePixelRatio: 10})
     chart1.setOption(options.echarts1)
 
-    let chart2 = echarts.init(echarts2.value)
+    let chart2 = echarts.init(echarts2.value,null, {devicePixelRatio: 10})
     chart2.setOption(options.echarts2)
 
-    let chart3 = echarts.init(echarts3.value)
+    let chart3 = echarts.init(echarts3.value,null, {devicePixelRatio: 10})
     chart3.setOption(options.echarts2)
 
-    let chart4 = echarts.init(echarts4.value)
+    let chart4 = echarts.init(echarts4.value,null, {devicePixelRatio: 10})
     chart4.setOption(options.echarts4)
 
-    let chart5 = echarts.init(echarts5.value)
+    let chart5 = echarts.init(echarts5.value,null, {devicePixelRatio: 10})
     chart5.setOption(options.echarts5)
 
-    let chart6 = echarts.init(echarts6.value)
+    let chart6 = echarts.init(echarts6.value,null, {devicePixelRatio: 10})
     chart6.setOption(options.echarts6)
 
-    let chart7 = echarts.init(echarts7.value)
+    let chart7 = echarts.init(echarts7.value,null, {devicePixelRatio: 10})
     chart7.setOption(options.echarts7)
 
-    let chart8 = echarts.init(echarts8.value)
+    let chart8 = echarts.init(echarts8.value,null, {devicePixelRatio: 10})
     chart8.setOption(options.echarts8)
 
     let chart9 = echarts.init(echarts9.value)

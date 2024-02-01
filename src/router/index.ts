@@ -39,6 +39,12 @@ let router = createRouter({
                     path: 'demo04',
                     meta: { title: 'demo04', icon: 'location' },
                     component: () => import('@/pages/bigScreen/demo04/index.vue')
+                },
+                {
+                    name: 'demo05',
+                    path: 'demo05',
+                    meta: { title: 'demo05', icon: 'location' },
+                    component: () => import('@/pages/bigScreen/demo05/index.vue')
                 }
             ]
         },
@@ -53,6 +59,12 @@ let router = createRouter({
                     path: 'scrollDemo',
                     meta: { title: 'scrollDemo-行数据滚动', icon: 'location' },
                     component: () => import('@/pages/chartsModules/ScrollDemo.vue')
+                },
+                {
+                    name: 'mapDemo01',
+                    path: 'mapDemo01',
+                    meta: { title: 'mapDemo01-基础地图', icon: 'location' },
+                    component: () => import('@/pages/chartsModules/MapDemo01.vue')
                 },
             ]
         }

@@ -10,17 +10,20 @@ import { reactive } from "vue";
 
 interface PropsInterface {
   title?: string,
-  height?: string
+  height?: string,
+  fontSize?: string
 }
 
 const props = withDefaults(defineProps<PropsInterface>(), {
   title: '这是一个banner标题',
-  height: '80px'
+  height: '80px',
+  fontSize: '32px'
 })
 
 let data = reactive({
     style: {
-        height: props.height
+        height: props.height,
+        'font-size': props.fontSize
     }
 })
 
@@ -30,15 +33,16 @@ let data = reactive({
 .head {
     background: url('@/assets/images/head/head_bg01.png') no-repeat center center;
     width: 100%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
 }
 
 .head h1 {
     color: #fff;
-    text-align: center;
-    font-size: 35px;
-    padding-top: 15px;
     opacity: 0.9;
     letter-spacing: -1px;
+    margin: 0; 
 }
-
 </style>
