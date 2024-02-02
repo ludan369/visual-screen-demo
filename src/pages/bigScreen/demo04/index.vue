@@ -119,7 +119,7 @@ import * as echarts from "echarts"
 import options from '@/pages/bigScreen/demo04/options/options'
 import BoxContent from '@/pages/bigScreen/components/box/BoxContent.vue'
 import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue'
-import China from '@/pages/bigScreen/demo04/json/China.json'
+import China from '@/pages/chartsModules/json/China'
 
 let nowTimeData = ref("")
 
