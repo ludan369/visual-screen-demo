@@ -93,31 +93,31 @@ const map = ref()
 onMounted(() => {
     setInterval(getRandomEightDigitNumber, 5000)
 
-    let chart1 = echarts.init(echarts1.value, null, { devicePixelRatio: 10 })
+    let chart1 = echarts.init(echarts1.value, null, { devicePixelRatio: 5 })
     chart1.setOption(options.echarts1)
 
-    let chart2 = echarts.init(echarts2.value, null, { devicePixelRatio: 10 })
+    let chart2 = echarts.init(echarts2.value, null, { devicePixelRatio: 5 })
     chart2.setOption(options.echarts2)
 
-    let chart31 = echarts.init(echarts31.value, null, { devicePixelRatio: 10 })
+    let chart31 = echarts.init(echarts31.value, null, { devicePixelRatio: 5 })
     chart31.setOption(options.echarts31)
 
-    let chart32 = echarts.init(echarts32.value, null, { devicePixelRatio: 10 })
+    let chart32 = echarts.init(echarts32.value, null, { devicePixelRatio: 5 })
     chart32.setOption(options.echarts32)
 
-    let chart33 = echarts.init(echarts33.value, null, { devicePixelRatio: 10 })
+    let chart33 = echarts.init(echarts33.value, null, { devicePixelRatio: 5 })
     chart33.setOption(options.echarts33)
 
-    let chart4 = echarts.init(echarts4.value, null, { devicePixelRatio: 10 })
+    let chart4 = echarts.init(echarts4.value, null, { devicePixelRatio: 5 })
     chart4.setOption(options.echarts4)
 
-    let chart5 = echarts.init(echarts5.value, null, { devicePixelRatio: 10 })
+    let chart5 = echarts.init(echarts5.value, null, { devicePixelRatio: 5 })
     chart5.setOption(options.echarts5)
 
-    let chart6 = echarts.init(echarts6.value, null, { devicePixelRatio: 10 })
+    let chart6 = echarts.init(echarts6.value, null, { devicePixelRatio: 5 })
     chart6.setOption(options.echarts6)
 
-    let mapChart = echarts.init(map.value, null, { devicePixelRatio: 10 });
+    let mapChart = echarts.init(map.value, null, { devicePixelRatio: 5 });
     // @ts-ignore
     echarts.registerMap('china', China)
     mapChart.setOption(options.map)

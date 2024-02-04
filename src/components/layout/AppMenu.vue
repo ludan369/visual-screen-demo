@@ -7,7 +7,7 @@
         @close="handleClose" background-color="#ebf1f5" text-color="#606266" active-text-color="#2F74FF" class="menu"
         router>
         <template v-for="(item, index) in routes">
-            <el-menu-item v-if="item.path === '/'" :index="item.path" :key="'item' + index">
+            <el-menu-item v-if="item.path === '/home'" :index="item.path" :key="'item' + index">
                 <el-icon>
                     <location />
                 </el-icon>

@@ -6,9 +6,9 @@ let router = createRouter({
     routes: [
         {
             name: 'home',
-            path: '/',
+            path: '/home',
             meta: { title: '首页', icon: 'Fold' },
-            component: RouterView
+            component: () => import('@/pages/home/index.vue')
         },
         {
             name: 'bigScreen',
@@ -45,7 +45,13 @@ let router = createRouter({
                     path: 'demo05',
                     meta: { title: 'demo05', icon: 'location' },
                     component: () => import('@/pages/bigScreen/demo05/index.vue')
-                }
+                },
+                {
+                    name: 'demo06',
+                    path: 'demo06',
+                    meta: { title: 'demo06', icon: 'location' },
+                    component: () => import('@/pages/bigScreen/demo06/index.vue')
+                },
             ]
         },
         {
@@ -67,7 +73,8 @@ let router = createRouter({
                     component: () => import('@/pages/chartsModules/MapDemo01.vue')
                 },
             ]
-        }
+        },
+        { path: '/', redirect: { name: 'home' }}
     ]
 })
 
