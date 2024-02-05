@@ -39,7 +39,8 @@ export function mapOptions(mapData:any, mapName:string, mapLightData:any): { [ke
             },
         },
         series: [
-            {
+            {   
+                nameProperty: 'adcoadcodede',
                 zlevel: 2,
                 type: 'effectScatter',
                 coordinateSystem: 'geo',

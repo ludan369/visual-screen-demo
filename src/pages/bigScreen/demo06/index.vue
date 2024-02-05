@@ -44,25 +44,61 @@
 </template>
 
 <script setup lang="ts">
-import {ref,onMounted} from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import * as echarts from "echarts"
 import BoxContent03 from "@/pages/bigScreen/components/box/BoxContent03.vue"
-import {mapOptions} from '@/pages/bigScreen/demo06/options/mapOptions'
+import { mapOptions } from '@/pages/bigScreen/demo06/options/mapOptions'
 import China from '@/pages/chartsModules/json/China.json'
+import { importMaps } from '@/pages/chartsModules/utils/importMaps'
+import { getAdcodeByName } from '@/pages/chartsModules/utils/mapUtils'
 
+// 地图层级，初始1-中国
+let level =ref(1)
 const map = ref()
 
-onMounted(() =>{
+let timeFnData = reactive({
+    timeFn: 0 as NodeJS.Timeout | 0
+})
+
+async function registerMapsAndSetupChart(adcode:string) {
+    const maps = await importMaps(adcode);
+    for (const [key, value] of Object.entries(maps)) {
+        echarts.registerMap(key, value);
+    }
+}
+
+onMounted(() => {
     let mapChart = echarts.init(map.value, null, { devicePixelRatio: 2 });
     // @ts-ignore
+    // 中国地图注册
     echarts.registerMap('china', China)
-    mapChart.setOption(mapOptions({},'china',[]))
+    mapChart.setOption(mapOptions({}, 'china', []))
+    // 贵州省地图注册
+    registerMapsAndSetupChart("520000")
+    
+
+    // 地图单击事件
+    mapChart.on('click', (params: any) => {
+        clearTimeout(timeFnData.timeFn)
+        timeFnData.timeFn = setTimeout(() => {
+            let adcode = getAdcodeByName(params.name)
+            mapChart.setOption(mapOptions({}, adcode, []))
+            level.value = 2
+        }, 250)
+    })
+
+    // 地图双击事件
+    mapChart.on('dblclick', (params: any) => {
+        clearTimeout(timeFnData.timeFn)
+        if (level.value === 2) {
+            mapChart.setOption(mapOptions({}, 'china', []))
+        }
+    })
 
     window.addEventListener("resize", function () {
         mapChart.resize()
     })
 })
-
 </script>
 
 <style lang="less" scoped>
