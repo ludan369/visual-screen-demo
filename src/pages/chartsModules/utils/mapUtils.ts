@@ -1,7 +1,10 @@
-
+/**
+ * 中文名字与地区编码的对照表
+ * @param name 地图中文名字
+ */
 export function getAdcodeByName(name: string): string {
     const map: { [key: string]: string } = {
-        '贵州省': '520000',
+        '贵州': '520000',
         '贵阳市': '520100',
         '六盘水市': '520200',
         '遵义市': '520300',
