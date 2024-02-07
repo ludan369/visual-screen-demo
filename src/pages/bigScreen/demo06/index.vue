@@ -1,7 +1,8 @@
 <template>
     <div class="main">
         <div class="header">
-            <div class="nav">
+            <h1 class="">双数智慧公卫-传染病督导平台</h1>
+            <!-- <div class="nav">
                 <ul class="nav_ul clearfix">
                     <li :class="{ 'nav_active': activeClass === 'home' }">
                         <a @click="togglePage('home')">首页</a>
@@ -10,15 +11,95 @@
                         <a @click="togglePage('trending')">统计趋势分析</a>
                     </li>
                 </ul>
-            </div>
+            </div> -->
         </div>
         <div class="mainbody">
             <div class="left">
                 <div class="left-top">
-                    <box-content03 title="当日情况"></box-content03>
+                    <box-content03 title="当日情况">
+                        <ul class="drqk ">
+							<li>
+								<div class="icon"><img src="../../../assets/images/icon/icona.png"></div>
+								<div><span>今日就诊人数</span>
+									<p><em>1358</em><i>人</i></p>
+								</div>
+							</li>
+							<li>
+								<div class="icon"><img src="../../../assets/images/icon/iconb.png"></div>
+								<div><span>今日就诊人数</span>
+									<p><em>1983</em><i>人</i></p>
+								</div>
+							</li>
+							<li>
+								<div class="icon"><img src="../../../assets/images/icon/iconc.png"></div>
+								<div><span>今日就诊人数</span>
+									<p><em>930</em><i>人</i></p>
+								</div>
+							</li>
+							<li>
+								<div class="icon"><img src="../../../assets/images/icon/icond.png"></div>
+								<div><span>今日就诊人数</span>
+									<p><em>371</em><i>人</i></p>
+								</div>
+							</li>
+							<li>
+								<div class="icon"><img src="../../../assets/images/icon/icone.png"></div>
+								<div><span>今日就诊人数</span>
+									<p><em>1683</em><i>人</i></p>
+								</div>
+							</li>
+							<li>
+								<div class="icon"><img src="../../../assets/images/icon/iconf.png"></div>
+								<div><span>今日就诊人数</span>
+									<p><em>1091</em><i>人</i></p>
+								</div>
+							</li>
+						</ul>
+                    </box-content03>
                 </div>
                 <div class="left-middle">
-                    <box-content03 title="法定传染病监测"></box-content03>
+                    <box-content03 title="法定传染病监测">
+                        <table class="table1" width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <th>发病统计</th>
+                                    <th>甲类</th>
+                                    <th>乙类</th>
+                                    <th>丙类</th>
+                                </tr>
+                                <tr>
+                                    <td>发病数（万）</td>
+                                    <td>0.03<span class="text-b">↓0.01%</span></td>
+                                    <td>163.00<span class="text-d">↑4.01%</span></td>
+                                    <td>163.00<span class="text-d">↑4.01%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>发病率（%）</td>
+                                    <td>0.3<span class="text-b">↓0.01%</span></td>
+                                    <td>100%<span class="text-d">↑4.01</span></td>
+                                    <td>81.92%<span class="text-d">↑4.01</span></td>
+                                </tr>
+                                <tr>
+                                    <td>发病率（%）</td>
+                                    <td>0.3<span class="text-b">↓0.01%</span></td>
+                                    <td>100%<span class="text-d">↑4.01</span></td>
+                                    <td>81.92%<span class="text-d">↑4.01</span></td>
+                                </tr>
+                                <tr>
+                                    <td>发病率（%）</td>
+                                    <td>0.3<span class="text-b">↓0.01%</span></td>
+                                    <td>100%<span class="text-d">↑4.01</span></td>
+                                    <td>81.92%<span class="text-d">↑4.01</span></td>
+                                </tr>
+                                <tr>
+                                    <td>发病率（%）</td>
+                                    <td>0.3<span class="text-b">↓0.01%</span></td>
+                                    <td>100%<span class="text-d">↑4.01</span></td>
+                                    <td>81.92%<span class="text-d">↑4.01</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </box-content03>
                 </div>
                 <div class="left-bottom">
                     <box-content03 title="医疗服务"></box-content03>
@@ -42,10 +123,33 @@
                     <box-content03 title="同期对比"></box-content03>
                 </div>
                 <div class="right-middle">
-                    <box-content03 title="就医动态"></box-content03>
+                    <box-content03 title="就医动态" style="height: 100%;">
+                        <div ref="echarts1" style="height: 100%;width: 100%;"></div>
+                    </box-content03>
                 </div>
                 <div class="right-bottom">
-                    <box-content03 title="疾病构成"></box-content03>
+                    <box-content03 title="疾病构成" style="height: 100%;">
+                        <ul class="jbgc">
+							<li>
+								<div class="jztxt">
+									<div>
+										<h3>1236<i>万元</i></h3>
+										<span>私人诊所</span>
+									</div>
+									<div>
+										<h3>1236<i>万元</i></h3>
+										<span>私人诊所</span>
+									</div>
+									<div>
+										<h3>1236<i>万元</i></h3>
+										<span>私人诊所</span>
+									</div>
+								</div>
+							</li>
+							<li style="width:90%" ref="echarts2">
+                            </li>
+						</ul>
+                    </box-content03>
                 </div>
             </div>
         </div>
@@ -57,15 +161,19 @@ import { ref, reactive, onMounted } from 'vue'
 import * as echarts from "echarts"
 import BoxContent03 from "@/pages/bigScreen/components/box/BoxContent03.vue"
 import { mapOptions } from '@/pages/bigScreen/demo06/options/mapOptions'
+import options from '@/pages/bigScreen/demo06/options/options'
 import China from '@/pages/chartsModules/json/China.json'
 import { importMaps } from '@/pages/chartsModules/utils/importMaps'
 import { getAdcodeByName } from '@/pages/chartsModules/utils/mapUtils'
 
 let activeClass = ref('home');
 
-function togglePage(componentName:string) {
+function togglePage(componentName: string) {
     activeClass.value = componentName;
 }
+
+const echarts1 = ref()
+const echarts2 = ref()
 
 let adcodeData = reactive({
     // 当前地图
@@ -106,6 +214,12 @@ async function registerMapsAndSetupChart(adcode: string) {
 }
 
 onMounted(() => {
+    let chart1 = echarts.init(echarts1.value, null, { devicePixelRatio: 3 })
+    chart1.setOption(options.echarts1)
+
+    let chart2 = echarts.init(echarts2.value, null, { devicePixelRatio: 3 })
+    chart2.setOption(options.echarts2)
+
     let mapChart = echarts.init(map.value, null, { devicePixelRatio: 3 });
     // @ts-ignore
     // 中国地图注册
@@ -152,6 +266,8 @@ onMounted(() => {
 
     window.addEventListener("resize", function () {
         mapChart.resize()
+        chart1.resize()
+        chart2.resize()
     })
 })
 </script>
