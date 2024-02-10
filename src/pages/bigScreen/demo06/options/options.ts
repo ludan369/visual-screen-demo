@@ -2,7 +2,8 @@ import * as echarts from "echarts"
 
 let options = {
     echarts1: echarts1(),
-    echarts2: echarts2()
+    echarts2: echarts2(),
+    echarts3: echarts3()
 }
 
 function echarts1(): { [key: string]: any } {
@@ -138,6 +139,59 @@ function echarts2(): { [key: string]: any } {
                 ]
             }
         ]
+    }
+}
+
+function echarts3(): { [key: string]: any } {
+    return {
+        title: {
+            text: '22%',
+            x: 'center',
+            y: 'center',
+            textStyle: {
+                fontWeight: 'normal',
+                color: '#0580f2',
+                fontSize: '24'
+            }
+        },
+        color: ['rgba(176, 212, 251, .1)'],
+        series: [{
+            name: 'Line 1',
+            type: 'pie',
+            clockWise: true,
+            radius: ['75%', '85%'],
+            itemStyle: {
+                normal: {
+                    label: { show: false },
+                    labelLine: { show: false },
+                }
+            },
+
+            hoverAnimation: false,
+            data: [{
+                value: 22,
+                name: '01',
+                itemStyle: {
+                    normal: {
+                        color: { // 完成的圆环的颜色
+                            colorStops: [{
+                                offset: 0,
+                                color: '#00cefc' // 0% 处的颜色
+                            }, {
+                                offset: 1,
+                                color: '#367bec' // 100% 处的颜色
+                            }]
+                        },
+                        label: { show: false },
+                        labelLine: { show: false }
+                    }
+                }
+            }, {
+                name: '78',
+                value: 20
+            }]
+
+        }]
     }
 }
 
