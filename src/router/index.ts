@@ -52,6 +52,12 @@ let router = createRouter({
                     meta: { title: 'demo06', icon: 'location' },
                     component: () => import('@/pages/bigScreen/demo06/index.vue')
                 },
+                {
+                    name: 'demo07',
+                    path: 'demo07',
+                    meta: { title: 'demo07', icon: 'location' },
+                    component: () => import('@/pages/bigScreen/demo07/index.vue')
+                },
             ]
         },
         {
