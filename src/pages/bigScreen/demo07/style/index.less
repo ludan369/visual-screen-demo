@@ -1,0 +1,212 @@
+@header-height: 7%;
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+    background-color: #081832;
+}
+
+.header {
+    width: 100%;
+    height: @header-height;
+    background-color: #030829;
+}
+
+.nav {
+    width: 35%;
+}
+
+.nav>ul {}
+
+.nav>ul>li {
+    display: inline-block;
+    width: 120px;
+    text-align: center;
+    height: 50px;
+    position: relative;
+    line-height: 50px;
+    margin-top: 15px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.nav>ul>li:hover {
+    box-shadow: -10px 0px 15px #034c6a inset,
+        0px -10px 15px #034c6a inset,
+        10px 0px 15px #034c6a inset,
+        0px 10px 15px #034c6a inset;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.nav>ul>li>a {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.nav_active {
+    border-bottom: 4px solid #4b8df8;
+    box-shadow: -10px 0px 15px #034c6a inset,
+        0px -10px 15px #034c6a inset,
+        10px 0px 15px #034c6a inset,
+        0px 10px 15px #034c6a inset;
+    box-sizing: border-box;
+}
+
+.header_center {
+    width: 30%;
+    color: #FFFFff;
+    display: flex;
+    /* 启用 Flexbox 布局 */
+    flex-direction: column;
+    /* 子元素垂直排列 */
+    justify-content: center;
+    /* 子元素水平居中（在 flex-direction 为 column 时控制垂直居中） */
+    align-items: center;
+    /* 子元素垂直居中（在 flex-direction 为 column 时控制水平居中） */
+    height: 85px;
+    text-align: center;
+    /* 文本居中 */
+    background-image: url(@/assets/images/head/logoBg.png);
+    background-size: 100% 100%;
+    font-family: "微软雅黑" !important;
+}
+
+.color_font {
+    color: #e8f7fe !important;
+    font-size: 12px !important;
+}
+
+.con_div {
+    height: calc(97% - @header-height);
+    width: 98%;
+    margin-top: 1%;
+    margin-left: 1%;
+}
+
+.con_div_text {
+    height: 12%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.con_div_content {
+    height: 100%;
+    width: 33%;
+    background-color: #034c6a;
+}
+
+.con_div_content_01 {
+    width: 50%;
+    height: 100%;
+}
+
+.con_div_content_02 {
+    width: 50%;
+    height: 100%;
+}
+
+.text01_img {
+    width: 40px;
+    height: 40px;
+    margin-left: 5%;
+    margin-top: 35px;
+}
+
+.text01_div{
+    margin-top: 15px;
+    margin-left: 5%;
+    text-align: center;
+}
+.text01_div p{
+    line-height: 35px;
+}
+.text01_div p:nth-child(1){
+    font-size: 13px;
+    color: #ffffff;
+}
+.text01_div p:nth-child(2){
+    font-size: 28px;
+    color: #ffff43;
+    font-weight: 600;
+}
+.red{
+    color: red !important;
+}
+.sky{
+    color: #25f3e6 !important;
+}
+.org{
+    color: #ff4e4e !important;
+}
+.con_div_middle {
+    height: 57%;
+    width: 100%;
+}
+.div_any01{
+    width: 23%;
+    height: 100%;
+}
+.div_any02{
+    width: 50%;
+    height: 100%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+.div_any_child{
+    width: 100%;
+    height: 100%;
+    box-shadow: -10px 0px 15px #034c6a inset,
+    0px -10px 15px #034c6a inset, 
+    10px 0px 15px #034c6a inset, 
+    0px 10px 15px #034c6a inset;
+    border: 1px solid #034c6a;
+    box-sizing: border-box;
+    position: relative;
+    margin-top: 5%;
+}
+.div_height{
+    height: 46%;
+}
+.div_height_map {
+    height: 91%;
+}
+.div_any_title{
+    background-color: #034c6a;
+    border-radius: 18px;
+    position: absolute;
+    height: 35px;
+    width: 60%;
+    top:-15px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+    left: 20%;
+    line-height: 35px;
+    text-align: center;
+}
+.div_any_title img{
+    width: 18px;
+    height: 18px;
+    position: relative;
+    top:2px;
+    margin-right: 5px;
+}
+
+.any_title_width{
+    width: 30% !important;
+    left: 35% !important;
+}
+
+.con_div_bottom {
+    height: 31%;
+}

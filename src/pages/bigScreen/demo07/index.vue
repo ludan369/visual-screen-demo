@@ -19,9 +19,92 @@
                 <p class="color_font"><small>Comprehensive service platform for smart tourism</small></p>
             </div>
         </div>
+
+        <div class="con_div">
+            <div class="con_div_text">
+                <div class="con_div_content">
+                    <div class="con_div_content_01 left">
+                        <img src="../../../assets/images/icon/info_1.png" class="left text01_img" />
+                        <div class="left text01_div">
+                            <p>车辆总数(辆)</p>
+                            <p>12356</p>
+                        </div>
+                    </div>
+                    <div class="con_div_content_02 right">
+                        <img src="../../../assets/images/icon/info_2.png" class="left text01_img" />
+                        <div class="left text01_div">
+                            <p>车辆使用数(辆)</p>
+                            <p>12356</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="con_div_content">
+                    <div class="con_div_content_01 left">
+                        <img src="../../../assets/images/icon/info_4.png" class="left text01_img" />
+                        <div class="left text01_div">
+                            <p>行驶里程总数(km)</p>
+                            <p class="sky">12356</p>
+                        </div>
+                    </div>
+                    <div class="con_div_content_02 right">
+                        <img src="../../../assets/images/icon/info_5.png" class="left text01_img" />
+                        <div class="left text01_div">
+                            <p>行驶里程平均数(km)</p>
+                            <p class="sky">12356</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="con_div_content">
+                    <div class="con_div_content_01 left">
+                        <img src="../../../assets/images/icon/info_6.png" class="left text01_img" />
+                        <div class="left text01_div">
+                            <p>行驶时长总数(s)</p>
+                            <p class="org">12356</p>
+                        </div>
+                    </div>
+                    <div class="con_div_content_02 right">
+                        <img src="../../../assets/images/icon/info_7.png" class="left text01_img" />
+                        <div class="left text01_div">
+                            <p>行驶ihfj平均数(s)</p>
+                            <p class="org">12356</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="con_div_middle">
+                <div class="div_any01 left">
+                    <div class="div_any_child div_height">
+                        <div class="div_any_title"><img src="../../../assets/images/icon/title_1.png">车辆类型统计 </div>
+                    </div>
+                    <div class="div_any_child div_height">
+                        <div class="div_any_title"><img src="../../../assets/images/icon/title_2.png">车辆状态统计 </div>
+
+                    </div>
+                </div>
+                <div class="div_any02 left">
+                    <div class="div_any_child div_height_map">
+                        <div class="div_any_title any_title_width"><img src="../../../assets/images/icon/title_3.png">车辆行驶地图 </div>
+                    </div>
+                </div>
+                <div class="div_any01 right">
+                    <div class="div_any_child div_height">
+                        <div class="div_any_title"><img src="../../../assets/images/icon/title_4.png">车辆行驶统计 </div>
+                    </div>
+                    <div class="div_any_child div_height">
+                        <div class="div_any_title"><img src="../../../assets/images/icon/title_5.png">车辆报警统计 </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="con_div_bottom">
+                
+            </div>
+        </div>
     </div>
 </template>
-``
+
 <script setup lang="ts">
 import { ref } from 'vue'
 let activeClass = ref('home');
@@ -33,77 +116,5 @@ function togglePage(componentName: string) {
 </script>
 
 <style lang="less" scoped>
-@header-height: 7%;
-
-.left {
-    float: left;
-}
-
-.right {
-    float: right;
-}
-
-.main {
-    height: 100%;
-    width: 100%;
-    background-color: #081832;
-}
-
-.header {
-    width: 100%;
-    height: @header-height;
-    background-color: #030829;
-}
-
-.nav {
-    width: 35%;
-}
-
-.nav>ul {}
-
-.nav>ul>li {
-    display: inline-block;
-    width: 120px;
-    text-align: center;
-    height: 50px;
-    position: relative;
-    line-height: 50px;
-    margin-top: 15px;
-    box-sizing: border-box;
-    border-radius: 5px;
-}
-
-.nav>ul>li:hover {
-    box-shadow: -10px 0px 15px #034c6a inset,
-        0px -10px 15px #034c6a inset,
-        10px 0px 15px #034c6a inset,
-        0px 10px 15px #034c6a inset;
-    cursor: pointer;
-    box-sizing: border-box;
-}
-
-.nav>ul>li>a {
-    color: #ffffff;
-    font-size: 14px;
-}
-
-.nav_active {
-    border-bottom: 4px solid #4b8df8;
-    box-shadow: -10px 0px 15px #034c6a inset,
-        0px -10px 15px #034c6a inset,
-        10px 0px 15px #034c6a inset,
-        0px 10px 15px #034c6a inset;
-    box-sizing: border-box;
-}
-.header_center{
-    width: 35%;
-    margin: 0px auto;
-    color: #FFFFff;
-    text-align: center;
-    height: 80px;
-    background-image: url(@/assets/images/head/logoBg.png);
-    background-size: 100% 100%;
-    font-family: "微软雅黑"!important;
-}
-
+@import url('./style/index.less');
 </style>
