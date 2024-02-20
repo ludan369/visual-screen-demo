@@ -3,14 +3,14 @@
         <div class="header">
             <div class="nav left">
                 <ul>
-                    <li :class="{ 'nav_active': activeClass === 'home' }">
-                        <a @click="togglePage('home')">首页</a>
+                    <li :class="{ 'nav_active': activeClass === 'Home' }">
+                        <a @click="togglePage('Home')">首页</a>
                     </li>
-                    <li :class="{ 'nav_active': activeClass === 'menu1' }">
-                        <a @click="togglePage('menu1')">菜单一</a>
+                    <li :class="{ 'nav_active': activeClass === 'Menu01' }">
+                        <a @click="togglePage('Menu01')">菜单一</a>
                     </li>
-                    <li :class="{ 'nav_active': activeClass === 'menu2' }">
-                        <a @click="togglePage('menu2')">菜单二</a>
+                    <li :class="{ 'nav_active': activeClass === 'Menu02' }">
+                        <a @click="togglePage('Menu02')">菜单二</a>
                     </li>
                 </ul>
             </div>
@@ -21,118 +21,23 @@
         </div>
 
         <div class="con_div">
-            <div class="con_div_text">
-                <div class="con_div_content">
-                    <div class="con_div_content_01 left">
-                        <img src="../../../assets/images/icon/info_1.png" class="left text01_img" />
-                        <div class="left text01_div">
-                            <p>车辆总数(辆)</p>
-                            <p>12356</p>
-                        </div>
-                    </div>
-                    <div class="con_div_content_02 right">
-                        <img src="../../../assets/images/icon/info_2.png" class="left text01_img" />
-                        <div class="left text01_div">
-                            <p>车辆使用数(辆)</p>
-                            <p>12356</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="con_div_content">
-                    <div class="con_div_content_01 left">
-                        <img src="../../../assets/images/icon/info_4.png" class="left text01_img" />
-                        <div class="left text01_div">
-                            <p>行驶里程总数(km)</p>
-                            <p class="sky">12356</p>
-                        </div>
-                    </div>
-                    <div class="con_div_content_02 right">
-                        <img src="../../../assets/images/icon/info_5.png" class="left text01_img" />
-                        <div class="left text01_div">
-                            <p>行驶里程平均数(km)</p>
-                            <p class="sky">12356</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="con_div_content">
-                    <div class="con_div_content_01 left">
-                        <img src="../../../assets/images/icon/info_6.png" class="left text01_img" />
-                        <div class="left text01_div">
-                            <p>行驶时长总数(s)</p>
-                            <p class="org">12356</p>
-                        </div>
-                    </div>
-                    <div class="con_div_content_02 right">
-                        <img src="../../../assets/images/icon/info_7.png" class="left text01_img" />
-                        <div class="left text01_div">
-                            <p>行驶ihfj平均数(s)</p>
-                            <p class="org">12356</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="con_div_middle">
-                <div class="div_any01 left">
-                    <div class="div_any_child div_height">
-                        <div class="div_any_title"><img src="../../../assets/images/icon/title_1.png">车辆类型统计 </div>
-                    </div>
-                    <div class="div_any_child div_height">
-                        <div class="div_any_title"><img src="../../../assets/images/icon/title_2.png">车辆状态统计 </div>
-
-                    </div>
-                </div>
-                <div class="div_any02 left">
-                    <div class="div_any_child div_height_map">
-                        <div class="div_any_title any_title_width"><img src="../../../assets/images/icon/title_3.png">车辆行驶地图 </div>
-                    </div>
-                </div>
-                <div class="div_any01 right">
-                    <div class="div_any_child div_height">
-                        <div class="div_any_title"><img src="../../../assets/images/icon/title_4.png">车辆行驶统计 </div>
-                    </div>
-                    <div class="div_any_child div_height">
-                        <div class="div_any_title"><img src="../../../assets/images/icon/title_5.png">车辆报警统计 </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="con_div_bottom">
-                <div class="div_any03 left">
-                    <div class="div_any_child div_height2">
-                        <div class="div_any_title"><img src="../../../assets/images/icon/title_4.png">行驶里程排名前5位</div>
-                    </div>
-                </div>
-                <div class="div_any03 left" style="margin-left: 1%;">
-                    <div class="div_any_child div_height2">
-                        <div class="div_any_title"><img src="../../../assets/images/icon/title_4.png">行驶次数车辆前5位</div>
-                    </div>
-                </div>
-                <div class="div_any03 left" style="margin-left: 2%;">
-                    <div class="div_any_child div_height2">
-                        <div class="div_any_title"><img src="../../../assets/images/icon/title_4.png">行驶最高时速前5位</div>
-                    </div>
-                </div>
-                <div class="div_any03 right">
-                    <div class="div_any_child div_height2">
-                        <div class="div_any_title"><img src="../../../assets/images/icon/title_4.png">行驶时长排名前5位</div>
-                    </div>
-                </div>
-            </div>
+            <component :is="tabs[activeClass]" ></component>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import {RouterView,RouterLink} from 'vue-router'
+import Home from '@/pages/bigScreen/demo07/components/Home.vue'
+import Menu01 from '@/pages/bigScreen/demo07/components/Menu01.vue'
+import Menu02 from '@/pages/bigScreen/demo07/components/Menu02.vue'
 
+const tabs:any = {Home,Menu01,Menu02}
 
-let activeClass = ref('home')
+let activeClass = ref('Home')
 
 function togglePage(componentName: string) {
-    activeClass.value = componentName;
+    activeClass.value = componentName
 }
 
 </script>
