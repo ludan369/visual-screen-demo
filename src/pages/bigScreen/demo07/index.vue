@@ -99,7 +99,26 @@
             </div>
 
             <div class="con_div_bottom">
-                
+                <div class="div_any03 left">
+                    <div class="div_any_child div_height2">
+                        <div class="div_any_title"><img src="../../../assets/images/icon/title_4.png">行驶里程排名前5位</div>
+                    </div>
+                </div>
+                <div class="div_any03 left" style="margin-left: 1%;">
+                    <div class="div_any_child div_height2">
+                        <div class="div_any_title"><img src="../../../assets/images/icon/title_4.png">行驶次数车辆前5位</div>
+                    </div>
+                </div>
+                <div class="div_any03 left" style="margin-left: 2%;">
+                    <div class="div_any_child div_height2">
+                        <div class="div_any_title"><img src="../../../assets/images/icon/title_4.png">行驶最高时速前5位</div>
+                    </div>
+                </div>
+                <div class="div_any03 right">
+                    <div class="div_any_child div_height2">
+                        <div class="div_any_title"><img src="../../../assets/images/icon/title_4.png">行驶时长排名前5位</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -107,7 +126,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-let activeClass = ref('home');
+import {RouterView,RouterLink} from 'vue-router'
+
+
+let activeClass = ref('home')
 
 function togglePage(componentName: string) {
     activeClass.value = componentName;
