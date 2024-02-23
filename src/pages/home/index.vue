@@ -26,13 +26,13 @@ import { useRouter } from "vue-router";
 
 const router = useRouter()
 const srcList = reactive([
-    '/images/preview/demo01.png',
-    '/images/preview/demo02.png',
-    '/images/preview/demo03.png',
-    '/images/preview/demo04.png',
-    '/images/preview/demo05.png',
-    '/images/preview/demo06.png',
-    '/images/preview/demo07.png'
+    './images/preview/demo01.png',
+    './images/preview/demo02.png',
+    './images/preview/demo03.png',
+    './images/preview/demo04.png',
+    './images/preview/demo05.png',
+    './images/preview/demo06.png',
+    './images/preview/demo07.png'
 ])
 
 function clickToPath(index: number) {
