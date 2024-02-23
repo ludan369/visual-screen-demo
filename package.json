@@ -17,6 +17,7 @@
     "mitt": "^3.0.1",
     "particles.vue3": "^1.22.0",
     "vue": "^3.3.11",
+    "vue-baidu-map-3x": "^1.0.35",
     "vue-router": "^4.2.5",
     "vue3-seamless-scroll": "^2.0.1"
   },

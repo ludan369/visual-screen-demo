@@ -66,6 +66,11 @@
                 <div class="div_any_child div_height_map">
                     <div class="div_any_title any_title_width"><img src="@/assets/images/icon/title_3.png">车辆行驶地图
                     </div>
+                    <div class="map">
+                        <baidu-map style="height: 370px;width: 96%;margin-top: 25px;padding-left: 13px;" ak="5ieMMexWmzB9jivTq6oCRX9j" v="3.0" type="API"
+                            :center="{ lng: 116.404, lat: 39.915 }" :zoom="15">
+                        </baidu-map>
+                    </div>
                 </div>
             </div>
             <div class="div_any01 right">
@@ -85,88 +90,172 @@
                 <div class="div_any_child div_height2">
                     <div class="div_any_title"><img src="@/assets/images/icon/title_4.png">行驶里程排名前5位</div>
                     <div class="table_p">
-                    <table>
-               <thead><tr>
-                   <th>排名</th>
-                   <th>车牌号</th>
-                   <th>里程数（km）</th>
-               </tr>
-               </thead>
-                <tbody>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                </tbody>
-            </table>
-                </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>车牌号</th>
+                                    <th>里程数（km）</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="div_any03 left" style="margin-left: 1%;">
                 <div class="div_any_child div_height2">
                     <div class="div_any_title"><img src="@/assets/images/icon/title_4.png">行驶次数车辆前5位</div>
                     <div class="table_p">
-                    <table>
-               <thead><tr>
-                   <th>排名</th>
-                   <th>车牌号</th>
-                   <th>里程数（km）</th>
-               </tr>
-               </thead>
-                <tbody>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                </tbody>
-            </table>
-                </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>车牌号</th>
+                                    <th>里程数（km）</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="div_any03 left" style="margin-left: 2%;">
                 <div class="div_any_child div_height2">
                     <div class="div_any_title"><img src="@/assets/images/icon/title_4.png">行驶最高时速前5位</div>
                     <div class="table_p">
-                    <table>
-               <thead><tr>
-                   <th>排名</th>
-                   <th>车牌号</th>
-                   <th>里程数（km）</th>
-               </tr>
-               </thead>
-                <tbody>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                </tbody>
-            </table>
-                </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>车牌号</th>
+                                    <th>里程数（km）</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="div_any03 right">
                 <div class="div_any_child div_height2">
                     <div class="div_any_title"><img src="@/assets/images/icon/title_4.png">行驶时长排名前5位</div>
                     <div class="table_p">
-                    <table>
-               <thead><tr>
-                   <th>排名</th>
-                   <th>车牌号</th>
-                   <th>里程数（km）</th>
-               </tr>
-               </thead>
-                <tbody>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                <tr><td>1</td><td>京A12345</td><td>134.2</td></tr>
-                </tbody>
-            </table>
-                </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>车牌号</th>
+                                    <th>里程数（km）</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>京A12345</td>
+                                    <td>134.2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -174,8 +263,8 @@
 </template>
 
 <script setup lang="ts">
-import {ref,onMounted} from 'vue'
-import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue'
+import { ref, onMounted } from 'vue'
+import { BaiduMap } from 'vue-baidu-map-3x'
 import * as echarts from "echarts"
 import options from '@/pages/bigScreen/demo07/options/options'
 
@@ -207,6 +296,4 @@ onMounted(() => {
 
 </script>
 
-<style lang="less" scoped>
-@import url('../style/index.less');
-</style>
+<style lang="less" scoped>@import url('../style/index.less');</style>
