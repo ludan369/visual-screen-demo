@@ -78,6 +78,12 @@ let router = createRouter({
                     meta: { title: 'mapDemo01-基础地图', icon: 'location' },
                     component: () => import('@/pages/chartsModules/MapDemo01.vue')
                 },
+                {
+                    name: 'BaiduMapDemo02',
+                    path: 'BaiduMapDemo02',
+                    meta: { title: 'BaiduMapDemo02-百度地图', icon: 'location' },
+                    component: () => import('@/pages/chartsModules/BaiduMapDemo02.vue')
+                },
             ]
         },
         { path: '/', redirect: { name: 'home' }}
