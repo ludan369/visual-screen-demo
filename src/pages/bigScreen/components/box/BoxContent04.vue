@@ -1,5 +1,5 @@
 <template>
-    <div class="boxall" style="height: 30%;width: 30%;">
+    <div class="boxall">
         <div :class="[props.title ? 'alltitle' : 'hidden']">
             <span :style="props.titleStyle">{{ props.title }}</span>
         </div>
