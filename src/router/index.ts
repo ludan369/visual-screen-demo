@@ -101,6 +101,18 @@ let router = createRouter({
                     },
                     component: () => import('@/pages/bigScreen/demo07/index.vue')
                 },
+                {
+                    name: 'demo08',
+                    path: 'demo08',
+                    meta: {
+                        title: 'demo08', icon: 'location',
+                        desc: {
+                            imgSrc: './images/preview/demo07.png',
+                            tags: ['']
+                        }
+                    },
+                    component: () => import('@/pages/bigScreen/demo08/index.vue')
+                },
             ]
         },
         {

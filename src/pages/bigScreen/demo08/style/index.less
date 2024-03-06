@@ -1,0 +1,105 @@
+.main {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: url(@/assets/images/bg/bg05.jpg) no-repeat;
+    background-size: cover;
+}
+
+.nav {
+    position: relative;
+    top: .5vw;
+    width: 100%;
+    height: 5vw;
+    background: url(@/assets/images/head/top.png) no-repeat;
+    background-size: 100%;
+    text-align: center;
+    line-height: 4vw;
+    color: #0efcff;
+    font-size: 1.4vw;
+    letter-spacing: .4vw;
+}
+
+.nav_btn {
+    position: absolute;
+    top: 1.5vw;
+    width: 100%;
+    height: 2vw;
+}
+
+.btn_list {
+    position: relative;
+    float: left;
+    width: 5.5vw;
+    height: 1.6vw;
+    text-align: center;
+    line-height: 1.6vw;
+    font-size: .9vw;
+    color: #0efcff;
+    letter-spacing: .1vw;
+    cursor: pointer;
+}
+
+.btn_list:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 1px solid #6176AF;
+    transform: skewX(-38deg);
+}
+
+.btn_list:hover::before {
+    border-color: #0efcff;
+    box-shadow: 1px 1px 3px 1px #0efcff inset;
+}
+
+.btn_left {
+    float: left;
+    width: 25%;
+    margin-left: 5%;
+    height: 100%;
+}
+
+.btn_right {
+    float: right;
+    width: 25%;
+    margin-right: 5%;
+    height: 100%;
+}
+
+.btn_left a,
+.btn_right a {
+    display: inline-block;
+}
+
+.btn_left a:nth-child(2) {
+    margin: 0 .6vw;
+}
+
+.btn_left a:nth-child(4) {
+    margin-left: .6vw;
+}
+
+.btn_right a:nth-child(2) {
+    margin: 0 .6vw;
+}
+
+.btn_right a:nth-child(4) {
+    margin-left: .6vw;
+}
+
+.listActive:before {
+    border-color: #0efcff;
+    box-shadow: 1px 1px 3px 1px #0efcff inset;
+}
+
+.content {
+    position: relative;
+    width: 97%;
+    height: 87%;
+    margin: auto;
+    /* background: white; */
+}
