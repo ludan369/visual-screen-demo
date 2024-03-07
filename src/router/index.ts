@@ -107,8 +107,8 @@ let router = createRouter({
                     meta: {
                         title: 'demo08', icon: 'location',
                         desc: {
-                            imgSrc: './images/preview/demo07.png',
-                            tags: ['']
+                            imgSrc: './images/preview/demo08.png',
+                            tags: ['动态图片']
                         }
                     },
                     component: () => import('@/pages/bigScreen/demo08/index.vue')
