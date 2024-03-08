@@ -108,7 +108,7 @@
                                     <div>钾肥含量：1.5-1.7kg</div>
                                 </div>
                             </div>
-                           <div class="weather_data">
+                            <div class="weather_data">
                                 <div class="weather_text text_one">
                                     <span>温度：19℃</span>
                                     <span>湿度：52%</span>
@@ -120,7 +120,7 @@
                                     <span>蒸发量：0.326mm/h</span>
                                     <span>气压：0.326MPa</span>
                                 </div>
-                            </div> 
+                            </div>
 
                         </div>
                     </div>
@@ -128,10 +128,35 @@
 
                 <div class="right">
                     <div class="right-top">
-
+                        <img src="../../../assets/images/icon/right.png" class="hardware" alt="">
+                        <div class="csbaseBox1">
+                            <div class="boxTitle">硬件设备展示</div>
+                            <ul class="boxLis">
+                                <li @click="togglePage('first')" :class="{ 'active': activeClass === 'first' }">农业无人机
+                                </li>
+                                <li @click="togglePage('second')" :class="{ 'active': activeClass === 'second' }">田间控制器
+                                </li>
+                                <li @click="togglePage('third')" :class="{ 'active': activeClass === 'third' }">监控摄像头
+                                </li>
+                                <li @click="togglePage('fourth')" :class="{ 'active': activeClass === 'fourth' }">土壤检测仪
+                                </li>
+                            </ul>
+                            <div class="equipment_pic">
+                                <img :class="[activeClass === 'first' ? '' : 'hidden']"
+                                    src="../../../assets/images/icon/uva.png" alt="">
+                                <img :class="[activeClass === 'second' ? '' : 'hidden']"
+                                    src="../../../assets/images/icon/control.png" alt="">
+                                <img :class="[activeClass === 'third' ? '' : 'hidden']"
+                                    src="../../../assets/images/icon/camera.png" alt="">
+                                <img :class="[activeClass === 'fourth' ? '' : 'hidden']"
+                                    src="../../../assets/images/icon/detector.png" alt="">
+                            </div>
+                            <div class="liSpan">介绍</div>
+                            <div class="liP">
+                            XXXXXXXXXXXXXXXXX</div>
+                        </div>
                     </div>
                     <div class="right-center">
-
                     </div>
                     <div class="right-bottom">
 
@@ -145,6 +170,11 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue';
+
+let activeClass = ref('first')
+function togglePage(liName: string) {
+    activeClass.value = liName
+}
 
 let canvas = ref()
 
