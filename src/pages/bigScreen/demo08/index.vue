@@ -153,13 +153,61 @@
                             </div>
                             <div class="liSpan">介绍</div>
                             <div class="liP">
-                            XXXXXXXXXXXXXXXXX</div>
+                                XXXXXXXXXXXXXXXXX</div>
                         </div>
                     </div>
                     <div class="right-center">
+                        <img src="../../../assets/images/icon/right2.png" alt="">
+                        <div class="boxTitle">灌溉数据</div>
+                        <div class="irrigate_data">
+                            <div class="irrigate_top">
+                                <div class="centerList">
+                                    <div class="centerListFont">累计灌溉水量（m2）</div>
+                                    <div class="centerListNum">
+                                        <span class="">23678</span>
+                                    </div>
+                                </div>
+                                <div class="centerList">
+                                    <div class="centerListFont">灌溉压力（MPa）</div>
+                                    <div class="centerListNum">
+                                        <span class="">0.29</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="irrigate_bottom">
+                                <div class="every_line">
+                                    <span>当前灌溉流量（m²/h）</span>
+                                    <i class="">0.78</i>
+                                </div>
+                                <div class="every_line">
+                                    <span>当前灌溉阀门数量</span>
+                                    <i class="counter-value">49</i>
+                                    <i class="counter-value">2</i>
+                                </div>
+                                <div class="every_line">
+                                    <span>茶园水池液位</span>
+                                    <i>2.30</i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="right-bottom">
-
+                        <img src="../../../assets/images/icon/right3.png" alt="">
+                        <div class="boxTitle">数据日志</div>
+                        <div class="pth"> <span>序号</span> <span>地区</span> <span>充值金额</span> <span>时间</span> </div>
+                        <div class="wrap">
+                            <ul>
+                                <vue3-seamless-scroll :list="scrollData" class="scroll" :step="0.7">
+                                    <li v-for="(item, index) in scrollData" :key="index">
+                                        <p> <span><i>{{ index }}</i></span>
+                                            <span>{{ item.col1 }}</span>
+                                            <span>{{ item.col2 }}</span>
+                                            <span> {{ item.col3 }}</span>
+                                        </p>
+                                    </li>
+                                </vue3-seamless-scroll>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -169,7 +217,11 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue';
+import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue'
+import { Vue3SeamlessScroll } from "vue3-seamless-scroll"
+import { getData } from '@/pages/bigScreen/demo07/utils/scrollData'
+
+const scrollData = getData(10)
 
 let activeClass = ref('first')
 function togglePage(liName: string) {
