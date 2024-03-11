@@ -120,7 +120,7 @@ let router = createRouter({
                         title: 'demo09', icon: 'location',
                         desc: {
                             imgSrc: './images/preview/demo09.png',
-                            tags: ['']
+                            tags: ['粒子特效','canvas']
                         }
                     },
                     component: () => import('@/pages/bigScreen/demo09/index.vue')

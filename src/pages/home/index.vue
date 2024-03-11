@@ -3,7 +3,7 @@
         <el-card v-for="(item, index) in bigScreenChildren" class="card">
             <img :src="bigScreenChildren[index].meta.desc.imgSrc" class="image" />
             <div style="padding: 14px">
-                <span> {{ index as number < 9 ? 'demo0' + (index as number + 1) : 'demo' + (index as number + 1) }} </span>
+                <span> {{ index as number < 10 ? 'demo0' + (index as number + 1) : 'demo' + (index as number + 1) }} </span>
                         <div class="bottom">
                             <div class="tags">
                                 <el-tag v-for="(tag, i) in bigScreenChildren[index].meta.desc.tags" :key="i"
@@ -27,7 +27,7 @@ const bigScreenChildren:{ [key: string]: any } = bigScreenRoutes[0].children
 
 function clickToPath(index: number) {
     router.push({
-        name: index < 9 ? 'demo0' + index : 'demo' + index
+        name: index < 10 ? 'demo0' + index : 'demo' + index
     })
 }
 

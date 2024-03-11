@@ -2,458 +2,613 @@
   font-family: 'LCdd';
   src: url('@/assets/fonts/LCdd.TTF');
 }
+
+#tsparticles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -100;
+  background-color: #000d4a;
+  background: url(@/assets/images/bg/bg07.png) center center;
+}
+
 .main {
-    background: #000d4a url(@/assets/images/bg/bg07.png) center center;
-    background-size: cover;
-    color: #fff;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  background-size: cover;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
 header {
-    height: 8%;
-    width: 100%;
-    background-color: #fff;
-    background: url(@/assets/images/head/53titlebg.png) no-repeat top center;
-    background-size: 100%;
-    text-align: center;
+  height: 8%;
+  width: 100%;
+  background-color: #fff;
+  background: url(@/assets/images/head/53titlebg.png) no-repeat top center;
+  background-size: 100%;
+  text-align: center;
 }
 
 header h1 {
-    font-size: 2rem;
-    height: 50%;
-    margin: auto;
-    display: table;
-    font-weight: 500;
-    background-image: -webkit-linear-gradient(bottom, #86919e, #fff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  font-size: 2rem;
+  height: 50%;
+  margin: auto;
+  display: table;
+  font-weight: 500;
+  background-image: -webkit-linear-gradient(bottom, #86919e, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 header h1 span {
-    display: table-cell;
-    vertical-align: middle;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 header p {
-    font-size: 1rem;
-    background-image: -webkit-linear-gradient(bottom, #86919e, #fff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  font-size: 1rem;
+  background-image: -webkit-linear-gradient(bottom, #86919e, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .content {
-    width: 100%;
-    height: 78%;
-    padding: 0 2.5%;
-    box-sizing: border-box;
-    position: relative;
+  width: 100%;
+  height: 78%;
+  padding: 0 2.5%;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .main .top5 {
-    width: 17.5%;
-    height: 70%;
-    float: left;
+  width: 17.5%;
+  height: 70%;
+  float: left;
 }
 
 .main .top5 .top5-title {
-    width: 100%;
-    height: 10%;
-    background: url(@/assets/images/icon/title.png) no-repeat center;
-    background-size: 100%;
-    color: #fff;
-    text-align: center;
-    display: table;
-    font-size: 0.9rem;
+  width: 100%;
+  height: 10%;
+  background: url(@/assets/images/icon/title.png) no-repeat center;
+  background-size: 100%;
+  color: #fff;
+  text-align: center;
+  display: table;
+  font-size: 0.9rem;
 }
 
 .main .top5 .top5-title span {
-    display: table-cell;
-    vertical-align: middle;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .main .top5 .top5-content {
-    width: 100%;
-    height: 80%;
+  width: 100%;
+  height: 80%;
 }
 
 .main .top5 .top5-content ul {
-    width: 100%;
-    height: 100%;
-    list-style: none;
+  width: 100%;
+  height: 100%;
+  list-style: none;
 }
 
 .main .top5 .top5-content ul li {
-    width: 100%;
-    height: 15%;
-    margin-top: 5%;
-    position: relative;
+  width: 100%;
+  height: 15%;
+  margin-top: 5%;
+  position: relative;
 }
 
 .main .top5 .top5-content ul li .li-content {
-    width: 90%;
-    height: 100%;
-    margin-left: 5%;
-    background: url(@/assets/images/icon/border.png) no-repeat center;
-    background-size: contain;
-    font-size: 0.9rem;
-    padding-left: 15%;
-    padding-top: 2%;
-    color: #fff;
-    box-sizing: border-box;
+  width: 90%;
+  height: 100%;
+  margin-left: 5%;
+  background: url(@/assets/images/icon/border.png) no-repeat center;
+  background-size: contain;
+  font-size: 0.9rem;
+  padding-left: 15%;
+  padding-top: 2%;
+  color: #fff;
+  box-sizing: border-box;
 }
 
 .main .top5 .top5-content ul li .li-content span {
-    margin-right: 2%;
-    margin-top: 5%;
+  margin-right: 2%;
+  margin-top: 5%;
 }
 
 .main .top5 .top5-content ul li .cicle {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 1.7rem;
-    height: 1.7rem;
-    background: url(@/assets/images/icon/green.png) no-repeat center;
-    background-size: 100%;
-    left: 0;
-    bottom: 0;
+  content: '';
+  display: block;
+  position: absolute;
+  width: 1.7rem;
+  height: 1.7rem;
+  background: url(@/assets/images/icon/green.png) no-repeat center;
+  background-size: 100%;
+  left: 0;
+  bottom: 0;
 }
 
 .main .top5 .top5-content ul li:nth-of-type(1) .li-content {
-    background: url(@/assets/images/icon/border2.png) no-repeat center;
-    background-size: contain;
+  background: url(@/assets/images/icon/border2.png) no-repeat center;
+  background-size: contain;
 }
 
 .main .top5 .top5-content ul li:nth-of-type(1) .cicle {
-    background: url(@/assets/images/icon/orange.png) no-repeat center;
-    background-size: 100%;
+  background: url(@/assets/images/icon/orange.png) no-repeat center;
+  background-size: 100%;
 }
 
 .main .total {
-    width: 65%;
-    height: 100%;
-    float: left;
-    position: relative;
-  }
-  .main .total .rain {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: -1;
-  }
-  .main .total .data1,
-  .main .total .data2,
-  .main .total .data3,
-  .main .total .data4 {
-    width: 8rem;
-    height: 4rem;
-    position: absolute;
-  }
-  .main .total .data1 span,
-  .main .total .data2 span,
-  .main .total .data3 span,
-  .main .total .data4 span {
-    color: #0ac1c7;
-    font-size: 0.8rem;
-    font-family: '宋体';
-  }
-  .main .total .data1 p,
-  .main .total .data2 p,
-  .main .total .data3 p,
-  .main .total .data4 p {
-    font-family: 'LCdd';
-    font-size: 1.5rem;
-    color: #f29701;
-  }
-  .main .total .data1 {
-    left: 10%;
-    top: 12%;
-  }
-  .main .total .data2 {
-    left: 42%;
-    top: 3%;
-  }
-  .main .total .data3 {
-    left: 62%;
-    top: 5%;
-  }
-  .main .total .data4 {
-    left: 73%;
-    top: 28%;
-  }
-  .main .total .dashed {
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-  .main .total .sphere {
-    width: 20rem;
-    height: 20rem;
-    position: relative;
-    margin: 14% auto 0;
-  }
-  .main .total .sphere .sphere-bg {
-    position: absolute;
-    z-index: 100;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: url(@/assets/images/icon/53earth.png) no-repeat center;
-    background-size: contain;
-  }
-  .main .total .sphere .sum {
-    position: absolute;
-    z-index: 100;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: url(@/assets/images/icon/53cloud.png) no-repeat center;
-    background-size: 55%;
-  }
-  .main .total .sphere .sum span {
-    display: block;
-    margin-top: 30%;
-    padding-left: 32%;
-    color: #005a79;
-    font-size: 0.9rem;
-  }
-  .main .total .sphere .sum p {
-    margin-top: 2%;
-    text-align: center;
-    color: #003c63;
-    font-family: 'LCdd';
-    font-size: 2rem;
-  }
-  .main .total .cicle3 {
-    width: 35rem;
-    height: 35rem;
-    background: url(@/assets/images/icon/circle.png) no-repeat center;
-    background-size: 100%;
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform-style: preserve-3d;
-    transform: translateX(-50%) rotateX(75deg);
-    animation: rotate3 20s linear infinite;
-  }
-  .main .total .cicle4 {
-    width: 15rem;
-    height: 15rem;
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform-style: preserve-3d;
-    background: url(@/assets/images/icon/53gqright.png) no-repeat center;
-    background-size: 100%;
-    transform: translateX(-50%) rotateX(75deg);
-    animation: rotate3 2s linear infinite;
-  }
-  .main .total .cicle5 {
-    width: 15rem;
-    height: 15rem;
-    position: absolute;
-    top: 62%;
-    left: 50%;
-    transform-style: preserve-3d;
-    background: url(@/assets/images/icon/53gqleft.png) no-repeat center;
-    background-size: 100%;
-    transform: translateX(-50%) rotateX(75deg);
-    animation: rotate4 2s linear infinite;
-  }
-  .main .total .cicle6 {
-    width: 12rem;
-    height: 12rem;
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform-style: preserve-3d;
-    background: url(@/assets/images/icon/535gqbottomright.png) no-repeat center;
-    background-size: 100%;
-    transform: translateX(-50%) rotateX(75deg);
-    animation: rotate3 2s linear infinite;
-  }
-  .main .total .cicle7 {
-    width: 12rem;
-    height: 12rem;
-    position: absolute;
-    top: 72%;
-    left: 50%;
-    transform-style: preserve-3d;
-    background: url(@/assets/images/icon/53gqbottomleft.png) no-repeat center;
-    background-size: 100%;
-    transform: translateX(-50%) rotateX(75deg);
-    animation: rotate4 2s linear infinite;
-  }
-  .main .total .cicle8,
-  .main .total .cicle9,
-  .main .total .cicle10,
-  .main .total .cicle11 {
-    width: 5rem;
-    height: 5rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 100;
-    margin-left: -2.5rem;
-    border-radius: 50%;
-  }
-  .main .total .cicle8 span,
-  .main .total .cicle9 span,
-  .main .total .cicle10 span,
-  .main .total .cicle11 span {
-    font-family: 'LCdd';
-    display: block;
-    margin-left: 25%;
-    font-size: 1.5rem;
-    margin-top: 20%;
-  }
-  .main .total .cicle8 p,
-  .main .total .cicle9 p,
-  .main .total .cicle10 p,
-  .main .total .cicle11 p {
-    text-align: center;
-    font-size: 0.7rem;
-  }
-  .main .total .cicle8 {
-    background: url(@/assets/images/icon/circle1.png) no-repeat;
-    background-size: 100%;
-    animation: rotate5 20s linear infinite;
-    color: #f29701;
-  }
-  .main .total .cicle9 {
-    background: url(@/assets/images/icon/circle2.png) no-repeat;
-    background-size: 100%;
-    animation: rotate6 20s linear infinite;
-    color: #0ac1c7;
-  }
-  .main .total .cicle10 {
-    background: url(@/assets/images/icon/circle1.png) no-repeat;
-    background-size: 100%;
-    animation: rotate7 20s linear infinite;
-    color: #f29701;
-  }
-  .main .total .cicle11 {
-    background: url(@/assets/images/icon/circle2.png) no-repeat;
-    background-size: 100%;
-    color: #0ac1c7;
-    animation: rotate8 20s linear infinite;
-  }
+  width: 65%;
+  height: 100%;
+  float: left;
+  position: relative;
+}
 
-  .main .analyse {
-    width: 17.5%;
-    height: 70%;
-    float: left;
-  }
-  .main .analyse .analyse-title {
-    width: 100%;
-    height: 10%;
-    background: url(@/assets/images/icon/title.png) no-repeat center;
-    background-size: 100%;
-    color: #fff;
-    text-align: center;
-    display: table;
-    font-size: 0.9rem;
-  }
-  .main .analyse .analyse-title span {
-    display: table-cell;
-    vertical-align: middle;
-  }
-  .main .analyse ul {
-    width: 100%;
-    height: 60%;
-    list-style: none;
-  }
-  .main .analyse ul li {
-    width: 100%;
-    height: 30%;
-    margin: 3% 0;
-  }
-  .main .analyse ul li img {
-    height: 80%;
-    float: left;
-    vertical-align: 0%;
-  }
-  .main .analyse ul li h5 {
-    float: left;
-    color: #fff;
-    margin-left: 5%;
-  }
-  .main .analyse ul li span {
-    font-size: 0.5rem;
-    float: left;
-    color: #fff;
-    margin-left: 5%;
-  }
-  .main .analyse ul li em {
-    font-style: normal;
-    font-size: 1.3rem;
-    margin-left: 5%;
-    color: #0ac1c7;
-  }
-  .main .analyse ul li:nth-of-type(1) em {
-    color: #f29701;
-  }
-  .main .analyse .execution {
-    width: 100%;
-    height: 30%;
-    background: url(@/assets/images/icon/execution.png) no-repeat;
-    background-size: contain;
-    overflow: hidden;
-    position: relative;
-  }
-  .main .analyse .execution .title {
-    writing-mode: vertical-lr;
-    font-size: 0.7rem;
-    margin-left: 3%;
-    margin-top: 3%;
-    color: #fff;
-  }
-  .main .analyse .execution .cicle1,
-  .main .analyse .execution .cicle2 {
-    position: absolute;
-    width: 4rem;
-    height: 4rem;
-    background: url(@/assets/images/icon/2222.png) no-repeat center;
-    background-size: 100%;
-    transform-style: preserve-3d;
-    transform: rotateX(75deg);
-    animation: rotate2 1s linear infinite;
-  }
-  .main .analyse .execution .cicle1 {
-    top: 47%;
-    left: 20%;
-  }
-  .main .analyse .execution .cicle2 {
-    top: 47%;
-    left: 63%;
-  }
-  .main .analyse .execution .waterChart1,
-  .main .analyse .execution .waterChart2 {
-    position: absolute;
-    width: 4rem;
-    height: 5rem;
-  }
-  .main .analyse .execution .waterChart1 .chart-title,
-  .main .analyse .execution .waterChart2 .chart-title {
-    height: 20%;
-    font-size: 0.6rem;
-    text-align: center;
-    color: #fff;
-  }
-  .main .analyse .execution .waterChart2 .chart1,
-  .main .analyse .execution .waterChart2 .chart2 {
-    width: 100%;
-    height: 80%;
-  }
-  .main .analyse .execution .waterChart1 {
-    top: 0%;
-    left: 20%;
-  }
-  .main .analyse .execution .waterChart2 {
-    top: 0%;
-    left: 63%;
-  }
+.main .total .rain {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.main .total .data1,
+.main .total .data2,
+.main .total .data3,
+.main .total .data4 {
+  width: 8rem;
+  height: 4rem;
+  position: absolute;
+}
+
+.main .total .data1 span,
+.main .total .data2 span,
+.main .total .data3 span,
+.main .total .data4 span {
+  color: #0ac1c7;
+  font-size: 0.8rem;
+  font-family: '宋体';
+}
+
+.main .total .data1 p,
+.main .total .data2 p,
+.main .total .data3 p,
+.main .total .data4 p {
+  font-family: 'LCdd';
+  font-size: 1.5rem;
+  color: #f29701;
+}
+
+.main .total .data1 {
+  left: 10%;
+  top: 12%;
+}
+
+.main .total .data2 {
+  left: 42%;
+  top: 3%;
+}
+
+.main .total .data3 {
+  left: 62%;
+  top: 5%;
+}
+
+.main .total .data4 {
+  left: 73%;
+  top: 28%;
+}
+
+.main .total .dashed {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.main .total .sphere {
+  width: 20rem;
+  height: 20rem;
+  position: relative;
+  margin: 14% auto 0;
+}
+
+.main .total .sphere .sphere-bg {
+  position: absolute;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: url(@/assets/images/icon/53earth.png) no-repeat center;
+  background-size: contain;
+}
+
+.main .total .sphere .sum {
+  position: absolute;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: url(@/assets/images/icon/53cloud.png) no-repeat center;
+  background-size: 55%;
+}
+
+.main .total .sphere .sum span {
+  display: block;
+  margin-top: 30%;
+  padding-left: 32%;
+  color: #005a79;
+  font-size: 0.9rem;
+}
+
+.main .total .sphere .sum p {
+  margin-top: 2%;
+  text-align: center;
+  color: #003c63;
+  font-family: 'LCdd';
+  font-size: 2rem;
+}
+
+.main .total .cicle3 {
+  width: 35rem;
+  height: 35rem;
+  background: url(@/assets/images/icon/circle.png) no-repeat center;
+  background-size: 100%;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform-style: preserve-3d;
+  transform: translateX(-50%) rotateX(75deg);
+  animation: rotate3 20s linear infinite;
+}
+
+.main .total .cicle4 {
+  width: 15rem;
+  height: 15rem;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform-style: preserve-3d;
+  background: url(@/assets/images/icon/53gqright.png) no-repeat center;
+  background-size: 100%;
+  transform: translateX(-50%) rotateX(75deg);
+  animation: rotate3 2s linear infinite;
+}
+
+.main .total .cicle5 {
+  width: 15rem;
+  height: 15rem;
+  position: absolute;
+  top: 62%;
+  left: 50%;
+  transform-style: preserve-3d;
+  background: url(@/assets/images/icon/53gqleft.png) no-repeat center;
+  background-size: 100%;
+  transform: translateX(-50%) rotateX(75deg);
+  animation: rotate4 2s linear infinite;
+}
+
+.main .total .cicle6 {
+  width: 12rem;
+  height: 12rem;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform-style: preserve-3d;
+  background: url(@/assets/images/icon/535gqbottomright.png) no-repeat center;
+  background-size: 100%;
+  transform: translateX(-50%) rotateX(75deg);
+  animation: rotate3 2s linear infinite;
+}
+
+.main .total .cicle7 {
+  width: 12rem;
+  height: 12rem;
+  position: absolute;
+  top: 72%;
+  left: 50%;
+  transform-style: preserve-3d;
+  background: url(@/assets/images/icon/53gqbottomleft.png) no-repeat center;
+  background-size: 100%;
+  transform: translateX(-50%) rotateX(75deg);
+  animation: rotate4 2s linear infinite;
+}
+
+.main .total .cicle8,
+.main .total .cicle9,
+.main .total .cicle10,
+.main .total .cicle11 {
+  width: 7rem;
+  height: 7rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+  border-radius: 50%;
+}
+
+.main .total .cicle8 span,
+.main .total .cicle9 span,
+.main .total .cicle10 span,
+.main .total .cicle11 span {
+  font-family: 'LCdd';
+  display: block;
+  margin-left: 30%;
+  font-size: 2rem;
+  margin-top: 30%;
+}
+
+.main .total .cicle8 p,
+.main .total .cicle9 p,
+.main .total .cicle10 p,
+.main .total .cicle11 p {
+  text-align: center;
+  font-size: 0.7rem;
+}
+
+.main .total .cicle8 {
+  background: url(@/assets/images/icon/circle1.png) no-repeat;
+  background-size: 100%;
+  animation: rotate5 20s linear infinite;
+  color: #f29701;
+}
+
+.main .total .cicle9 {
+  background: url(@/assets/images/icon/circle2.png) no-repeat;
+  background-size: 100%;
+  animation: rotate6 20s linear infinite;
+  color: #0ac1c7;
+}
+
+.main .total .cicle10 {
+  background: url(@/assets/images/icon/circle1.png) no-repeat;
+  background-size: 100%;
+  animation: rotate7 20s linear infinite;
+  color: #f29701;
+}
+
+.main .total .cicle11 {
+  background: url(@/assets/images/icon/circle2.png) no-repeat;
+  background-size: 100%;
+  color: #0ac1c7;
+  animation: rotate8 20s linear infinite;
+}
+
+.main .analyse {
+  width: 17.5%;
+  height: 70%;
+  float: left;
+}
+
+.main .analyse .analyse-title {
+  width: 100%;
+  height: 10%;
+  background: url(@/assets/images/icon/title.png) no-repeat center;
+  background-size: 100%;
+  color: #fff;
+  text-align: center;
+  display: table;
+  font-size: 0.9rem;
+}
+
+.main .analyse .analyse-title span {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.main .analyse ul {
+  width: 100%;
+  height: 60%;
+  list-style: none;
+}
+
+.main .analyse ul li {
+  width: 100%;
+  height: 30%;
+  margin: 3% 0;
+}
+
+.main .analyse ul li img {
+  height: 80%;
+  float: left;
+  vertical-align: 0%;
+}
+
+.main .analyse ul li h5 {
+  float: left;
+  color: #fff;
+  margin-left: 5%;
+}
+
+.main .analyse ul li span {
+  font-size: 0.5rem;
+  float: left;
+  color: #fff;
+  margin-left: 5%;
+}
+
+.main .analyse ul li em {
+  font-style: normal;
+  font-size: 1.3rem;
+  margin-left: 5%;
+  color: #0ac1c7;
+}
+
+.main .analyse ul li:nth-of-type(1) em {
+  color: #f29701;
+}
+
+.main .analyse .execution {
+  width: 100%;
+  height: 30%;
+  background: url(@/assets/images/icon/execution.png) no-repeat;
+  background-size: contain;
+  overflow: hidden;
+  position: relative;
+}
+
+.main .analyse .execution .title {
+  writing-mode: vertical-lr;
+  font-size: 0.7rem;
+  margin-left: 3%;
+  margin-top: 3%;
+  color: #fff;
+}
+
+.main .analyse .execution .cicle1,
+.main .analyse .execution .cicle2 {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  background: url(@/assets/images/icon/2222.png) no-repeat center;
+  background-size: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(75deg);
+  animation: rotate2 1s linear infinite;
+}
+
+.main .analyse .execution .cicle1 {
+  top: 47%;
+  left: 20%;
+}
+
+.main .analyse .execution .cicle2 {
+  top: 47%;
+  left: 63%;
+}
+
+.main .analyse .execution .waterChart1,
+.main .analyse .execution .waterChart2 {
+  position: absolute;
+  width: 4rem;
+  height: 5rem;
+}
+
+.main .analyse .execution .waterChart1 .chart-title,
+.main .analyse .execution .waterChart2 .chart-title {
+  height: 20%;
+  font-size: 0.6rem;
+  text-align: center;
+  color: #fff;
+}
+
+.main .analyse .execution .waterChart2 .chart1,
+.main .analyse .execution .waterChart2 .chart2 {
+  width: 100%;
+  height: 80%;
+}
+
+.main .analyse .execution .waterChart1 {
+  top: 0%;
+  left: 20%;
+}
+
+.main .analyse .execution .waterChart2 {
+  top: 0%;
+  left: 63%;
+}
+
+.main .sale {
+  width: 27.5%;
+  height: 30%;
+  position: absolute;
+  bottom: 0;
+  left: 2.5%;
+}
+
+.main .sale .top5-title {
+  width: 100%;
+  height: 10%;
+  background: url(@/assets/images/icon/title.png) no-repeat center;
+  background-size: 100%;
+  color: #fff;
+  text-align: center;
+  display: table;
+  font-size: 0.9rem;
+}
+
+.main .sale .top5-title span {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.main .sale ul {
+  width: 100%;
+  height: 100%;
+  margin-top: 8%;
+  overflow: hidden;
+  list-style: none;
+}
+
+.main .sale ul li {
+  width: 100%;
+  height: 30%;
+  margin-top: 1%;
+}
+
+.main .sale ul li .showImg {
+  float: left;
+  width: 10%;
+  height: 100%;
+  text-align: center;
+}
+
+.main .sale ul li .showImg img {
+  vertical-align: 0%;
+  width: 70%;
+  margin-top: 30%;
+}
+
+.main .sale ul li .data {
+  float: left;
+  width: 10%;
+  height: 100%;
+  text-align: center;
+}
+
+.main .sale ul li .data span {
+  color: #fff;
+  font-size: .9vw;
+}
+
+.main .sale ul li .data span:nth-of-type(2) {
+  color: #0ac1c7;
+}
+
+.main .lineCharts {
+  width: 30%;
+  height: 30%;
+  position: absolute;
+  margin-top: 35%;
+  margin-left: 65%;
+}
+
+.bottom {
+  width: 100%;
+  height: 15%;
+  background: url(@/assets/images/icon/53bottomsjbg.png) no-repeat bottom center;
+  background-size: 100%;
+  text-align: center;
+}
+.bottom h5 {
+  background-image: -webkit-linear-gradient(bottom, #86919e, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  height: 110%;
+  display: table;
+  margin: auto;
+}
+.bottom h5 span {
+  display: table-cell;
+  vertical-align: middle;
+}
+.bottom p {
+  color: #0ac1c7;
+  font-size: 0.6rem;
+}
