@@ -131,8 +131,8 @@ let router = createRouter({
                     meta: {
                         title: 'demo10', icon: 'location',
                         desc: {
-                            imgSrc: './images/preview/demo09.png',
-                            tags: ['粒子特效','canvas']
+                            imgSrc: './images/preview/demo10.png',
+                            tags: ['地图','柱状图','雷达图']
                         }
                     },
                     component: () => import('@/pages/bigScreen/demo10/index.vue')
