@@ -52,7 +52,6 @@ onUnmounted(() => {
     height: 100vh;
 
     .aside {
-        overflow: hidden;
         box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
             6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
             12.5px 12.5px 10px rgba(0, 0, 0, 0.035),

@@ -1,29 +1,21 @@
 <template>
     <div class="logo">
         <slot name="collapseButton"></slot>
-        <!-- <h1 style="margin: 5px;">VISUAL-SCREEN</h1> -->
+        <!-- <h1 style="margin: 15px;">VISUAL-SCREEN</h1> -->
     </div>
     <el-menu default-active="2" :collapse="props.isCollapse" :collapse-transition="false" @open="handleOpen"
         @close="handleClose" background-color="#ebf1f5" text-color="#606266" active-text-color="#2F74FF" class="menu"
         router>
         <template v-for="(item, index) in routes">
-            <el-menu-item v-if="item.path === '/home'" :index="item.path" :key="'item' + index">
+            <!-- 处理首页 -->
+            <el-menu-item v-if="item.path === '/home'" :index="item.path">
                 <el-icon>
                     <location />
                 </el-icon>
                 <span>{{ item.name }}</span>
             </el-menu-item>
-            <el-sub-menu :index="item.path" v-if="item.children.length > 0" :key="index">
-                <template #title>
-                    <el-icon>
-                        <location />
-                    </el-icon>
-                    <span>{{ item.meta!.title }}</span>
-                </template>
-                <template v-for="citem in item.children">
-                    <el-menu-item :index="citem.name" :route="{ name: citem.name }">{{ citem.meta!.title }}</el-menu-item>
-                </template>
-            </el-sub-menu>
+            <!-- 处理子菜单 -->
+            <sub-menu-component :route="item"></sub-menu-component>
         </template>
     </el-menu>
 </template>
@@ -36,9 +28,8 @@ import {
     Setting,
     Fold
 } from '@element-plus/icons-vue'
-import router from '@/router';
-
-let routes = router.getRoutes()
+import {routes} from '@/router'
+import SubMenuComponent from '@/components/layout/SubMenuComponent.vue'
 
 const props = defineProps(['isCollapse'])
 const handleOpen = (key: string, keyPath: string[]) => {
