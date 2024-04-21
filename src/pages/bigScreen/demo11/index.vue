@@ -34,29 +34,30 @@
 						</div>
 						<div class="add" onclick="Show(this,'bodyLeft',2.8,'before')">+</div>
 						<!-- 数据中心-开始 -->
-						<div class="dataCenter2 clear">
-							<ul class="Data2"></ul>
+						<div class="dataCenter clear">
+							<ul class="Data">
+								<li v-for="(item, index) in DataCenter">
+									<span>{{ item.num }}</span>
+									<p>{{ item.name }}</p>
+									<i></i>
+								</li>
+							</ul>
 						</div>
 						<!-- 数据中心-开始 -->
 						<div ref="guapai" class="guapai"></div>
 						<!-- 产品挂牌实时监控-开始 -->
 						<div class="yuyue">
 							<div class="yuyuejiankong">
-								<div id="left-top-right" class="bodyLeftTopGPZB">
-									<div class="GPZB">
-										<ul></ul>
-										<p>今日交割<span></span></p>
-									</div>
-									<div class="GPZB">
-										<ul></ul>
-										<p>今日挂牌<span></span></p>
-									</div>
-									<div class="GPZB">
-										<ul></ul>
-										<p>今日冻结<span></span></p>
+								<div id="left-top-right" class="bodyLeftTopGPZB" ref="bodyLeftTopGPZB">
+									<div v-for="(data, index) in gpzbData" :key="index" class="GPZB">
+										<ul>
+											<li v-for="n in 10" :key="n"
+												:style="{ background: getBackground(index, n) }"></li>
+										</ul>
+										<p>{{ data.label }}<span>{{ data.value }}</span></p>
 									</div>
 								</div>
-								<div id="left-top-right-circle" class="left-top-right-circle"></div>
+								<div ref="leftTopRightCircle" class="left-top-right-circle"></div>
 							</div>
 						</div>
 						<!-- 产品挂牌实时监控-结束 -->
@@ -161,26 +162,64 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted,reactive } from 'vue'
 import * as echarts from "echarts"
-import options from '@/pages/bigScreen/demo11/options/options'
+import {options,echarts3 as optionsForE3} from '@/pages/bigScreen/demo11/options/options'
 import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue';
+import { DataCenter, echartdata } from '@/pages/bigScreen/demo11/options/data'
 import BgAnimate from '@/pages/bigScreen/demo11/components/BgAnimate.vue';
+
+let gpzbData = reactive([
+	{ label: '今日交割', value: 515, activeIndex: 0 },
+	{ label: '今日挂牌', value: 300, activeIndex: 0 },
+	{ label: '今日冻结', value: 200, activeIndex: 0 }
+])
+function animateHighlights() {
+	setInterval(() => {
+		gpzbData.forEach((item: any, index: any) => {
+			item.activeIndex++;
+			if (item.activeIndex > Math.floor(item.value / 100)) {
+				item.activeIndex = 0;
+			}
+		});
+	}, 300);
+}
+
+function getBackground(index: number, n: number) {
+	const data = gpzbData[index];
+	const highlight = data.activeIndex === n;
+	const active = n <= Math.floor(data.value / 100);
+	if (highlight) return '#FBED14';
+	return active ? '#00A0E9' : '#1D2088';
+}
 
 const guapai = ref()
 const leftBottom = ref()
+const leftTopRightCircle = ref()
 
 onMounted(() => {
-    let echarts1 = echarts.init(guapai.value, null, { devicePixelRatio: 2 })
-    echarts1.setOption(options.echarts1)
+	// 滚动
+	animateHighlights()
 
-	let echarts2 = echarts.init(leftBottom.value, null, { devicePixelRatio: 2 })
-    echarts2.setOption(options.echarts2)
+	// echarts--start
+	let echarts1 = echarts.init(guapai.value, null, { devicePixelRatio: 1 })
+	echarts1.setOption(options.echarts1)
+
+	let echarts2 = echarts.init(leftBottom.value, null, { devicePixelRatio: 1 })
+	echarts2.setOption(options.echarts2)
+
+	let echarts3 = echarts.init(leftTopRightCircle.value, null, { devicePixelRatio: 1 })
+	let e3ops = optionsForE3(echartdata)
+	echarts3.setOption(e3ops)
 
 	window.addEventListener("resize", function () {
-        echarts1.resize()
+		echarts1.resize()
 		echarts2.resize()
-    })
+		echarts3.resize()
+	})
+	// echarts--end
+	
+
 })
 
 </script>

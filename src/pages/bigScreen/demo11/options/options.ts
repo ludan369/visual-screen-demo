@@ -1,6 +1,6 @@
 import * as echarts from "echarts"
 
-let options = {
+export let options = {
     echarts1: echarts1(),
     echarts2: echarts2(),
 }
@@ -146,35 +146,35 @@ function echarts1(): { [key: string]: any } {
 function echarts2(): { [key: string]: any } {
     var echartdata = [515, 200, 100, 150];
     var rich = {
-		yellow: {
-			color: "#ffc72b",
-			fontSize: 18,
-			padding: [2, 4],
-			align: 'center'
-		},
-		total: {
-			color: "#ffc72b",
-			fontSize: 20,
-			align: 'center'
-		},
-		white: {
-			color: "#fff",
-			align: 'center',
-			fontSize: 16,
-			padding: [10, 0]
-		},
-		blue: {
-			color: '#49dff0',
-			fontSize: 16,
-			align: 'center'
-		},
-		hr: {
-			borderColor: 'auto',
-			width: '100%',
-			borderWidth: 1,
-			height: 0,
-		}
-	};
+        yellow: {
+            color: "#ffc72b",
+            fontSize: 18,
+            padding: [2, 4],
+            align: 'center'
+        },
+        total: {
+            color: "#ffc72b",
+            fontSize: 20,
+            align: 'center'
+        },
+        white: {
+            color: "#fff",
+            align: 'center',
+            fontSize: 16,
+            padding: [10, 0]
+        },
+        blue: {
+            color: '#49dff0',
+            fontSize: 16,
+            align: 'center'
+        },
+        hr: {
+            borderColor: 'auto',
+            width: '100%',
+            borderWidth: 1,
+            height: 0,
+        }
+    };
     return {
         tooltip: {
             trigger: 'item',
@@ -211,7 +211,7 @@ function echarts2(): { [key: string]: any } {
                 normal: {
                     color: "#fff",
                     //formatter: '{b|{b}\n     {d}%}',
-                    formatter: function (params:any, ticket:any, callback:any) {
+                    formatter: function (params: any, ticket: any, callback: any) {
                         var total = 0; //总数量
                         var percent = 0; //占比
                         echartdata.forEach(function (value, index) {
@@ -263,4 +263,97 @@ function echarts2(): { [key: string]: any } {
     }
 }
 
-export default options
+export function echarts3(echartdata:Array<Number>): { [key: string]: any } {
+    let rich = {
+		yellow: {
+			color: "#ffc72b",
+			fontSize: 18,
+			padding: [2, 4],
+			align: 'center'
+		},
+		total: {
+			color: "#ffc72b",
+			fontSize: 20,
+			align: 'center'
+		},
+		white: {
+			color: "#fff",
+			align: 'center',
+			fontSize: 16,
+			padding: [10, 0]
+		},
+		blue: {
+			color: '#49dff0',
+			fontSize: 16,
+			align: 'center'
+		},
+		hr: {
+			borderColor: 'auto',
+			width: '100%',
+			borderWidth: 1,
+			height: 0,
+		}
+	}
+    return {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{b}: {c} ({d}%)"
+        },
+        series: [{
+            type: 'pie',
+            label: {
+                fontSize: 24,
+                normal: {
+                    color: "#fff",
+                    //formatter: '{b|{b}\n     {d}%}',
+                    formatter: function (params:any, ticket:any, callback:any) {
+                        var total = 0; //总数量
+                        var percent = 0; //占比
+                        echartdata.forEach(function (value:any, index:any) {
+                            total += value;
+                        });
+                        // @ts-ignore
+                        percent = ((params.value / total) * 100).toFixed(1);
+                        return '{white|' + params.name + '}\n\n{yellow|' + params.value + '}\n{blue|' + percent + '%}';
+                    },
+                    // borderWidth: 0,
+                    // borderRadius: 4,
+                    // shadowBlur:3,
+                    // shadowOffsetX: 2,
+                    // shadowOffsetY: 2,
+                    // shadowColor: '#999',
+                    padding: [0, -50],
+                    rich: rich
+                }
+            },
+            labelLine: {
+                lineStyle: {
+                    //color: auto
+                    width: 2
+                },
+                length: 20,
+                length2: 50
+            },
+            radius: ['40%', '60%'],
+            data: [{
+                value: echartdata[0],
+                itemStyle: {
+                    color: "#1D3EF9"
+                },
+                name: '今日交割'
+            }, {
+                value: echartdata[1],
+                itemStyle: {
+                    color: "#FBED14"
+                },
+                name: '今日挂牌'
+            }, {
+                value: echartdata[2],
+                itemStyle: {
+                    color: "#3BF88F",
+                },
+                name: '今日冻结'
+            }]
+        }]
+    }
+}
