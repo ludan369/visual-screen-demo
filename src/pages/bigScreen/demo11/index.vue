@@ -166,7 +166,7 @@ import { ref, onMounted,reactive } from 'vue'
 import * as echarts from "echarts"
 import {options,echarts3 as optionsForE3} from '@/pages/bigScreen/demo11/options/options'
 import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue';
-import { DataCenter, echartdata } from '@/pages/bigScreen/demo11/options/data'
+import { DataCenter, echartdata } from '@/pages/bigScreen/demo11/options/data.js'
 import BgAnimate from '@/pages/bigScreen/demo11/components/BgAnimate.vue';
 
 let gpzbData = reactive([
