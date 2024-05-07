@@ -78,77 +78,13 @@
 							<div class="t-right">
 								<ul id="cp">
 									<li class="line"></li>
-									<li>
-										<span>一月</span>
+									<li v-for="(data, index) in mothnumber" :key=index>
+										<span>{{index+1}}月</span>
 										<div>
-											<p><i></i><span></span></p>
-										</div>
-									</li>
-									<li>
-										<span>二月</span>
-										<div>
-											<p><i></i><span></span></p>
-										</div>
-									</li>
-
-									<li>
-										<span>三月</span>
-										<div>
-											<p><i></i><span></span></p>
-										</div>
-									</li>
-									<li>
-										<span>四月</span>
-										<div>
-											<p><i></i><span></span></p>
-										</div>
-									</li>
-									<li>
-										<span>五月</span>
-										<div>
-											<p><i></i><span></span></p>
-										</div>
-									</li>
-									<li>
-										<span>六月</span>
-										<div>
-											<p><i></i><span></span></p>
-										</div>
-									</li>
-									<li>
-										<span>七月</span>
-										<div>
-											<p class="active"><i></i><span></span></p>
-										</div>
-									</li>
-									<li>
-										<span>八月</span>
-										<div>
-											<p><i></i><span></span></p>
-										</div>
-									</li>
-									<li>
-										<span>九月</span>
-										<div>
-											<p><i></i><span></span></p>
-										</div>
-									</li>
-									<li>
-										<span>十月</span>
-										<div>
-											<p><i></i><span></span></p>
-										</div>
-									</li>
-									<li>
-										<span>十一月</span>
-										<div>
-											<p><i></i><span></span></p>
-										</div>
-									</li>
-									<li>
-										<span>十二月</span>
-										<div>
-											<p><i></i><span></span></p>
+											<p :style="{ width: getMonthWidth(data) }">
+												<i :style="{ width: getMonthWidth(data) }"></i>
+												<span>{{ data }}</span>
+											</p>
 										</div>
 									</li>
 								</ul>
@@ -162,11 +98,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted,reactive } from 'vue'
+import { ref, onMounted, reactive } from 'vue'
 import * as echarts from "echarts"
-import {options,echarts3 as optionsForE3} from '@/pages/bigScreen/demo11/options/options'
+import { options, echarts3 as optionsForE3 } from '@/pages/bigScreen/demo11/options/options'
 import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue';
-import { DataCenter, echartdata } from '@/pages/bigScreen/demo11/options/data'
+import { DataCenter, echartdata } from '@/pages/bigScreen/demo11/options/data.js'
 import BgAnimate from '@/pages/bigScreen/demo11/components/BgAnimate.vue';
 
 let gpzbData = reactive([
@@ -193,12 +129,25 @@ function getBackground(index: number, n: number) {
 	return active ? '#00A0E9' : '#1D2088';
 }
 
+// 月成交量滚动
+let mothnumber = [4536, 2030, 4872, 4931, 4980, 4500, 7036, 3030, 2872, 3931, 1980, 4530];
+function getMonthWidth(value: number) {
+	if (value > 5000) {
+		value = 5000
+	}
+	return 450 * (value / 5000) + "px"
+}
+
+function animateMonth() {
+
+}
+
 const guapai = ref()
 const leftBottom = ref()
 const leftTopRightCircle = ref()
 
 onMounted(() => {
-	// 滚动
+	// 滚动-各区域产品挂牌数
 	animateHighlights()
 
 	// echarts--start
@@ -218,7 +167,7 @@ onMounted(() => {
 		echarts3.resize()
 	})
 	// echarts--end
-	
+
 
 })
 
