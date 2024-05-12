@@ -79,7 +79,7 @@
 								<ul id="cp">
 									<li class="line"></li>
 									<li v-for="(data, index) in mothnumber" :key=index>
-										<span>{{index+1}}月</span>
+										<span>{{ index + 1 }}月</span>
 										<div>
 											<p :style="{ width: getMonthWidth(data) }">
 												<i :style="{ width: getMonthWidth(data) }"></i>
@@ -92,6 +92,46 @@
 						</div>
 					</div>
 				</div>
+
+				<div class="bodyMiddle rel">
+					<div class="bodyMiddleChild">
+						<div class="add" onclick="Show(this,'bodyMiddle',1.8,'after')">+</div>
+						<div class="childtitle">
+							<h2>牧草产能区域分布</h2>
+						</div>
+						<div class="navbar">
+							<span @click="changeMap(1)" :class="{ active: activeTab === 1 }">全国分布</span>
+							<span @click="changeMap(2)" :class="{ active: activeTab === 2 }">贵州区域</span>
+							<span @click="changeMap(3)" :class="{ active: activeTab === 3 }">大盘走势</span>
+						</div>
+						<!-- 分布区域-开始 -->
+						<div class="mapmain">
+							<!-- 牧草产能区域分布数据-开始 -->
+							<div>
+								<ul id="list">
+									<li v-for="(item, index) in ChanNeng" :key="index">
+										<p>{{ item.name }}</p>
+										<span>{{ item.num }}</span>
+									</li>
+								</ul>
+							</div>
+							<!-- 牧草产能区域分布数据-开始 -->
+							<!-- 中国地图-开始 -->
+							<div class="map" ref="map" v-show="activeTab === 1"></div>
+							<!-- 中国地图-结束 -->
+							<!-- 贵州地图-开始 -->
+							<div class="map" ref="map1" v-show="activeTab === 2"></div>
+							<!-- 贵州地图-结束 -->
+							<!-- 大盘走势-开始 -->
+							<div class="map" ref="map2" v-show="activeTab === 3"></div>
+							<!-- 大盘走势-结束 -->
+						</div>
+						<!-- 分布区域-结束 -->
+						<!-- 地图下面亮光动画-开始 -->
+						<div id="sun"></div>
+						<!-- 地图下面亮光动画-结束 -->
+					</div>
+				</div>
 			</div>
 		</div>
 	</screen-adapter>
@@ -100,10 +140,12 @@
 <script setup lang="ts">
 import { ref, onMounted, reactive } from 'vue'
 import * as echarts from "echarts"
-import { options, echarts3 as optionsForE3 } from '@/pages/bigScreen/demo11/options/options'
+import { options, echarts3 as optionsForE3, mapCharts } from '@/pages/bigScreen/demo11/options/options'
 import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue';
-import { DataCenter, echartdata } from '@/pages/bigScreen/demo11/options/data.js'
+import { DataCenter, echartdata, ChanNeng, ChinaData, GuiZhouData } from '@/pages/bigScreen/demo11/options/data.js'
 import BgAnimate from '@/pages/bigScreen/demo11/components/BgAnimate.vue';
+import China from '@/pages/chartsModules/json/China.json';
+import GUIZHOU from '@/pages/chartsModules/json/520000/520000.json';
 
 let gpzbData = reactive([
 	{ label: '今日交割', value: 515, activeIndex: 0 },
@@ -142,9 +184,18 @@ function animateMonth() {
 
 }
 
+let activeTab = ref(1)
+function changeMap(index: number) {
+	activeTab.value = index;
+}
+
+// 图表信息
 const guapai = ref()
 const leftBottom = ref()
 const leftTopRightCircle = ref()
+const map = ref()
+const map1 = ref()
+const map2 = ref()
 
 onMounted(() => {
 	// 滚动-各区域产品挂牌数
@@ -161,10 +212,25 @@ onMounted(() => {
 	let e3ops = optionsForE3(echartdata)
 	echarts3.setOption(e3ops)
 
+	let echarts4 = echarts.init(map2.value, null, { devicePixelRatio: 1 })
+	echarts4.setOption(options.echarts4)
+	
+	let mapEcharts = echarts.init(map.value)
+	// @ts-ignore
+	echarts.registerMap('China', China)
+	mapEcharts.setOption(mapCharts('China', ChinaData))
+
+	let map1Echarts = echarts.init(map1.value)
+	// @ts-ignore
+	echarts.registerMap('guizhou', GUIZHOU)
+	map1Echarts.setOption(mapCharts('guizhou', GuiZhouData))
+
 	window.addEventListener("resize", function () {
 		echarts1.resize()
 		echarts2.resize()
 		echarts3.resize()
+		mapEcharts.resize()
+		map1Echarts.resize()
 	})
 	// echarts--end
 
