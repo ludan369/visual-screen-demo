@@ -377,7 +377,7 @@ function echarts4(): { [key: string]: any } {
 		color: ['#46B05D', '#AF4B87', '#03A2E9', "#F5D52E"],
 		xAxis: {
 			type: 'category',
-			name: "2018年",
+			name: "2024年",
 			nameGap: 24,
 			nameTextStyle: { //坐标轴名称样式
 				color: "#fff",

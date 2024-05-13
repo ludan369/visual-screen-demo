@@ -138,7 +138,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, reactive } from 'vue'
+import { ref, onMounted, reactive, watch, nextTick } from 'vue'
 import * as echarts from "echarts"
 import { options, echarts3 as optionsForE3, mapCharts } from '@/pages/bigScreen/demo11/options/options'
 import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue';
@@ -184,20 +184,59 @@ function animateMonth() {
 
 }
 
+// 地图切换变化
 let activeTab = ref(1)
+const map = ref()
+const map1 = ref()
+const map2 = ref()
+let mapInitialized = reactive([false, false, false])
 function changeMap(index: number) {
 	activeTab.value = index;
 }
+// 仅当地图第一次变为可见时初始化
+function initMap(index: number) {
+	if (!mapInitialized[index]) {
+		mapInitialized[index] = true;
+		let myChart:any;
+		if (index === 0) { // 中国地图
+			myChart = echarts.init(map.value);
+			// @ts-ignore
+			echarts.registerMap('China', China)
+			myChart.setOption(mapCharts('China', ChinaData))
+		} else if (index === 1) { // 贵州地图
+			myChart = echarts.init(map1.value);
+			// @ts-ignore
+			echarts.registerMap('guizhou', GUIZHOU)
+			myChart.setOption(mapCharts('guizhou', GuiZhouData))
+		} else if (index === 2) { // 走势图
+			
+			myChart = echarts.init(map2.value);
+			myChart.setOption(options.echarts4)
+		}
+		// 监听窗口大小变化
+		window.addEventListener('resize', () => {
+			myChart.resize();
+		});
+	}
+}
+
+watch(activeTab, (newVal, oldVal) => {
+	if (newVal !== oldVal) {
+		nextTick(() => {
+			initMap(newVal - 1);  // 保证 DOM 更新完成后初始化地图
+		});
+	}
+})
 
 // 图表信息
 const guapai = ref()
 const leftBottom = ref()
 const leftTopRightCircle = ref()
-const map = ref()
-const map1 = ref()
-const map2 = ref()
 
 onMounted(() => {
+	// 初始化为中国地图
+	initMap(0)
+
 	// 滚动-各区域产品挂牌数
 	animateHighlights()
 
@@ -212,29 +251,12 @@ onMounted(() => {
 	let e3ops = optionsForE3(echartdata)
 	echarts3.setOption(e3ops)
 
-	let echarts4 = echarts.init(map2.value, null, { devicePixelRatio: 1 })
-	echarts4.setOption(options.echarts4)
-	
-	let mapEcharts = echarts.init(map.value)
-	// @ts-ignore
-	echarts.registerMap('China', China)
-	mapEcharts.setOption(mapCharts('China', ChinaData))
-
-	let map1Echarts = echarts.init(map1.value)
-	// @ts-ignore
-	echarts.registerMap('guizhou', GUIZHOU)
-	map1Echarts.setOption(mapCharts('guizhou', GuiZhouData))
-
 	window.addEventListener("resize", function () {
 		echarts1.resize()
 		echarts2.resize()
 		echarts3.resize()
-		mapEcharts.resize()
-		map1Echarts.resize()
 	})
 	// echarts--end
-
-
 })
 
 </script>
