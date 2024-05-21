@@ -132,7 +132,95 @@
 						<!-- 地图下面亮光动画-结束 -->
 					</div>
 				</div>
+
+				<div class="bodyRight">
+					<!-- 成交量实时动态滚动-开始 -->
+					<div class="bodyRightTop rel">
+						<div class="childtitle">
+							<h2>成交订单实时动态</h2>
+						</div>
+						<div class="navbar">
+							<span>草牧板块</span>
+							<span class="active">猪板块</span>
+							<span>牛板块</span>
+							<span>羊板块</span>
+						</div>
+						<div class="add" onclick="Show(this,'bodyRight',2.8,'before')">+</div>
+						<div class="bodyRightTopBG">
+							<div class="default">
+								<span class="num">成交订单号</span>
+								<span class="name">产品名称</span>
+								<span class="time">数量</span>
+								<span class="status">估重/规格</span>
+								<span>成交时间</span>
+								<span>订单状态</span>
+							</div>
+							<!-- 成交订单数据-开始 -->
+							<div class="liushuihaoul clear">
+								<ul class="moveul">
+									<li v-for="(item, index) in CJstatus[1]">
+										<span>{{ item.num }}</span>
+										<span>{{ item.name }}</span>
+										<span>{{ item.cont }}</span>
+										<span>{{ item.weight }}</span>
+										<span>{{ item.time }}</span>
+										<span>{{ item.state }}</span>
+									</li>
+								</ul>
+							</div>
+							<!-- 成交订单数据-结束 -->
+							<!-- 下方消息提示滚动-开始 -->
+							<div class="call">
+								<ul class="moveul">
+									<li v-for="(item, index) in callMsg">
+										<i></i>
+										<span>{{ item }}</span>
+									</li>
+								</ul>
+							</div>
+							<!-- 下方消息提示滚动-结束 -->
+						</div>
+					</div>
+					<!-- 成交量实时动态滚动-结束 -->
+
+					<!-- 挂牌产品价格动态折线图-开始 -->
+					<div class="bodyRightBottom rel">
+						<div class="childtitle">
+							<h2>挂牌产品价格动态</h2>
+						</div>
+						<div class="add" onclick="Show(this,'bodyRight',2.8,'after')">+</div>
+						<div id="jiagezoushi" ref="jiagezoushi"></div>
+					</div>
+					<!-- 挂牌产品价格动态折线图-结束 -->
+				</div>
 			</div>
+			<!-- 显示屏中间-结束 -->
+
+			<!-- 显示屏底部-开始-->
+			<div id="foot">
+				!-- 挂牌会员实时监控-开始 -->
+				<div class="footparent0">
+					<div class="footChild">
+						<div class="childtitle">
+							<h2>挂牌会员实时监控</h2>
+						</div>
+						<div class="add" onclick="Show(this,'footparent0',2.8,'after')">+</div>
+						<!-- 今日入驻申请会员数量-开始 -->
+						<div class="huiYuanLst">
+							<div class="yibiao" id="yibiao1" ref="yibiao1"></div>
+							<div class="huiyuan">
+								<ul class="fangkuai" :key="index">
+									
+								</ul>
+								<span></span>
+								<p>今日入驻申请会员数量</p>
+							</div>
+						</div>
+						<!-- 今日入驻申请会员数量-结束 -->
+					</div>
+				</div>
+			</div>
+			<!-- 显示屏底部-结束-->
 		</div>
 	</screen-adapter>
 </template>
@@ -142,7 +230,7 @@ import { ref, onMounted, reactive, watch, nextTick } from 'vue'
 import * as echarts from "echarts"
 import { options, echarts3 as optionsForE3, mapCharts } from '@/pages/bigScreen/demo11/options/options'
 import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue';
-import { DataCenter, echartdata, ChanNeng, ChinaData, GuiZhouData } from '@/pages/bigScreen/demo11/options/data.js'
+import { DataCenter, echartdata, ChanNeng, ChinaData, GuiZhouData, CJstatus, callMsg } from '@/pages/bigScreen/demo11/options/data.js'
 import BgAnimate from '@/pages/bigScreen/demo11/components/BgAnimate.vue';
 import China from '@/pages/chartsModules/json/China.json';
 import GUIZHOU from '@/pages/chartsModules/json/520000/520000.json';
@@ -171,6 +259,31 @@ function getBackground(index: number, n: number) {
 	return active ? '#00A0E9' : '#1D2088';
 }
 
+// 挂牌会员实时监控方块
+let vipData = reactive([
+	{ label: '入驻', value: 268, activeIndex: 0 },
+	{ label: '通过', value: 5, activeIndex: 0 },
+	{ label: '申请三项数量', value: 20, activeIndex: 0 }
+]);
+
+function getBackgroundVip(index: number, n: number) {
+	const data = vipData[index];
+	const highlight = data.activeIndex === n;
+	const active = n <= Math.floor(data.value / 10);
+	if (highlight) return '#FBED14';
+	return active ? '#00A0E9' : '#1D2088';
+}
+function animateHighlightsVip() {
+	setInterval(() => {
+		vipData.forEach((item: any, index: any) => {
+			item.activeIndex++;
+			if (item.activeIndex > Math.floor(item.value / 100)) {
+				item.activeIndex = 0;
+			}
+		});
+	}, 300);
+}
+
 // 月成交量滚动
 let mothnumber = [4536, 2030, 4872, 4931, 4980, 4500, 7036, 3030, 2872, 3931, 1980, 4530];
 function getMonthWidth(value: number) {
@@ -180,9 +293,6 @@ function getMonthWidth(value: number) {
 	return 450 * (value / 5000) + "px"
 }
 
-function animateMonth() {
-
-}
 
 // 地图切换变化
 let activeTab = ref(1)
@@ -197,7 +307,7 @@ function changeMap(index: number) {
 function initMap(index: number) {
 	if (!mapInitialized[index]) {
 		mapInitialized[index] = true;
-		let myChart:any;
+		let myChart: any;
 		if (index === 0) { // 中国地图
 			myChart = echarts.init(map.value);
 			// @ts-ignore
@@ -209,7 +319,7 @@ function initMap(index: number) {
 			echarts.registerMap('guizhou', GUIZHOU)
 			myChart.setOption(mapCharts('guizhou', GuiZhouData))
 		} else if (index === 2) { // 走势图
-			
+
 			myChart = echarts.init(map2.value);
 			myChart.setOption(options.echarts4)
 		}
@@ -232,6 +342,8 @@ watch(activeTab, (newVal, oldVal) => {
 const guapai = ref()
 const leftBottom = ref()
 const leftTopRightCircle = ref()
+const jiagezoushi = ref()
+const yibiao1 = ref()
 
 onMounted(() => {
 	// 初始化为中国地图
@@ -239,6 +351,9 @@ onMounted(() => {
 
 	// 滚动-各区域产品挂牌数
 	animateHighlights()
+
+	// 
+	animateHighlightsVip()
 
 	// echarts--start
 	let echarts1 = echarts.init(guapai.value, null, { devicePixelRatio: 1 })
@@ -250,6 +365,12 @@ onMounted(() => {
 	let echarts3 = echarts.init(leftTopRightCircle.value, null, { devicePixelRatio: 1 })
 	let e3ops = optionsForE3(echartdata)
 	echarts3.setOption(e3ops)
+
+	let echarts5 = echarts.init(jiagezoushi.value, null, { devicePixelRatio: 1 })
+	echarts5.setOption(options.echarts5)
+
+	let echarts6 = echarts.init(yibiao1.value, null, { devicePixelRatio: 1 })
+	echarts6.setOption(options.echarts6)
 
 	window.addEventListener("resize", function () {
 		echarts1.resize()
