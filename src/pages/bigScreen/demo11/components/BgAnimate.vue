@@ -155,14 +155,14 @@
 }
 
 .animation .animate2 {
-    background: url("@/assets/images/ico/2.png") no-repeat;
+    background: url("@/assets/images/icon/2.png") no-repeat;
     background-size: 100%;
     animation-duration: 20s;
     animation-direction: reverse;
 }
 
 .animation .animate3 {
-    background: url("@/assets/images/ico/3.png") no-repeat;
+    background: url("@/assets/images/icon/3.png") no-repeat;
     background-size: 100%;
     animation-duration: 15s;
 }
