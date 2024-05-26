@@ -198,7 +198,7 @@
 
 			<!-- 显示屏底部-开始-->
 			<div id="foot">
-				!-- 挂牌会员实时监控-开始 -->
+				<!-- 挂牌会员实时监控-开始 -->
 				<div class="footparent0">
 					<div class="footChild">
 						<div class="childtitle">
@@ -209,16 +209,146 @@
 						<div class="huiYuanLst">
 							<div class="yibiao" id="yibiao1" ref="yibiao1"></div>
 							<div class="huiyuan">
-								<ul class="fangkuai" :key="index">
-									
+								<ul class="fangkuai">
+									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundVip(0, i) }">
+
+									</li>
 								</ul>
-								<span></span>
+								<span>{{ vipData[0].value }}</span>
 								<p>今日入驻申请会员数量</p>
 							</div>
 						</div>
 						<!-- 今日入驻申请会员数量-结束 -->
+
+						<!-- 入驻动态-开始 -->
+						<div class="huiYuanLst">
+							<span class="ruzhustatus">(入驻动态)</span>
+							<div class="contgundong">
+								<ul class="moveul">
+									<li v-for="(item, index) in RZstatus" :key="index">
+										{{ RZstatus[index] }}
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- 入驻动态-结束 -->
+
+						<!-- 今日申请实名会员数量-开始 -->
+						<div class="huiYuanLst huiYuanLst3">
+							<div class="yibiao" id="yibiao2" ref="yibiao2"></div>
+							<div class="huiyuan">
+								<ul class="fangkuai">
+									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundVip(0, i) }">
+
+									</li>
+								</ul>
+								<span></span>
+								<p>今日申请实名会员数量</p>
+							</div>
+						</div>
+						<!-- 今日申请实名会员数量-结束 -->
+
+						<!-- 今日通过实名认证会员数量-开始 -->
+						<div class="huiYuanLst">
+							<div class="yibiao" id="yibiao3" ref="yibiao3"></div>
+							<div class="huiyuan">
+								<ul class="fangkuai">
+									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundVip(0, i) }">
+
+									</li>
+								</ul>
+								<span></span>
+								<p>今日通过实名认证申请会员数量</p>
+							</div>
+						</div>
+						<!-- 今日通过实名认证会员数量-结束 -->
 					</div>
 				</div>
+				<!-- 挂牌会员实时监控-结束 -->
+
+				<!-- 北海市猪链网动态-开始 -->
+				<div class="footparent1">
+					<div class="footChild">
+						<div class="childtitle">
+							<h2>北海市猪链网动态</h2>
+						</div>
+						<div class="add" onclick="Show(this,'footparent1',2.8,'after')">+</div>
+						<div id="jiage" ref="jiage"></div>
+					</div>
+				</div>
+				<!-- 北海市猪链网动态-结束 -->
+
+				<!-- 交易大厅实时监控-开始 -->
+				<div class="footparent2">
+					<div class="footChild">
+						<div class="childtitle">
+							<h2>交易大厅实时监控</h2>
+						</div>
+						<div class="add" onclick="Show(this,'footparent2',2.8,'after')">+</div>
+						<!-- 各板块成交量格子动画-开始 -->
+						<div class="chengjiaoliang">
+							<div class="CJL clear">
+								<p></p>
+								<span>草木板块成交量</span>
+								<ul class="fangkuai">
+									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundVip(0, i) }">
+
+									</li>
+								</ul>
+							</div>
+							<div class="CJL clear">
+								<p></p>
+								<span>猪联网成交量</span>
+								<ul class="fangkuai">
+									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundVip(0, i) }">
+
+									</li>
+								</ul>
+							</div>
+							<div class="CJL clear">
+								<p></p>
+								<span>牛联网成交量</span>
+								<ul class="fangkuai">
+									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundVip(0, i) }">
+
+									</li>
+								</ul>
+							</div>
+							<div class="CJL clear">
+								<p></p>
+								<span>羊联网成交量</span>
+								<ul class="fangkuai">
+									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundVip(0, i) }">
+
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- 各板块成交量格子动画-结束 -->
+						<div id="CJpie" ref="CJpie"></div>
+					</div>
+				</div>
+				<!-- 交易大厅实时监控-结束 -->
+				<!-- 成交量实时监控-开始 -->
+				<div class="footparent3">
+					<div class="footChild">
+						<div class="childtitle">
+							<h2>成交量实时监控</h2>
+						</div>
+						<div class="add" onclick="Show(this,'footparent3',2.8,'after')">+</div>
+						<!-- 平均成交时间刻度轴-开始 -->
+						<div id="timebar">
+							<span id="pjtime">平均单笔成交时间：1.5min</span>
+							<ul class="kedu clear"></ul>
+							<div class="kuang">
+								<div class="tianchong"></div>
+							</div>
+						</div>
+						<!-- 平均成交时间刻度轴-开始 -->
+						<div id="cjliang" ref="cjliang"></div>
+					</div>
+				</div>
+				<!-- 成交量实时监控-结束 -->
 			</div>
 			<!-- 显示屏底部-结束-->
 		</div>
@@ -230,7 +360,7 @@ import { ref, onMounted, reactive, watch, nextTick } from 'vue'
 import * as echarts from "echarts"
 import { options, echarts3 as optionsForE3, mapCharts } from '@/pages/bigScreen/demo11/options/options'
 import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue';
-import { DataCenter, echartdata, ChanNeng, ChinaData, GuiZhouData, CJstatus, callMsg } from '@/pages/bigScreen/demo11/options/data.js'
+import { DataCenter, echartdata, ChanNeng, ChinaData, GuiZhouData, CJstatus, callMsg, RZstatus } from '@/pages/bigScreen/demo11/options/data.js'
 import BgAnimate from '@/pages/bigScreen/demo11/components/BgAnimate.vue';
 import China from '@/pages/chartsModules/json/China.json';
 import GUIZHOU from '@/pages/chartsModules/json/520000/520000.json';
@@ -262,14 +392,14 @@ function getBackground(index: number, n: number) {
 // 挂牌会员实时监控方块
 let vipData = reactive([
 	{ label: '入驻', value: 268, activeIndex: 0 },
-	{ label: '通过', value: 5, activeIndex: 0 },
-	{ label: '申请三项数量', value: 20, activeIndex: 0 }
+	{ label: '通过', value: 155, activeIndex: 0 },
+	{ label: '申请三项数量', value: 200, activeIndex: 0 }
 ]);
 
 function getBackgroundVip(index: number, n: number) {
 	const data = vipData[index];
 	const highlight = data.activeIndex === n;
-	const active = n <= Math.floor(data.value / 10);
+	const active = n <= Math.floor(data.value / 25);
 	if (highlight) return '#FBED14';
 	return active ? '#00A0E9' : '#1D2088';
 }
@@ -277,7 +407,7 @@ function animateHighlightsVip() {
 	setInterval(() => {
 		vipData.forEach((item: any, index: any) => {
 			item.activeIndex++;
-			if (item.activeIndex > Math.floor(item.value / 100)) {
+			if (item.activeIndex > Math.floor(item.value / 25)) {
 				item.activeIndex = 0;
 			}
 		});
@@ -338,12 +468,18 @@ watch(activeTab, (newVal, oldVal) => {
 	}
 })
 
+
 // 图表信息
 const guapai = ref()
 const leftBottom = ref()
 const leftTopRightCircle = ref()
 const jiagezoushi = ref()
 const yibiao1 = ref()
+const yibiao2 = ref()
+const yibiao3 = ref()
+const jiage = ref()
+const CJpie = ref()
+const cjliang = ref()
 
 onMounted(() => {
 	// 初始化为中国地图
@@ -354,6 +490,7 @@ onMounted(() => {
 
 	// 
 	animateHighlightsVip()
+
 
 	// echarts--start
 	let echarts1 = echarts.init(guapai.value, null, { devicePixelRatio: 1 })
@@ -372,10 +509,32 @@ onMounted(() => {
 	let echarts6 = echarts.init(yibiao1.value, null, { devicePixelRatio: 1 })
 	echarts6.setOption(options.echarts6)
 
+	let echarts7 = echarts.init(yibiao2.value, null, { devicePixelRatio: 1 })
+	echarts7.setOption(options.echarts6)
+
+	let echarts8 = echarts.init(yibiao3.value, null, { devicePixelRatio: 1 })
+	echarts8.setOption(options.echarts6)
+
+	let echarts9 = echarts.init(jiage.value, null, { devicePixelRatio: 1 })
+	echarts9.setOption(options.echarts7)
+
+	let echarts10 = echarts.init(CJpie.value, null, { devicePixelRatio: 1 })
+	echarts10.setOption(options.echarts8)
+
+	let echarts11 = echarts.init(cjliang.value, null, { devicePixelRatio: 1 })
+	echarts11.setOption(options.echarts9)
+
 	window.addEventListener("resize", function () {
 		echarts1.resize()
 		echarts2.resize()
 		echarts3.resize()
+		echarts5.resize()
+		echarts6.resize()
+		echarts7.resize()
+		echarts8.resize()
+		echarts9.resize()
+		echarts10.resize()
+		echarts11.resize()
 	})
 	// echarts--end
 })

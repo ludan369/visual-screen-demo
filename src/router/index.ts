@@ -141,8 +141,8 @@ export const routes = [
                     title: 'demo11', icon: 'location',
 
                     desc: {
-                        imgSrc: './images/preview/demo10.png',
-                        tags: ['']
+                        imgSrc: './images/preview/demo11.png',
+                        tags: ['地图','动效']
                     }
                 },
                 component: () => import('@/pages/bigScreen/demo11/index.vue')
