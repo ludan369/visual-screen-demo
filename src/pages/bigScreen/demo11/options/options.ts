@@ -5,10 +5,8 @@ export let options = {
     echarts2: echarts2(),
     echarts4: echarts4(),
     echarts5: echarts5(),
-    echarts6: echarts6(),
     echarts7: echarts7(),
     echarts8: echarts8(),
-    echarts9: echarts9(),
 }
 
 function echarts1(): { [key: string]: any } {
@@ -787,7 +785,7 @@ function echarts5(): { [key: string]: any } {
     };
 }
 
-function echarts6(): { [key: string]: any } {
+export function echarts6(name: string, data: number): { [key: string]: any } {
     return {
         tooltip: {
             formatter: "{a} <br/>{b} : {c}%"
@@ -841,38 +839,41 @@ function echarts6(): { [key: string]: any } {
                 fontSize: 16,
                 fontStyle: 'italic',
                 color: "#fff",
+                offsetCenter: [0, '-22%']
             },
             detail: {
+                padding: [20,0,0,0],
+                offsetCenter: [0, '5%'],
                 //其余属性默认使用全局文本样式，详见TEXTSTYLE
                 formatter: function (value: any) {
                     var num = (value / 325) * 100;
                     return value + "\n\n占比 " + num.toFixed(2) + "%";
                 },
                 fontWeight: 'bolder',
-                borderRadius: 3, //圆角
-                backgroundColor: '#1D2088', //背景
-                borderColor: '#00A0E9', //边框
-                shadowBlur: 5,
-                shadowColor: '#00A0E9',
-                shadowOffsetX: 0,
-                shadowOffsetY: 1,
-                borderWidth: 2,
-                //textBorderColor: '#62D4FB',
-                textBorderWidth: 2,
-                textShadowBlur: 2,
-                textShadowColor: '#62D4FB',
-                textShadowOffsetX: 0,
-                textShadowOffsetY: 1,
+                // borderRadius: 3, //圆角
+                // backgroundColor: '#1D2088', //背景
+                // borderColor: '#00A0E9', //边框
+                // shadowBlur: 5,
+                // shadowColor: '#00A0E9',
+                // shadowOffsetX: 0,
+                // shadowOffsetY: 1,
+                // borderWidth: 2,
+                // textBorderColor: '#62D4FB',
+                // textBorderWidth: 2,
+                // textShadowBlur: 2,
+                // textShadowColor: '#62D4FB',
+                // textShadowOffsetX: 0,
+                // textShadowOffsetY: 1,
                 fontFamily: 'Arial',
                 fontSize: 16,
                 width: 30,
-                height: 12,
+                height: 15,
                 color: '#62D4FB',
                 rich: {},
             },
             data: [{
-                value: 268,
-                name: '今日入驻'
+                value: data,
+                name: name
             }]
         }]
     }
@@ -1197,7 +1198,7 @@ function echarts8(): { [key: string]: any } {
     }
 }
 
-function echarts9(): { [key: string]: any } {
+export function echarts9(data: Array<Number>): { [key: string]: any } {
     return {
 		title: {
 			text: ''
@@ -1292,7 +1293,7 @@ function echarts9(): { [key: string]: any } {
 				offset: 1,
 				color: '#D66BFD'
 			}]),
-			data: [200, 330, 440, 550, 660, 770, 880]
+			data: data
 		}]
 	}
 }

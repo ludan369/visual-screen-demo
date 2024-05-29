@@ -9,9 +9,9 @@
 			<div id="head">
 				<!-- 时间日期 -->
 				<div class="getDate">
-					<span id="time">09:00:00</span>
-					<span id="week">星期一</span>
-					<span id="year">2024-04-07</span>
+					<span id="time">{{ time }}</span>
+					<span id="week">{{ week }}</span>
+					<span id="year">{{ year }}</span>
 				</div>
 				<!-- 天气状况 -->
 				<div class="weather">
@@ -21,7 +21,7 @@
 					<span id="state">优</span>
 				</div>
 				<!-- 大标题 -->
-				<h1> 南方草牧商品交易所</h1>
+				<h1>南方草牧商品交易所</h1>
 			</div>
 			<!-- 显示屏头部结束 -->
 
@@ -43,7 +43,7 @@
 								</li>
 							</ul>
 						</div>
-						<!-- 数据中心-开始 -->
+						<!-- 数据中心-结束 -->
 						<div ref="guapai" class="guapai"></div>
 						<!-- 产品挂牌实时监控-开始 -->
 						<div class="yuyue">
@@ -238,11 +238,11 @@
 							<div class="yibiao" id="yibiao2" ref="yibiao2"></div>
 							<div class="huiyuan">
 								<ul class="fangkuai">
-									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundVip(0, i) }">
+									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundVip(1, i) }">
 
 									</li>
 								</ul>
-								<span></span>
+								<span>{{ vipData[1].value }}</span>
 								<p>今日申请实名会员数量</p>
 							</div>
 						</div>
@@ -253,11 +253,11 @@
 							<div class="yibiao" id="yibiao3" ref="yibiao3"></div>
 							<div class="huiyuan">
 								<ul class="fangkuai">
-									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundVip(0, i) }">
+									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundVip(2, i) }">
 
 									</li>
 								</ul>
-								<span></span>
+								<span>{{ vipData[2].value }}</span>
 								<p>今日通过实名认证申请会员数量</p>
 							</div>
 						</div>
@@ -291,7 +291,7 @@
 								<p></p>
 								<span>草木板块成交量</span>
 								<ul class="fangkuai">
-									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundVip(0, i) }">
+									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundTrade(0, 13-i) }">
 
 									</li>
 								</ul>
@@ -300,7 +300,7 @@
 								<p></p>
 								<span>猪联网成交量</span>
 								<ul class="fangkuai">
-									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundVip(0, i) }">
+									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundTrade(1, 13-i) }">
 
 									</li>
 								</ul>
@@ -309,7 +309,7 @@
 								<p></p>
 								<span>牛联网成交量</span>
 								<ul class="fangkuai">
-									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundVip(0, i) }">
+									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundTrade(2, 13-i) }">
 
 									</li>
 								</ul>
@@ -318,7 +318,7 @@
 								<p></p>
 								<span>羊联网成交量</span>
 								<ul class="fangkuai">
-									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundVip(0, i) }">
+									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundTrade(3, 13-i) }">
 
 									</li>
 								</ul>
@@ -338,11 +338,10 @@
 						<div class="add" onclick="Show(this,'footparent3',2.8,'after')">+</div>
 						<!-- 平均成交时间刻度轴-开始 -->
 						<div id="timebar">
-							<span id="pjtime">平均单笔成交时间：1.5min</span>
+							<span id="pjtime">平均单笔成交时间：{{averageTime}} s</span>
 							<ul class="kedu clear"></ul>
 							<div class="kuang">
-								<div class="tianchong"></div>
-							</div>
+							<div class="tianchong" :style="{ width: fillingWidth + 'px' }"></div>							</div>
 						</div>
 						<!-- 平均成交时间刻度轴-开始 -->
 						<div id="cjliang" ref="cjliang"></div>
@@ -356,15 +355,29 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, reactive, watch, nextTick } from 'vue'
+import { ref, onMounted, reactive, watch, nextTick, onUnmounted } from 'vue'
 import * as echarts from "echarts"
-import { options, echarts3 as optionsForE3, mapCharts } from '@/pages/bigScreen/demo11/options/options'
+import { options, echarts3 as optionsForE3, mapCharts, echarts6 as optionsForE6, echarts9 as optionsForE9} from '@/pages/bigScreen/demo11/options/options'
 import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue';
 import { DataCenter, echartdata, ChanNeng, ChinaData, GuiZhouData, CJstatus, callMsg, RZstatus } from '@/pages/bigScreen/demo11/options/data.js'
 import BgAnimate from '@/pages/bigScreen/demo11/components/BgAnimate.vue';
 import China from '@/pages/chartsModules/json/China.json';
 import GUIZHOU from '@/pages/chartsModules/json/520000/520000.json';
 
+// 头部时间日期-开始
+let time = ref('');
+let week = ref('');
+let year = ref('');
+let weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+function updateTime() {
+	const now = new Date();
+	time.value = now.toTimeString().split(' ')[0];
+	week.value = weekDays[now.getDay()];
+	year.value = now.getFullYear() + '';
+}
+// 头部时间日期-结束
+
+// 产品挂牌实时监控方块-开始
 let gpzbData = reactive([
 	{ label: '今日交割', value: 515, activeIndex: 0 },
 	{ label: '今日挂牌', value: 300, activeIndex: 0 },
@@ -380,7 +393,6 @@ function animateHighlights() {
 		});
 	}, 300);
 }
-
 function getBackground(index: number, n: number) {
 	const data = gpzbData[index];
 	const highlight = data.activeIndex === n;
@@ -388,14 +400,24 @@ function getBackground(index: number, n: number) {
 	if (highlight) return '#FBED14';
 	return active ? '#00A0E9' : '#1D2088';
 }
+// 产品挂牌实时监控方块-结束
 
-// 挂牌会员实时监控方块
+// 月成交量动效-开始
+let mothnumber = [4536, 2030, 4872, 4931, 4980, 4500, 7036, 3030, 2872, 3931, 1980, 4530];
+function getMonthWidth(value: number) {
+	if (value > 5000) {
+		value = 5000
+	}
+	return 450 * (value / 5000) + "px"
+}
+// 月成交量动效-结束
+
+// 挂牌会员实时监控方块-开始
 let vipData = reactive([
 	{ label: '入驻', value: 268, activeIndex: 0 },
 	{ label: '通过', value: 155, activeIndex: 0 },
 	{ label: '申请三项数量', value: 200, activeIndex: 0 }
 ]);
-
 function getBackgroundVip(index: number, n: number) {
 	const data = vipData[index];
 	const highlight = data.activeIndex === n;
@@ -413,18 +435,48 @@ function animateHighlightsVip() {
 		});
 	}, 300);
 }
+// 挂牌会员实时监控方块-结束
 
-// 月成交量滚动
-let mothnumber = [4536, 2030, 4872, 4931, 4980, 4500, 7036, 3030, 2872, 3931, 1980, 4530];
-function getMonthWidth(value: number) {
-	if (value > 5000) {
-		value = 5000
-	}
-	return 450 * (value / 5000) + "px"
+// 交易大厅实时监控方块-开始
+let tradeData = reactive([
+	{ label: '草木板块成交量', value: 268, activeIndex:  0},
+	{ label: '猪联网成交量', value: 155, activeIndex:  0},
+	{ label: '牛联网成交量', value: 200, activeIndex: 0 },
+	{ label: '羊联网成交量', value: 189, activeIndex: 0 }
+
+]);
+function getBackgroundTrade(index: number, n: number) {
+	const data = tradeData[index];
+	const highlight = data.activeIndex === n;
+	const active = n <= Math.floor(data.value / 25);
+	if (highlight) return '#FBED14';
+	return active ? '#00A0E9' : '#1D2088';
 }
+function animateHighlightsTrade() {
+	setInterval(() => {
+		tradeData.forEach((item, index) => {
+			item.activeIndex++;
+			if (item.activeIndex > Math.floor(item.value / 25)) {
+				item.activeIndex = 0;
+			}
+		});
+	}, 300);
+}
+// 交易大厅实时监控方块-结束
 
+// 平均成交时间刻度轴-开始
+const averageTime = ref(0);
+const fillingWidth = ref(0);
+// 生成填充宽度和更新平均成交时间的函数
+function updateTradingInfo() {
+  const W = Math.round(Math.random() * 10) * 78;
+  const H = W / 13
+  fillingWidth.value = W;
+  averageTime.value = H;
+}
+// 平均成交时间刻度轴-结束
 
-// 地图切换变化
+// 地图切换变化-开始
 let activeTab = ref(1)
 const map = ref()
 const map1 = ref()
@@ -449,7 +501,6 @@ function initMap(index: number) {
 			echarts.registerMap('guizhou', GUIZHOU)
 			myChart.setOption(mapCharts('guizhou', GuiZhouData))
 		} else if (index === 2) { // 走势图
-
 			myChart = echarts.init(map2.value);
 			myChart.setOption(options.echarts4)
 		}
@@ -459,7 +510,6 @@ function initMap(index: number) {
 		});
 	}
 }
-
 watch(activeTab, (newVal, oldVal) => {
 	if (newVal !== oldVal) {
 		nextTick(() => {
@@ -467,7 +517,7 @@ watch(activeTab, (newVal, oldVal) => {
 		});
 	}
 })
-
+// 地图切换变化-结束
 
 // 图表信息
 const guapai = ref()
@@ -481,16 +531,33 @@ const jiage = ref()
 const CJpie = ref()
 const cjliang = ref()
 
+const echarts11 = ref();
+// 生成随机数据
+function generateRandomData() {
+  return Array.from({ length: 7 }, () => Math.round(Math.random() * 1000));
+}
+
 onMounted(() => {
+	// 头部时间信息-开始
+	updateTime();
+	setInterval(updateTime, 1000)
+	// 头部时间信息-结束
+
 	// 初始化为中国地图
 	initMap(0)
 
 	// 滚动-各区域产品挂牌数
 	animateHighlights()
 
-	// 
+	// 滚动-VIP处
 	animateHighlightsVip()
 
+	// 滚动-交易量
+	animateHighlightsTrade()
+
+	// 平均成交时间
+	updateTradingInfo();
+  	setInterval(updateTradingInfo, 1000);
 
 	// echarts--start
 	let echarts1 = echarts.init(guapai.value, null, { devicePixelRatio: 1 })
@@ -507,13 +574,16 @@ onMounted(() => {
 	echarts5.setOption(options.echarts5)
 
 	let echarts6 = echarts.init(yibiao1.value, null, { devicePixelRatio: 1 })
-	echarts6.setOption(options.echarts6)
+	let e6ops = optionsForE6('今日入驻', 268)
+	echarts6.setOption(e6ops)
 
 	let echarts7 = echarts.init(yibiao2.value, null, { devicePixelRatio: 1 })
-	echarts7.setOption(options.echarts6)
+	let e7ops = optionsForE6('今日入驻', 155)
+	echarts7.setOption(e7ops)
 
 	let echarts8 = echarts.init(yibiao3.value, null, { devicePixelRatio: 1 })
-	echarts8.setOption(options.echarts6)
+	let e8ops = optionsForE6('今日入驻', 200)
+	echarts8.setOption(e8ops)
 
 	let echarts9 = echarts.init(jiage.value, null, { devicePixelRatio: 1 })
 	echarts9.setOption(options.echarts7)
@@ -521,9 +591,15 @@ onMounted(() => {
 	let echarts10 = echarts.init(CJpie.value, null, { devicePixelRatio: 1 })
 	echarts10.setOption(options.echarts8)
 
-	let echarts11 = echarts.init(cjliang.value, null, { devicePixelRatio: 1 })
-	echarts11.setOption(options.echarts9)
-
+	echarts11.value = echarts.init(cjliang.value, null, { devicePixelRatio: 1 })
+	// init
+	echarts11.value.setOption(optionsForE9(generateRandomData()));
+	setInterval(() => {
+      const data = generateRandomData();
+      const e9options = optionsForE9(data);
+      echarts11.value.setOption(e9options);
+    }, 2000);
+	
 	window.addEventListener("resize", function () {
 		echarts1.resize()
 		echarts2.resize()
@@ -534,11 +610,14 @@ onMounted(() => {
 		echarts8.resize()
 		echarts9.resize()
 		echarts10.resize()
-		echarts11.resize()
+		echarts11.value.resize()
 	})
 	// echarts--end
 })
 
+onUnmounted(() => {
+
+})
 </script>
 
 <style lang="less" scoped>
