@@ -140,12 +140,12 @@
 							<h2>成交订单实时动态</h2>
 						</div>
 						<div class="navbar">
-							<span>草牧板块</span>
-							<span class="active">猪板块</span>
-							<span>牛板块</span>
-							<span>羊板块</span>
+							<span @click="changeCJStatus(0)" :class="{ active: CJStatusIndex === 0 }">草牧板块</span>
+							<span @click="changeCJStatus(1)" :class="{ active: CJStatusIndex === 1 }">猪板块</span>
+							<span @click="changeCJStatus(2)" :class="{ active: CJStatusIndex === 2 }">牛板块</span>
+							<span @click="changeCJStatus(3)" :class="{ active: CJStatusIndex === 3 }">羊板块</span>
 						</div>
-						<div class="add" onclick="Show(this,'bodyRight',2.8,'before')">+</div>
+						<div class="add" onclick="Show(this,'bodyRight',2.8,'atusIndexbefore')">+</div>
 						<div class="bodyRightTopBG">
 							<div class="default">
 								<span class="num">成交订单号</span>
@@ -158,14 +158,16 @@
 							<!-- 成交订单数据-开始 -->
 							<div class="liushuihaoul clear">
 								<ul class="moveul">
-									<li v-for="(item, index) in CJstatus[1]">
-										<span>{{ item.num }}</span>
-										<span>{{ item.name }}</span>
-										<span>{{ item.cont }}</span>
-										<span>{{ item.weight }}</span>
-										<span>{{ item.time }}</span>
-										<span>{{ item.state }}</span>
-									</li>
+									<vue3-seamless-scroll :list="CJstatus[CJStatusIndex]" class="scroll" :step="0.5">
+										<li class="item" v-for="(item, index) in CJstatus[CJStatusIndex]">
+											<span>{{ item.num }}</span>
+											<span>{{ item.name }}</span>
+											<span>{{ item.cont }}</span>
+											<span>{{ item.weight }}</span>
+											<span>{{ item.time }}</span>
+											<span>{{ item.state }}</span>
+										</li>
+									</vue3-seamless-scroll>
 								</ul>
 							</div>
 							<!-- 成交订单数据-结束 -->
@@ -225,9 +227,12 @@
 							<span class="ruzhustatus">(入驻动态)</span>
 							<div class="contgundong">
 								<ul class="moveul">
-									<li v-for="(item, index) in RZstatus" :key="index">
-										{{ RZstatus[index] }}
-									</li>
+									<vue3-seamless-scroll :list="RZstatus" class="scroll" :step="0.5">
+										<li v-for="(item, index) in RZstatus" :key="index">
+											<i></i>
+											<span>{{ RZstatus[index] }}</span>
+										</li>
+									</vue3-seamless-scroll>
 								</ul>
 							</div>
 						</div>
@@ -291,7 +296,7 @@
 								<p></p>
 								<span>草木板块成交量</span>
 								<ul class="fangkuai">
-									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundTrade(0, 13-i) }">
+									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundTrade(0, 13 - i) }">
 
 									</li>
 								</ul>
@@ -300,7 +305,7 @@
 								<p></p>
 								<span>猪联网成交量</span>
 								<ul class="fangkuai">
-									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundTrade(1, 13-i) }">
+									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundTrade(1, 13 - i) }">
 
 									</li>
 								</ul>
@@ -309,7 +314,7 @@
 								<p></p>
 								<span>牛联网成交量</span>
 								<ul class="fangkuai">
-									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundTrade(2, 13-i) }">
+									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundTrade(2, 13 - i) }">
 
 									</li>
 								</ul>
@@ -318,7 +323,7 @@
 								<p></p>
 								<span>羊联网成交量</span>
 								<ul class="fangkuai">
-									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundTrade(3, 13-i) }">
+									<li v-for="i in 13" :key="i" :style="{ background: getBackgroundTrade(3, 13 - i) }">
 
 									</li>
 								</ul>
@@ -338,10 +343,11 @@
 						<div class="add" onclick="Show(this,'footparent3',2.8,'after')">+</div>
 						<!-- 平均成交时间刻度轴-开始 -->
 						<div id="timebar">
-							<span id="pjtime">平均单笔成交时间：{{averageTime}} s</span>
+							<span id="pjtime">平均单笔成交时间：{{ averageTime }} s</span>
 							<ul class="kedu clear"></ul>
 							<div class="kuang">
-							<div class="tianchong" :style="{ width: fillingWidth + 'px' }"></div>							</div>
+								<div class="tianchong" :style="{ width: fillingWidth + 'px' }"></div>
+							</div>
 						</div>
 						<!-- 平均成交时间刻度轴-开始 -->
 						<div id="cjliang" ref="cjliang"></div>
@@ -357,12 +363,17 @@
 <script setup lang="ts">
 import { ref, onMounted, reactive, watch, nextTick, onUnmounted } from 'vue'
 import * as echarts from "echarts"
-import { options, echarts3 as optionsForE3, mapCharts, echarts6 as optionsForE6, echarts9 as optionsForE9} from '@/pages/bigScreen/demo11/options/options'
-import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue';
+import { options, echarts3 as optionsForE3, mapCharts, 
+	echarts6 as optionsForE6, 
+	echarts9 as optionsForE9, 
+	echarts2 as optionsForE2,
+	echarts8 as optionsForE8 } from '@/pages/bigScreen/demo11/options/options'
+import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue'
 import { DataCenter, echartdata, ChanNeng, ChinaData, GuiZhouData, CJstatus, callMsg, RZstatus } from '@/pages/bigScreen/demo11/options/data.js'
-import BgAnimate from '@/pages/bigScreen/demo11/components/BgAnimate.vue';
-import China from '@/pages/chartsModules/json/China.json';
-import GUIZHOU from '@/pages/chartsModules/json/520000/520000.json';
+import BgAnimate from '@/pages/bigScreen/demo11/components/BgAnimate.vue'
+import China from '@/pages/chartsModules/json/China.json'
+import GUIZHOU from '@/pages/chartsModules/json/520000/520000.json'
+import { Vue3SeamlessScroll } from "vue3-seamless-scroll"
 
 // 头部时间日期-开始
 let time = ref('');
@@ -439,8 +450,8 @@ function animateHighlightsVip() {
 
 // 交易大厅实时监控方块-开始
 let tradeData = reactive([
-	{ label: '草木板块成交量', value: 268, activeIndex:  0},
-	{ label: '猪联网成交量', value: 155, activeIndex:  0},
+	{ label: '草木板块成交量', value: 268, activeIndex: 0 },
+	{ label: '猪联网成交量', value: 155, activeIndex: 0 },
 	{ label: '牛联网成交量', value: 200, activeIndex: 0 },
 	{ label: '羊联网成交量', value: 189, activeIndex: 0 }
 
@@ -469,10 +480,10 @@ const averageTime = ref(0);
 const fillingWidth = ref(0);
 // 生成填充宽度和更新平均成交时间的函数
 function updateTradingInfo() {
-  const W = Math.round(Math.random() * 10) * 78;
-  const H = W / 13
-  fillingWidth.value = W;
-  averageTime.value = H;
+	const W = Math.round(Math.random() * 10) * 78;
+	const H = W / 13
+	fillingWidth.value = W;
+	averageTime.value = H;
 }
 // 平均成交时间刻度轴-结束
 
@@ -532,9 +543,19 @@ const CJpie = ref()
 const cjliang = ref()
 
 const echarts11 = ref();
+const echarts2 = ref()
+const echarts10 = ref()
+const echarts6 = ref()
+const echarts7 = ref()
+const echarts8 = ref()
 // 生成随机数据
-function generateRandomData() {
-  return Array.from({ length: 7 }, () => Math.round(Math.random() * 1000));
+function generateRandomData(num: number, random: number) {
+	return Array.from({ length: num }, () => Math.round(Math.random() * random));
+}
+
+let CJStatusIndex = ref(0)
+function changeCJStatus(index: number) {
+	CJStatusIndex.value = index
 }
 
 onMounted(() => {
@@ -557,14 +578,19 @@ onMounted(() => {
 
 	// 平均成交时间
 	updateTradingInfo();
-  	setInterval(updateTradingInfo, 1000);
+	setInterval(updateTradingInfo, 1000);
 
 	// echarts--start
 	let echarts1 = echarts.init(guapai.value, null, { devicePixelRatio: 1 })
 	echarts1.setOption(options.echarts1)
 
-	let echarts2 = echarts.init(leftBottom.value, null, { devicePixelRatio: 1 })
-	echarts2.setOption(options.echarts2)
+	echarts2.value = echarts.init(leftBottom.value, null, { devicePixelRatio: 1 })
+	// init
+	echarts2.value.setOption(optionsForE2(generateRandomData(4,600)));
+	setInterval(() => {
+		let e2ops = optionsForE2(generateRandomData(4,600))
+		echarts2.value.setOption(e2ops);
+	}, 2000);
 
 	let echarts3 = echarts.init(leftTopRightCircle.value, null, { devicePixelRatio: 1 })
 	let e3ops = optionsForE3(echartdata)
@@ -573,9 +599,14 @@ onMounted(() => {
 	let echarts5 = echarts.init(jiagezoushi.value, null, { devicePixelRatio: 1 })
 	echarts5.setOption(options.echarts5)
 
-	let echarts6 = echarts.init(yibiao1.value, null, { devicePixelRatio: 1 })
-	let e6ops = optionsForE6('今日入驻', 268)
-	echarts6.setOption(e6ops)
+	echarts6.value = echarts.init(yibiao1.value, null, { devicePixelRatio: 1 })
+	// init
+	echarts6.value.setOption(optionsForE6('今日入驻', generateRandomData(1,500)[0]))
+	setInterval(() => {
+		let e6ops = optionsForE6('今日入驻', generateRandomData(1,500)[0])
+		echarts6.value.setOption(e6ops)
+	}, 3000);
+	
 
 	let echarts7 = echarts.init(yibiao2.value, null, { devicePixelRatio: 1 })
 	let e7ops = optionsForE6('今日入驻', 155)
@@ -588,18 +619,23 @@ onMounted(() => {
 	let echarts9 = echarts.init(jiage.value, null, { devicePixelRatio: 1 })
 	echarts9.setOption(options.echarts7)
 
-	let echarts10 = echarts.init(CJpie.value, null, { devicePixelRatio: 1 })
-	echarts10.setOption(options.echarts8)
+	echarts10.value = echarts.init(CJpie.value, null, { devicePixelRatio: 1 })
+	// init
+	echarts10.value.setOption(optionsForE8(generateRandomData(4,600)));
+	setInterval(() => {
+		let e8ops = optionsForE8(generateRandomData(4,600))
+		echarts10.value.setOption(e8ops);
+	}, 2000);
 
 	echarts11.value = echarts.init(cjliang.value, null, { devicePixelRatio: 1 })
 	// init
-	echarts11.value.setOption(optionsForE9(generateRandomData()));
+	echarts11.value.setOption(optionsForE9(generateRandomData(7,1000)));
 	setInterval(() => {
-      const data = generateRandomData();
-      const e9options = optionsForE9(data);
-      echarts11.value.setOption(e9options);
-    }, 2000);
-	
+		const data = generateRandomData(7,1000);
+		const e9options = optionsForE9(data);
+		echarts11.value.setOption(e9options);
+	}, 2000);
+
 	window.addEventListener("resize", function () {
 		echarts1.resize()
 		echarts2.resize()
@@ -622,4 +658,17 @@ onUnmounted(() => {
 
 <style lang="less" scoped>
 @import url('./style/index.less');
+
+.scroll {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+.scroll .item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 3px 0;
+}
 </style>

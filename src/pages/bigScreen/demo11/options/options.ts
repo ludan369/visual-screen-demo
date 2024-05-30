@@ -2,11 +2,9 @@ import * as echarts from "echarts"
 
 export let options = {
     echarts1: echarts1(),
-    echarts2: echarts2(),
     echarts4: echarts4(),
     echarts5: echarts5(),
     echarts7: echarts7(),
-    echarts8: echarts8(),
 }
 
 function echarts1(): { [key: string]: any } {
@@ -147,9 +145,9 @@ function echarts1(): { [key: string]: any } {
 
 }
 
-function echarts2(): { [key: string]: any } {
-    var echartdata = [515, 200, 100, 150];
-    var rich = {
+export function echarts2(echartdata: Array<Number>): { [key: string]: any } {
+    // var echartdata = [515, 200, 100, 150];
+    let rich = {
         yellow: {
             color: "#ffc72b",
             fontSize: 18,
@@ -218,7 +216,7 @@ function echarts2(): { [key: string]: any } {
                     formatter: function (params: any, ticket: any, callback: any) {
                         var total = 0; //总数量
                         var percent = 0; //占比
-                        echartdata.forEach(function (value, index) {
+                        echartdata.forEach(function (value: any, index: any) {
                             total += value;
                         });
                         // @ts-ignore
@@ -842,7 +840,7 @@ export function echarts6(name: string, data: number): { [key: string]: any } {
                 offsetCenter: [0, '-22%']
             },
             detail: {
-                padding: [20,0,0,0],
+                padding: [20, 0, 0, 0],
                 offsetCenter: [0, '5%'],
                 //其余属性默认使用全局文本样式，详见TEXTSTYLE
                 formatter: function (value: any) {
@@ -1079,38 +1077,38 @@ function echarts7(): { [key: string]: any } {
     }
 }
 
-function echarts8(): { [key: string]: any } {
-    let echartdata = [515, 433, 472, 383];
-	let rich = {
-		yellow: {
-			color: "#ffc72b",
-			fontSize: 18,
-			padding: [2, 4],
-			align: 'center'
-		},
-		total: {
-			color: "#ffc72b",
-			fontSize: 20,
-			align: 'center'
-		},
-		white: {
-			color: "#fff",
-			align: 'center',
-			fontSize: 16,
-			padding: [10, 0]
-		},
-		blue: {
-			color: '#49dff0',
-			fontSize: 16,
-			align: 'center'
-		},
-		hr: {
-			borderColor: 'auto',
-			width: '100%',
-			borderWidth: 1,
-			height: 0,
-		}
-	};
+export function echarts8(echartdata: Array<Number>): { [key: string]: any } {
+    // let echartdata = [515, 433, 472, 383];
+    let rich = {
+        yellow: {
+            color: "#ffc72b",
+            fontSize: 18,
+            padding: [2, 4],
+            align: 'center'
+        },
+        total: {
+            color: "#ffc72b",
+            fontSize: 20,
+            align: 'center'
+        },
+        white: {
+            color: "#fff",
+            align: 'center',
+            fontSize: 16,
+            padding: [10, 0]
+        },
+        blue: {
+            color: '#49dff0',
+            fontSize: 16,
+            align: 'center'
+        },
+        hr: {
+            borderColor: 'auto',
+            width: '100%',
+            borderWidth: 1,
+            height: 0,
+        }
+    };
     return {
         tooltip: {
             trigger: 'item',
@@ -1123,10 +1121,10 @@ function echarts8(): { [key: string]: any } {
                 normal: {
                     color: "#fff",
                     //formatter: '{b|{b}\n     {d}%}',
-                    formatter: function (params:any, ticket:any, callback:any) {
+                    formatter: function (params: any, ticket: any, callback: any) {
                         var total = 0; //总数量
                         var percent = 0; //占比
-                        echartdata.forEach(function (value, index) {
+                        echartdata.forEach(function (value:any, index:any) {
                             total += value;
                         });
                         // @ts-ignore
@@ -1200,100 +1198,100 @@ function echarts8(): { [key: string]: any } {
 
 export function echarts9(data: Array<Number>): { [key: string]: any } {
     return {
-		title: {
-			text: ''
-		},
-		grid: {
-			bottom: "15%",
-			//left: 100,
-		},
-		xAxis: {
-			type: 'category',
-			name: "时间段",
-			data: ["9:00-10:00", "10:00-11:00", "11:00-12:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00"],
-			nameTextStyle: { //坐标轴名称样式
-				color: "#fff",
-				fontSize: "18",
-				backgroundColor: "" //文字块背景色
-			},
-			nameGap: 25, //坐标名称与轴线的距离
-			axisTick: { //坐标刻度线样式
-				lineStyle: {
-					color: "#fff"
-				}
-			},
-			axisLabel: { //坐标轴刻度标签名样式
-				color: "#fff",
-				fontSize: "16",
-				rotate: 0, //文字倾斜(当刻度标签名过长时使用)
-				interval: 0 //显示全部                
-			},
-			axisLine: { //坐标轴线设置
-				show: true,
-				lineStyle: {
-					color: "#fff",
-					width: "2"
-				},
-				symbol: ["none", "arrow"], //坐标轴末端箭头
-				symbolSize: [8, 20], //箭头高度和宽度
-				symbolOffset: [0, 16] //箭头与轴线端点的距离
-			},
-			splitNumber: 7,
-		},
-		yAxis: {
-			name: "（成交量）",
-			splitNumber: 8,
-			nameTextStyle: { //坐标轴名称样式
-				color: "#fff",
-				fontSize: "18",
-				backgroundColor: "" //文字块背景色
-			},
-			nameGap: 25, //坐标名称与轴线的距离
-			axisLine: { //坐标轴线设置
-				show: true,
-				lineStyle: {
-					color: "#fff",
-					width: "2"
-				},
-				symbol: ["none", "arrow"], //坐标轴末端箭头
-				symbolSize: [8, 20], //箭头高度和宽度
-				symbolOffset: [0, 16] //箭头与轴线端点的距离
-			},
-			axisTick: { //坐标刻度线样式
-				lineStyle: {
-					color: "#fff"
-				}
-			},
-			axisLabel: { //坐标轴刻度标签名样式
-				color: "#fff",
-				fontSize: "18"
-			},
-			splitLine: { //垂直分割线
-				show: true,
-				lineStyle: {
-					color: "#02416D",
-					width: "0.5"
-				}
-			},
-		},
-		series: [{
-			name: '类目1',
-			type: 'bar',
-			barWidth: 50,
-			label: {
-				show: true,
-				color: "#fff",
-				fontSize: 18,
-				position: "top"
-			},
-			color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
-				offset: 0,
-				color: '#3E3CB5'
-			}, {
-				offset: 1,
-				color: '#D66BFD'
-			}]),
-			data: data
-		}]
-	}
+        title: {
+            text: ''
+        },
+        grid: {
+            bottom: "15%",
+            //left: 100,
+        },
+        xAxis: {
+            type: 'category',
+            name: "时间段",
+            data: ["9:00-10:00", "10:00-11:00", "11:00-12:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00"],
+            nameTextStyle: { //坐标轴名称样式
+                color: "#fff",
+                fontSize: "18",
+                backgroundColor: "" //文字块背景色
+            },
+            nameGap: 25, //坐标名称与轴线的距离
+            axisTick: { //坐标刻度线样式
+                lineStyle: {
+                    color: "#fff"
+                }
+            },
+            axisLabel: { //坐标轴刻度标签名样式
+                color: "#fff",
+                fontSize: "16",
+                rotate: 0, //文字倾斜(当刻度标签名过长时使用)
+                interval: 0 //显示全部                
+            },
+            axisLine: { //坐标轴线设置
+                show: true,
+                lineStyle: {
+                    color: "#fff",
+                    width: "2"
+                },
+                symbol: ["none", "arrow"], //坐标轴末端箭头
+                symbolSize: [8, 20], //箭头高度和宽度
+                symbolOffset: [0, 16] //箭头与轴线端点的距离
+            },
+            splitNumber: 7,
+        },
+        yAxis: {
+            name: "（成交量）",
+            splitNumber: 8,
+            nameTextStyle: { //坐标轴名称样式
+                color: "#fff",
+                fontSize: "18",
+                backgroundColor: "" //文字块背景色
+            },
+            nameGap: 25, //坐标名称与轴线的距离
+            axisLine: { //坐标轴线设置
+                show: true,
+                lineStyle: {
+                    color: "#fff",
+                    width: "2"
+                },
+                symbol: ["none", "arrow"], //坐标轴末端箭头
+                symbolSize: [8, 20], //箭头高度和宽度
+                symbolOffset: [0, 16] //箭头与轴线端点的距离
+            },
+            axisTick: { //坐标刻度线样式
+                lineStyle: {
+                    color: "#fff"
+                }
+            },
+            axisLabel: { //坐标轴刻度标签名样式
+                color: "#fff",
+                fontSize: "18"
+            },
+            splitLine: { //垂直分割线
+                show: true,
+                lineStyle: {
+                    color: "#02416D",
+                    width: "0.5"
+                }
+            },
+        },
+        series: [{
+            name: '类目1',
+            type: 'bar',
+            barWidth: 50,
+            label: {
+                show: true,
+                color: "#fff",
+                fontSize: 18,
+                position: "top"
+            },
+            color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                offset: 0,
+                color: '#3E3CB5'
+            }, {
+                offset: 1,
+                color: '#D66BFD'
+            }]),
+            data: data
+        }]
+    }
 }
