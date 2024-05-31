@@ -605,16 +605,23 @@ onMounted(() => {
 	setInterval(() => {
 		let e6ops = optionsForE6('今日入驻', generateRandomData(1,500)[0])
 		echarts6.value.setOption(e6ops)
-	}, 3000);
+	}, 2000);
 	
+	echarts7.value = echarts.init(yibiao2.value, null, { devicePixelRatio: 1 })
+	// init
+	echarts7.value.setOption(optionsForE6('今日入驻', generateRandomData(1,500)[0]))
+	setInterval(() => {
+		let e7ops = optionsForE6('今日入驻', generateRandomData(1,500)[0])
+		echarts7.value.setOption(e7ops)
+	}, 2000);
 
-	let echarts7 = echarts.init(yibiao2.value, null, { devicePixelRatio: 1 })
-	let e7ops = optionsForE6('今日入驻', 155)
-	echarts7.setOption(e7ops)
-
-	let echarts8 = echarts.init(yibiao3.value, null, { devicePixelRatio: 1 })
-	let e8ops = optionsForE6('今日入驻', 200)
-	echarts8.setOption(e8ops)
+	echarts8.value = echarts.init(yibiao3.value, null, { devicePixelRatio: 1 })
+	// init
+	echarts8.value.setOption(optionsForE6('今日入驻', generateRandomData(1,500)[0]))
+	setInterval(() => {
+		let e8ops = optionsForE6('今日入驻', generateRandomData(1,500)[0])
+		echarts8.value.setOption(e8ops)
+	}, 2000);
 
 	let echarts9 = echarts.init(jiage.value, null, { devicePixelRatio: 1 })
 	echarts9.setOption(options.echarts7)
@@ -638,14 +645,14 @@ onMounted(() => {
 
 	window.addEventListener("resize", function () {
 		echarts1.resize()
-		echarts2.resize()
+		echarts2.value.resize()
 		echarts3.resize()
 		echarts5.resize()
-		echarts6.resize()
-		echarts7.resize()
-		echarts8.resize()
+		echarts6.value.resize()
+		echarts7.value.resize()
+		echarts8.value.resize()
 		echarts9.resize()
-		echarts10.resize()
+		echarts10.value.resize()
 		echarts11.value.resize()
 	})
 	// echarts--end
