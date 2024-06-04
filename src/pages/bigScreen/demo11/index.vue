@@ -375,6 +375,11 @@ import China from '@/pages/chartsModules/json/China.json'
 import GUIZHOU from '@/pages/chartsModules/json/520000/520000.json'
 import { Vue3SeamlessScroll } from "vue3-seamless-scroll"
 
+// 生成随机数据
+function generateRandomData(num: number, random: number) {
+	return Array.from({ length: num }, () => Math.round(Math.random() * random));
+}
+
 // 头部时间日期-开始
 let time = ref('');
 let week = ref('');
@@ -429,6 +434,11 @@ let vipData = reactive([
 	{ label: '通过', value: 155, activeIndex: 0 },
 	{ label: '申请三项数量', value: 200, activeIndex: 0 }
 ]);
+function getGenerateData() {
+	vipData[0].value = generateRandomData(1,500)[0]
+	vipData[1].value = generateRandomData(1,500)[0]
+	vipData[2].value = generateRandomData(1,500)[0]
+}
 function getBackgroundVip(index: number, n: number) {
 	const data = vipData[index];
 	const highlight = data.activeIndex === n;
@@ -548,10 +558,6 @@ const echarts10 = ref()
 const echarts6 = ref()
 const echarts7 = ref()
 const echarts8 = ref()
-// 生成随机数据
-function generateRandomData(num: number, random: number) {
-	return Array.from({ length: num }, () => Math.round(Math.random() * random));
-}
 
 let CJStatusIndex = ref(0)
 function changeCJStatus(index: number) {
@@ -578,7 +584,10 @@ onMounted(() => {
 
 	// 平均成交时间
 	updateTradingInfo();
-	setInterval(updateTradingInfo, 1000);
+	setInterval(updateTradingInfo, 1000)
+
+	// 
+	setInterval(getGenerateData,3000)
 
 	// echarts--start
 	let echarts1 = echarts.init(guapai.value, null, { devicePixelRatio: 1 })
@@ -603,25 +612,25 @@ onMounted(() => {
 	// init
 	echarts6.value.setOption(optionsForE6('今日入驻', generateRandomData(1,500)[0]))
 	setInterval(() => {
-		let e6ops = optionsForE6('今日入驻', generateRandomData(1,500)[0])
+		let e6ops = optionsForE6('今日入驻', vipData[0].value)
 		echarts6.value.setOption(e6ops)
-	}, 2000);
+	}, 3000);
 	
 	echarts7.value = echarts.init(yibiao2.value, null, { devicePixelRatio: 1 })
 	// init
 	echarts7.value.setOption(optionsForE6('今日入驻', generateRandomData(1,500)[0]))
 	setInterval(() => {
-		let e7ops = optionsForE6('今日入驻', generateRandomData(1,500)[0])
+		let e7ops = optionsForE6('今日入驻', vipData[1].value)
 		echarts7.value.setOption(e7ops)
-	}, 2000);
+	}, 3000);
 
 	echarts8.value = echarts.init(yibiao3.value, null, { devicePixelRatio: 1 })
 	// init
 	echarts8.value.setOption(optionsForE6('今日入驻', generateRandomData(1,500)[0]))
 	setInterval(() => {
-		let e8ops = optionsForE6('今日入驻', generateRandomData(1,500)[0])
+		let e8ops = optionsForE6('今日入驻', vipData[2].value)
 		echarts8.value.setOption(e8ops)
-	}, 2000);
+	}, 3000);
 
 	let echarts9 = echarts.init(jiage.value, null, { devicePixelRatio: 1 })
 	echarts9.setOption(options.echarts7)
