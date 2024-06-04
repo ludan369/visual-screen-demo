@@ -146,6 +146,18 @@ export const routes = [
                     }
                 },
                 component: () => import('@/pages/bigScreen/demo11/index.vue')
+            },{
+                name: 'demo12',
+                path: 'demo12',
+                meta: {
+                    title: 'demo12', icon: 'location',
+
+                    desc: {
+                        imgSrc: './images/preview/demo11.png',
+                        tags: ['地图','动效']
+                    }
+                },
+                component: () => import('@/pages/bigScreen/demo12/index.vue')
             },
         ]
     },
