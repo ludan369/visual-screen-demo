@@ -153,7 +153,7 @@ export const routes = [
                     title: 'demo12', icon: 'location',
 
                     desc: {
-                        imgSrc: './images/preview/demo11.png',
+                        imgSrc: './images/preview/demo12.png',
                         tags: ['地图','动效']
                     }
                 },
