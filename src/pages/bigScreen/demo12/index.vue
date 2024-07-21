@@ -82,7 +82,7 @@
                             <div class="min-title">
                                 <span>车辆总数</span>
                             </div>
-                            <div id="char4" style="width:100%;height: 100%;"></div>
+                            <div ref="char4" style="width:100%;height: 100%;"></div>
                             <div class="boxfoot"></div>
                         </div>
                         <!--左边第二部分-->
@@ -90,7 +90,7 @@
                             <div class="min-title">
                                 <span>车辆类型</span>
                             </div>
-                            <div id="echarts_1" style="width:100%;height: 100%;"></div>
+                            <div ref="echarts_1" style="width:100%;height: 100%;"></div>
                             <div class="boxfoot"></div>
                         </div>
                         <!--左边第三部分-->
@@ -98,7 +98,7 @@
                             <div class="min-title">
                                 <span>车辆状态</span>
                             </div>
-                            <div id="chart_2" style="width:100%;height: 100%;"></div>
+                            <div ref="chart_2" style="width:100%;height: 100%;"></div>
                             <div class="boxfoot"></div>
                         </div>
                     </div>
@@ -107,11 +107,28 @@
                 <!--中间-->
                 <div class="data_c fl">
                     <div class="data_c_1">
+                        <div id="contPar" class="contPar">
+                            <div id="page1" style="z-index:1">
+                                <div class="title0">车辆综合管控平台</div>
+                                <div class="title1">旅游、交通、危险品、校车、大数据</div>
+                                <div id="drag-container" style="z-index: 5">
+                                    <div id="spin-container">
+                                        <img style="height: 100px;width:100px" src="../../../assets/images/icon/page1_0.png">
+                                        <img class="" src="../../../assets/images/icon/page1_1.png">
+                                        <img class="" src="../../../assets/images/icon/page1_2.png">
+                                        <img class="" src="../../../assets/images/icon/page1_1.png">
+                                        <img class="" src="../../../assets/images/icon/page1_2.png">
+                                    </div>
+                                    <div id="ground"></div>
+                                </div>
+                                <img class="img3 png" src="../../../assets/images/icon/newdz.png">
 
+                            </div>
+                        </div>
                     </div>
 
                     <div class="data_c_2 public">
-                        <div id="echart4" style="width: 100%;height: 100%;padding-top: 10px;"></div>
+                        <div ref="echart4" style="width: 100%;height: 100%;padding-top: 10px;"></div>
                         <div class="boxfoot"></div>
                     </div>
                 </div>
@@ -174,7 +191,7 @@
                                                 <span>182万</span>
                                             </div>
                                         </li>
-                                        
+
                                     </ul>
                                 </div>
                             </div>
@@ -186,7 +203,7 @@
                             <div class="min-title">
                                 <span>抓拍车辆</span>
                             </div>
-                            <div id="chart_3" style="width:100%;height: 100%;"></div>
+                            <div ref="chart_3" style="width:100%;height: 100%;"></div>
                             <div class="boxfoot"></div>
                         </div>
                         <!--右边第三部分-->
@@ -194,7 +211,7 @@
                             <div class="min-title">
                                 <span>车辆类型</span>
                             </div>
-                            <div id="echarts_2" style="width:100%;height: 100%;padding-top: 10px;"></div>
+                            <div ref="echarts_2" style="width:100%;height: 100%;padding-top: 10px;"></div>
                             <div class="boxfoot"></div>
                         </div>
                     </div>
@@ -205,7 +222,48 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, reactive, watch, nextTick, onUnmounted } from 'vue'
 import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue'
+import { options } from '@/pages/bigScreen/demo12/options/options'
+import * as echarts from "echarts"
+
+let char4 = ref()
+let echarts_1 = ref()
+let chart_2 = ref()
+let echart4 = ref()
+let chart_3 = ref()
+let echarts_2 = ref()
+
+onMounted(() => {
+    // echarts--start
+    let echarts1 = echarts.init(char4.value, null, { devicePixelRatio: 1 })
+    echarts1.setOption(options.echarts1)
+
+    let echarts2 = echarts.init(echarts_1.value, null, { devicePixelRatio: 1 })
+    echarts2.setOption(options.echarts2)
+
+    let echarts3 = echarts.init(chart_2.value, null, { devicePixelRatio: 1 })
+    echarts3.setOption(options.echarts3)
+
+    let echarts4 = echarts.init(echart4.value, null, { devicePixelRatio: 1 })
+    echarts4.setOption(options.echarts4)
+
+    let echarts5 = echarts.init(chart_3.value, null, { devicePixelRatio: 1 })
+    echarts5.setOption(options.echarts5)
+
+    let echarts6 = echarts.init(echarts_2.value, null, { devicePixelRatio: 1 })
+    echarts6.setOption(options.echarts6)
+
+    window.addEventListener("resize", function () {
+        echarts1.resize()
+        echarts2.resize()
+        echarts3.resize()
+        echarts4.resize()
+        echarts5.resize()
+        echarts6.resize()
+    })
+    // echarts--end
+})
 
 </script>
 
