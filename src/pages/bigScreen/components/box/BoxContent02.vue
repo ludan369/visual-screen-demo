@@ -1,6 +1,6 @@
 <template>
     <div class="boxall">
-        <div :class="[ props.title ? 'alltitle' : 'hidden' ]">{{ props.title }}</div>
+        <div :class="[ props.title ? 'alltitle' : 'hidden' ]" :style="{ color: props.titleColor }">{{ props.title }}</div>
         <div :class="[ props.title ? 'allnav' : 'allnavNoHeader' ]"> 
             <slot ></slot>
         </div>
@@ -9,7 +9,13 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps(['title'])
+const props = defineProps({
+    title: String,
+    titleColor: {
+        type: String,
+        default: '#fff'
+    }
+});
 </script>
 
 <style scoped>

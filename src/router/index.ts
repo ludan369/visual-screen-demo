@@ -165,8 +165,8 @@ export const routes = [
                     title: 'demo13', icon: 'location',
 
                     desc: {
-                        imgSrc: './images/preview/demo12.png',
-                        tags: ['']
+                        imgSrc: './images/preview/demo13.png',
+                        tags: ['词云']
                     }
                 },
                 component: () => import('@/pages/bigScreen/demo13/index.vue')

@@ -1,6 +1,6 @@
 <template>
     <div class="head" :style="data.style">
-        <h1>{{ props.title }}</h1>
+        <h1 :style="{ color: props.titleColor }">{{ props.title }}</h1>
     </div>
 </template>
 
@@ -11,13 +11,15 @@ import { reactive } from "vue";
 interface PropsInterface {
   title?: string,
   height?: string,
-  fontSize?: string
+  fontSize?: string,
+  titleColor?: string
 }
 
 const props = withDefaults(defineProps<PropsInterface>(), {
   title: '这是一个banner标题',
   height: '80px',
-  fontSize: '32px'
+  fontSize: '32px',
+  titleColor: '#fff'
 })
 
 let data = reactive({
