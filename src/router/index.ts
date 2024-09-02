@@ -170,7 +170,19 @@ export const routes = [
                     }
                 },
                 component: () => import('@/pages/bigScreen/demo13/index.vue')
-            },
+            },{
+                name: 'demo14',
+                path: 'demo14',
+                meta: {
+                    title: 'demo14', icon: 'location',
+
+                    desc: {
+                        imgSrc: './images/preview/coding.png',
+                        tags: ['']
+                    }
+                },
+                component: () => import('@/pages/bigScreen/demo14/index.vue')
+            }
         ]
     },
     {
