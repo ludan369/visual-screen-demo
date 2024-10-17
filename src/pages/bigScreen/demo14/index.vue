@@ -13,7 +13,7 @@
             </div>
 
             <div class="mainbox">
-                <li style="width: 22%">
+                <li style="width: 20%">
                     <Box title="板块标题1" height="200px" width="100%">
                         <table class="table1" width="95%" border="0" cellspacing="0" cellpadding="0">
                             <tbody>
@@ -63,6 +63,14 @@
                             </ul>
                         </div>
                     </Box>
+                </li>
+                <li style="width: 56%">
+                    <Box height="550px" width="100%" :customStyle="{ position: 'relative' }">
+
+                    </Box>
+                </li>
+                <li style="width: 20%">
+                    
                 </li>
             </div>
         </div>
