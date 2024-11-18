@@ -65,12 +65,23 @@
                     </Box>
                 </li>
                 <li style="width: 56%">
-                    <Box height="550px" width="100%" :customStyle="{ position: 'relative' }">
-
+                    <Box height="515px" width="100%" :customStyle="{ position: 'relative' }">
+                        <div class="mapnav">
+                            <ul>
+                                <li><div><span>数据1</span><p>40%</p></div></li>
+                                <li><div><span>数据2</span><p>12%</p></div></li>
+                                <li><div><span>数据3</span><p>80</p></div></li>
+                                <li><div><span>数据4</span><p>124</p></div></li>
+                                <li><div><span>数据5</span><p>10%</p></div></li>
+                            </ul>
+				        </div>
+                        <div ref="mapEcharts" class="mapnav2"></div>
+                        
                     </Box>
                 </li>
                 <li style="width: 20%">
-                    
+                    <Box title="板块标题1" height="200px" width="100%"></Box>
+                    <Box title="板块标题1" height="250px" width="100%"></Box>
                 </li>
             </div>
         </div>
@@ -85,16 +96,24 @@ import Box from '@/pages/bigScreen/demo14/components/Box.vue'
 import { module1Data } from '@/pages/bigScreen/demo14/options/data.js'
 import { Vue3SeamlessScroll } from "vue3-seamless-scroll"
 import { options } from '@/pages/bigScreen/demo14/options/options'
+import China from '@/pages/chartsModules/json/China.json'
 
 
 let charts1 = ref()
+let mapEcharts = ref()
 
 onMounted(() => {
     let echarts1 = echarts.init(charts1.value, null, { devicePixelRatio: 1 })
     echarts1.setOption(options.echarts1)
 
+    let mapCharts = echarts.init(mapEcharts.value);
+    // @ts-ignore
+    echarts.registerMap('china', China)
+    mapCharts.setOption(options.mapEcharts1)
+
     window.addEventListener("resize", function () {
         echarts1.resize()
+        mapCharts.resize()
     })
 })
 

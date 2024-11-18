@@ -2,6 +2,7 @@ import * as echarts from "echarts"
 
 export let options = {
     echarts1: echarts1(),
+    mapEcharts1: mMapEcharts1(),
 }
 
 function echarts1(): { [key: string]: any } {
@@ -69,6 +70,7 @@ function echarts1(): { [key: string]: any } {
                     }
                 },
                 value: data[3],
+                // @ts-ignore
                 name: data[1][0]
             },
             {
@@ -78,6 +80,7 @@ function echarts1(): { [key: string]: any } {
                     }
                 },
                 value: data[4],
+                // @ts-ignore
                 name: data[1][1]
             },
             {
@@ -87,9 +90,71 @@ function echarts1(): { [key: string]: any } {
                     }
                 },
                 value: data[5],
+                // @ts-ignore
                 name: data[1][2]
             }
             ]
         }]
     }
+}
+
+function mMapEcharts1(): { [key: string]: any } {
+    return {
+        geo: {
+          map: 'china',
+          roam: false, //是否允许缩放
+          zoom: 1.2, //默认显示级别
+          itemStyle: {
+            normal: {
+              borderColor: '#2980b9',
+              borderWidth: 1,
+              areaColor: '#12235c'
+            },
+            emphasis: {
+              areaColor: 'rgb(236, 112, 74)',
+              borderWidth: 0,
+              color: 'green'
+            }
+          },
+          label: {
+            show: true,
+            color: '#ffffff',
+            emphasis: {
+              color: 'white',
+              show: false
+            }
+          },
+        },
+        series: [
+          {
+            zlevel: 2,
+            type: 'effectScatter',
+            coordinateSystem: 'geo',
+            data: [],
+            symbolSize: function (val:any) {
+              return 15
+            },
+            showEffectOn: 'render',
+            rippleEffect: {
+              brushType: 'stroke',
+            },
+            hoverAnimation: true,
+            label: {
+              normal: {
+                formatter: '{b}',
+                position: 'right',
+                show: false,
+                color: '#fff'
+              },
+            },
+            itemStyle: {
+              normal: {
+                color: '#1DE9B6',
+                shadowBlur: 10,
+                shadowColor: '#1DE9B6',
+              },
+            },
+          },
+        ]
+      }
 }
