@@ -65,27 +65,121 @@
                     </Box>
                 </li>
                 <li style="width: 56%">
-                    <Box height="515px" width="100%" :customStyle="{ position: 'relative' }">
+                    <Box height="540px" width="100%" :customStyle="{ position: 'relative' }">
                         <div class="mapnav">
                             <ul>
-                                <li><div><span>数据1</span><p>40%</p></div></li>
-                                <li><div><span>数据2</span><p>12%</p></div></li>
-                                <li><div><span>数据3</span><p>80</p></div></li>
-                                <li><div><span>数据4</span><p>124</p></div></li>
-                                <li><div><span>数据5</span><p>10%</p></div></li>
+                                <li>
+                                    <div><span>数据1</span>
+                                        <p>40%</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div><span>数据2</span>
+                                        <p>12%</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div><span>数据3</span>
+                                        <p>80</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div><span>数据4</span>
+                                        <p>124</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div><span>数据5</span>
+                                        <p>10%</p>
+                                    </div>
+                                </li>
                             </ul>
-				        </div>
-                        <div ref="mapEcharts" class="mapnav2"></div>
-                        
+                        </div>
+                        <div class="mapnav2">
+                            <div class="box">
+                                <div ref="charts2" style="height: 130px;">
+                                </div>
+                                <div class="leidanav leidanav3" style="margin-bottom: 12px;">
+                                    <ul class="clearfix">
+                                        <li><span>业务笔数</span>
+                                            <p>128</p>
+                                        </li>
+                                        <li><span>业务收益</span>
+                                            <p>100</p>
+                                        </li>
+                                        <li><span>业务笔数</span>
+                                            <p>28</p>
+                                        </li>
+                                        <li><span>业务收益</span>
+                                            <p>28</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div ref="mapEcharts" class="map"></div>
+
                     </Box>
                 </li>
                 <li style="width: 20%">
-                    <Box title="板块标题1" height="200px" width="100%"></Box>
-                    <Box title="板块标题1" height="250px" width="100%"></Box>
+                    <Box title="板块标题1" height="200px" width="100%">
+                        <div ref="charts3" style="height: 200px;" />
+                    </Box>
+                    <Box title="板块标题1" height="250px" width="100%">
+                        <div style="height: 200px; float: left; width: 40%; padding: 0 5px;">
+                            <div class="tit02 text-b">热门话题榜</div>
+                            <div class="huati">
+                                <ul>
+                                    <li>1.数据分析 <span class="text-s">↑2167</span></li>
+                                    <li>2.云存储 <span class="text-s">↑2167</span></li>
+                                    <li>3.视觉分析 <span class="text-d">↓2167</span></li>
+                                    <li>4.海量词库 <span class="text-d">↓2167</span></li>
+                                    <li>5.云词典 <span class="text-d">↓2167</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div ref="charts4" style="width:55%;height:100%;float: right"></div>
+
+                    </Box>
+                </li>
+            </div>
+
+            <div class="mainbox">
+                <li style="width: 25%">
+                    <Box height="251px" width="100%">
+                        <div style="float: left; width: 50%; height: 170px" ref="charts5"></div>
+                        <div style="float: left; width: 50%; height: 170px" ref="charts6"></div>
+                    </Box>
+                </li>
+                <li style="width: 25%">
+                    <Box height="251px" width="100%">
+                        <div style="height: 220px;width: 90%;" ref="charts7"></div>
+                    </Box>
+                </li>
+                <li style="width: 25%">
+                    <Box height="251px" width="100%">
+                        <div class="" style="height:100%;display: flex; align-items: center;">
+                            <div style="float: left; width: 50%; height: 100%" class="wancheng">
+                                <div><span>已完成人数</span>
+                                    <h3>1835<i>人</i></h3>
+                                </div>
+                                <div class="yuan">
+                                    <span>19%</span>
+                                </div>
+                            </div>
+                            <div style="float: left; width: 60%; height: 100%" ref="charts8"></div>
+                        </div>
+                    </Box>
+                </li>
+                <li style="width: 25%">
+                    <Box height="251px" width="100%">
+                        <div style="float: left; width: 50%; height: 200px" ref="charts9"></div>
+						<div style="float: left; width: 50%; height: 200px" ref="charts10"></div>
+                    </Box>
                 </li>
             </div>
         </div>
-    </ScreenAdapter>
+    </ScreenAdapter>Box>
 </template>
 
 <script setup lang="ts">
@@ -100,11 +194,47 @@ import China from '@/pages/chartsModules/json/China.json'
 
 
 let charts1 = ref()
+let charts2 = ref()
+let charts3 = ref()
+let charts4 = ref()
+let charts5 = ref()
+let charts6 = ref()
+let charts7 = ref()
+let charts8 = ref()
+let charts9 = ref()
+let charts10 = ref()
 let mapEcharts = ref()
 
 onMounted(() => {
     let echarts1 = echarts.init(charts1.value, null, { devicePixelRatio: 1 })
     echarts1.setOption(options.echarts1)
+
+    let echarts2 = echarts.init(charts2.value, null, { devicePixelRatio: 1 })
+    echarts2.setOption(options.echarts2)
+
+    let echarts3 = echarts.init(charts3.value, null, { devicePixelRatio: 1 })
+    echarts3.setOption(options.echarts3)
+
+    let echarts4 = echarts.init(charts4.value, null, { devicePixelRatio: 1 })
+    echarts4.setOption(options.echarts4)
+
+    let echarts5 = echarts.init(charts5.value, null, { devicePixelRatio: 1 })
+    echarts5.setOption(options.echarts5)
+
+    let echarts6 = echarts.init(charts6.value, null, { devicePixelRatio: 1 })
+    echarts6.setOption(options.echarts6)
+
+    let echarts7 = echarts.init(charts7.value, null, { devicePixelRatio: 1 })
+    echarts7.setOption(options.echarts7)
+
+    let echarts8 = echarts.init(charts8.value, null, { devicePixelRatio: 1 })
+    echarts8.setOption(options.echarts8)
+
+    let echarts9 = echarts.init(charts9.value, null, { devicePixelRatio: 1 })
+    echarts9.setOption(options.echarts9)
+
+    let echarts10 = echarts.init(charts10.value, null, { devicePixelRatio: 1 })
+    echarts10.setOption(options.echarts10)
 
     let mapCharts = echarts.init(mapEcharts.value);
     // @ts-ignore
