@@ -7,3 +7,4 @@ declare module "*.vue" {
   }
 declare module '@/pages/bigScreen/demo11/options/data.js'
 declare module '@/pages/bigScreen/demo14/options/data.js'
+declare module '@/pages/bigScreen/demo15/options/data.js'
