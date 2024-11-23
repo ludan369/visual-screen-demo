@@ -8,19 +8,18 @@ interface TouristFlow {
     NAME: string;
     NUM: number;
 }
-
-export function touristsFlowChart(data:TouristFlow[]): { [key: string]: any } {
+export function touristsFlowChart(data: TouristFlow[]): { [key: string]: any } {
     // mock
     let dataArr: TouristFlow[] = data
 
     // 排序
-    let dataArray = dataArr.sort((a:any, b) => a.NUM - b.NUM)
+    let dataArray = dataArr.sort((a: any, b) => a.NUM - b.NUM)
 
     // 计算总数
     let total = dataArray.reduce((data, v) => { return data + +v.NUM }, 0)
 
     // color
-    let color:{ [key: number]: string } = { 0: '#ff5676', 1: '#ffd83e', 2: '#fbff94', 3: '#7daeff' }
+    let color: { [key: number]: string } = { 0: '#ff5676', 1: '#ffd83e', 2: '#fbff94', 3: '#7daeff' }
 
     // x轴
     let xdataName = dataArray.map(v => v.NAME)
@@ -70,7 +69,7 @@ export function touristsFlowChart(data:TouristFlow[]): { [key: string]: any } {
         inverse: false,
         data: xdataName,
         axisLabel: {
-            formatter: (params:any, index:any) => {
+            formatter: (params: any, index: any) => {
                 return `{a|${params}}`
             },
             rich: {
@@ -91,7 +90,7 @@ export function touristsFlowChart(data:TouristFlow[]): { [key: string]: any } {
         type: 'category',
         data: dataNum,
         axisLabel: {
-            formatter: (params:any, index:any) => {
+            formatter: (params: any, index: any) => {
                 console.log(params)
                 return params
             },
@@ -161,5 +160,193 @@ export function touristsFlowChart(data:TouristFlow[]): { [key: string]: any } {
 
     // 渲染
     return { tooltip, grid, xAxis, yAxis, series }
+}
+
+interface carFlowChartData {
+    legend: Array<string>;
+    xAxis: Array<string>;
+    data: Array<Array<number>>;
+}
+export function barChart(data: carFlowChartData): { [key: string]: any } {
+    return {
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        grid: {
+            left: '2%',
+            right: '4%',
+            bottom: '0',
+            top: '18%',
+            containLabel: true
+        },
+        legend: {
+            data: data.legend,
+            right: '2%',
+            top: '-1%',
+            textStyle: {
+                color: "#fff"
+            },
+            itemWidth: 12,
+            itemHeight: 10,
+            // itemGap: 35
+        },
+        xAxis: {
+            type: 'category',
+            data: data.xAxis,
+            axisLine: {
+                show: false,
+                lineStyle: {
+                    color: 'white'
+
+                }
+            },
+            axisLabel: {
+                textStyle: {
+                    fontFamily: 'Microsoft YaHei'
+                }
+            },
+        },
+
+        yAxis: {
+            type: 'value',
+            axisLine: {
+                show: false,
+                lineStyle: {
+                    color: 'white'
+                }
+            },
+            splitLine: {
+                show: false,
+                lineStyle: {
+                    color: 'rgba(255,255,255,0.3)'
+                }
+            },
+            axisLabel: {}
+        },
+        series: [{
+            name: data.legend[0],
+            type: 'bar',
+            barWidth: '15%',
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: '#fccb05'
+                    }, {
+                        offset: 1,
+                        color: '#f5804d'
+                    }]),
+                    barBorderRadius: 12,
+                },
+            },
+            data: data.data[0]
+        },
+        {
+            name: data.legend[1],
+            type: 'bar',
+            barWidth: '15%',
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: '#8bd46e'
+                    }, {
+                        offset: 1,
+                        color: '#09bcb7'
+                    }]),
+                    barBorderRadius: 11,
+                }
+
+            },
+            data: data.data[1]
+        }]
+    }
+}
+
+interface peoplePercentage {
+    name: string;
+    value: number;
+}
+export function pieChart(data: peoplePercentage[]): { [key: string]: any } {
+    var data = data
+    var titleArr: { [key: string]: any } = [], seriesArr: { [key: string]: any } = [];
+    let colors = [['#389af4', '#dfeaff'], ['#ff8c37', '#ffdcc3'], ['#ff0036', '#ffdcc3'], ['#ffc257', '#ffedcc'], ['#fd6f97', '#fed4e0'], ['#a181fc', '#e3d9fe']]
+    data.forEach(function (item, index) {
+        titleArr.push(
+            {
+                text: item.name,
+                left: index < 3 ? index * 30 + 17.5 + '%' : (index - 3) * 40 + 17.5 + '%',
+                top: index < 3 ? '35%' : '87%',
+                bottom: 10,
+                textAlign: 'center',
+                textStyle: {
+                    fontWeight: 'normal',
+                    fontSize: '12',
+                    color: colors[index][0],
+                    textAlign: 'center',
+
+                    left: 10
+                },
+            }
+        );
+        seriesArr.push(
+            {
+                name: item.name,
+                type: 'pie',
+                clockWise: false,
+                radius: [17, 22],
+                itemStyle: {
+                    normal: {
+                        color: colors[index][0],
+                        shadowColor: colors[index][0],
+                        shadowBlur: 0,
+                        label: {
+                            show: false
+                        },
+                        labelLine: {
+                            show: false
+                        },
+                    }
+                },
+                hoverAnimation: false,
+                center: [index < 3 ? index * 30 + 20 + '%' : (index - 3) * 40 + 20 + '%', index < 3 ? '18%' : '70%'],
+                data: [{
+                    value: item.value,
+                    label: {
+                        normal: {
+                            formatter: function (params: any) {
+                                return params.value + '%';
+                            },
+                            position: 'center',
+                            show: true,
+                            textStyle: {
+                                fontSize: '12',
+                                fontWeight: 'bold',
+                                color: colors[index][0]
+                            }
+                        }
+                    },
+                }, {
+                    value: 100 - item.value,
+                    name: 'invisible',
+                    itemStyle: {
+                        normal: {
+                            color: colors[index][1]
+                        },
+                        emphasis: {
+                            color: colors[index][1]
+                        }
+                    }
+                }]
+            }
+        )
+    });
+    return {
+        title: titleArr,
+        series: seriesArr
+    }
 }
 
