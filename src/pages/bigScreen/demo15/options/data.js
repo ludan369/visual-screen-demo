@@ -30,3 +30,9 @@ export const peoplePercentage = [
         value: (324 / Number(28567) * 100).toFixed(0)
     }
 ]
+
+export const carSpaceNumData = {
+    yAxisName: ['杨岐山普通寺', '赤山幕冲生态', '泉之源', '孽龙洞景区', '斑竹山'],
+    yAxisData: [300, 300, 300, 300, 300],
+    data: [52, 60, 22, 33, 44]
+}

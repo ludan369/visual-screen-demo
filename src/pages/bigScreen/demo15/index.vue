@@ -113,8 +113,70 @@
                         </div>
                     </div>
                 </div>
-                <div class="center"></div>
-                <div class="right"></div>
+                <div class="center">
+                    <div class="item chartWrap">
+                        <div class="module_title">旅游景区</div>
+                        <div class="chart_wrap map_wrap" style="position: relative;">
+                            <div class="map_box">
+                                <img id="map" src="@/assets/images/icon/mapdemo.jpg" />
+                                <div class="city city1 red">
+                                    <div class="dotted">858</div>
+                                    <div class="pulse1"></div>
+                                    <div class="pulse2"></div>
+                                    <div class="pulse3"></div>
+                                </div>
+                                <div class="city city2 orange">
+                                    <div class="dotted">425</div>
+                                    <div class="pulse1"></div>
+                                    <div class="pulse2"></div>
+                                    <div class="pulse3"></div>
+                                </div>
+                                <div class="city city3">
+                                    <div class="dotted">362</div>
+                                    <div class="pulse1"></div>
+                                    <div class="pulse2"></div>
+                                    <div class="pulse3"></div>
+                                </div>
+                                <div class="city city4 orange">
+                                    <div class="dotted">245</div>
+                                    <div class="pulse1"></div>
+                                    <div class="pulse2"></div>
+                                    <div class="pulse3"></div>
+                                </div>
+                                <div class="city city5">
+                                    <div class="dotted">88</div>
+                                    <div class="pulse1">10</div>
+                                    <div class="pulse2"></div>
+                                    <div class="pulse3"></div>
+                                </div>
+                            </div>
+                            <div class="legend">
+                                拥挤程度
+                                <p class="colorBar"></p>
+                                <p class="text">
+                                    <span>空闲</span>
+                                    <span>拥挤</span>
+                                    <span>爆满</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="item chartWrap">
+                        <div class="module_title">停车场数据</div>
+                        <div class="inner_wrap chart_wrap" ref="carSpaceNum"
+                            style="margin-top: 10px;user-select: none; position: relative;height: 100%;width: 100%;">
+                        </div>
+                    </div>
+                    <div class="item chartWrap">
+                        <div class="module_title">游客消费占比</div>
+                        <div class="inner_wrap chart_wrap" ref="consumptionChart"
+                            style="position: relative;height: 100%;width: 100%;">
+                            <div class=""></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </ScreenAdapter>
@@ -124,8 +186,8 @@
 import * as echarts from "echarts"
 import { ref, onMounted } from 'vue'
 import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue'
-import { options, touristsFlowChart, barChart, pieChart } from '@/pages/bigScreen/demo15/options/options'
-import { touristsFlowChartArr, carFlowChartData, peoplePercentage } from '@/pages/bigScreen/demo15/options/data.js'
+import { options, touristsFlowChart, barChart, pieChart, carSpaceNumChart } from '@/pages/bigScreen/demo15/options/options'
+import { touristsFlowChartArr, carFlowChartData, peoplePercentage, carSpaceNumData } from '@/pages/bigScreen/demo15/options/data.js'
 
 // 头部时间日期-开始
 let time = ref('');
@@ -133,22 +195,23 @@ let week = ref('');
 let year = ref('');
 let weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
 function updateTime() {
-	const now = new Date();
-	time.value = now.toTimeString().split(' ')[0];
-	week.value = weekDays[now.getDay()];
-	year.value = now.getFullYear() + '';
+    const now = new Date();
+    time.value = now.toTimeString().split(' ')[0];
+    week.value = weekDays[now.getDay()];
+    year.value = now.getFullYear() + '';
 }
 // 头部时间日期-结束
 
 let touristsFlowChartId = ref()
 let carFlowChartId = ref()
 let totalPeopleChart = ref()
+let carSpaceNum = ref()
 
 onMounted(() => {
     // 头部时间信息-开始
-	updateTime();
-	setInterval(updateTime, 1000)
-	// 头部时间信息-结束
+    updateTime();
+    setInterval(updateTime, 1000)
+    // 头部时间信息-结束
 
     let echarts1 = echarts.init(touristsFlowChartId.value, null, { devicePixelRatio: 3 })
     echarts1.setOption(touristsFlowChart(touristsFlowChartArr))
@@ -158,6 +221,9 @@ onMounted(() => {
 
     let echarts3 = echarts.init(totalPeopleChart.value, null, { devicePixelRatio: 3 })
     echarts3.setOption(pieChart(peoplePercentage))
+
+    let echarts4 = echarts.init(carSpaceNum.value, null, { devicePixelRatio: 3 })
+    echarts4.setOption(carSpaceNumChart(carSpaceNumData))
 
     window.addEventListener("resize", function () {
         echarts1.resize()

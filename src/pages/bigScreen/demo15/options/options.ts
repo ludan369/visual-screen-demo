@@ -350,3 +350,143 @@ export function pieChart(data: peoplePercentage[]): { [key: string]: any } {
     }
 }
 
+interface carSpaceNumData {
+    yAxisName: Array<string>;
+    yAxisData: Array<number>;
+    data: Array<number>;
+}
+export function carSpaceNumChart(data: carSpaceNumData): { [key: string]: any } {
+    var myColor = ['#d0a00e', '#34da62', '#00e9db', '#00c0e9', '#0096f3'];
+    return {
+        grid: {
+            left: '11%',
+            top: '12%',
+            right: '0%',
+            bottom: '0%',
+            containLabel: true
+        },
+        xAxis: [{
+            show: false,
+        }],
+        tooltip: {
+            trigger: 'axis',
+            formatter: (v: any) => {
+                return `
+                    <div class=' u-p-2'>
+                        <div>${v[0].name}车位占比：${v[0].value}%</div>
+                    </div>
+                `
+            }
+        },
+        yAxis: [{
+            axisTick: 'none',
+            axisLine: 'none',
+            offset: '17',
+            axisLabel: {
+                textStyle: {
+                    color: '#ffffff',
+                    fontSize: '13',
+                }
+            },
+            data: data.yAxisName
+        }, {
+            axisTick: 'none',
+            axisLine: 'none',
+            axisLabel: {
+                textStyle: {
+                    color: '#ffffff',
+                    fontSize: '13',
+                }
+            },
+            data: data.yAxisData
+        }, {
+            name: '车位占比：%',
+            nameGap: '50',
+            nameTextStyle: {
+                color: '#ffffff',
+                fontSize: '13',
+            },
+            axisLine: {
+                lineStyle: {
+                    color: 'rgba(0,0,0,0)'
+                }
+            },
+            data: [],
+        }],
+        series: [{
+            type: 'bar',
+            yAxisIndex: 0,
+            data: data.data,
+            label: {
+                normal: {
+                    show: true,
+                    position: 'right',
+                    formatter: function (param:any) {
+                        return param.value + '%';
+                    },
+                    textStyle: {
+                        color: '#ffffff',
+                        fontSize: '13',
+                    }
+                }
+            },
+            barWidth: 5,
+            itemStyle: {
+                normal: {
+                    color: function (params:any) {
+                        var num = myColor.length;
+                        return myColor[params.dataIndex % num]
+                    },
+                }
+            },
+            z: 2
+        }, {
+            type: 'bar',
+            yAxisIndex: 1,
+            barGap: '-100%',
+            data: [99.5, 99.5, 99.5, 99.5, 99.5],
+            barWidth: 10,
+            itemStyle: {
+                normal: {
+                    color: '#0e2147',
+                    barBorderRadius: 5,
+                }
+            },
+            z: 1
+        }, {
+            type: 'bar',
+            yAxisIndex: 2,
+            barGap: '-100%',
+            data: [100, 100, 100, 100, 100],
+            barWidth: 14,
+            itemStyle: {
+                normal: {
+                    color: function (params:any) {
+                        var num = myColor.length;
+                        return myColor[params.dataIndex % num]
+                    },
+                    barBorderRadius: 5,
+                }
+            },
+            z: 0
+        },
+        {
+            type: 'scatter',
+            hoverAnimation: false,
+            data: [0, 0, 0, 0, 0],
+            yAxisIndex: 2,
+            symbolSize: 18,
+            itemStyle: {
+                normal: {
+                    color: function (params:any) {
+                        var num = myColor.length;
+                        return myColor[params.dataIndex % num]
+                    },
+                    opacity: 1,
+                }
+            },
+            z: 2
+        }]
+    }
+}
+
