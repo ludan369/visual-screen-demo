@@ -98,6 +98,7 @@ import options from '@/pages/bigScreen/demo01/options/options'
 import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue'
 import HeaderTitle from '@/pages/bigScreen/components/head/HeaderTitle.vue'
 import BoxContent from '@/pages/bigScreen/components/box/BoxContent.vue'
+import axios from '@/axios'
 
 let tableData = reactive([
     { col1: '数据', col2: '数据', col3: '数据', col4: '数据' },
