@@ -1,7 +1,7 @@
 import * as echarts from "echarts"
+import { echarts1Data } from '@/pages/bigScreen/demo01/options/data'
 
-let options = {
-    echarts1: echarts1(),
+export let options = {
     echarts2: echarts2(),
     echarts3: echarts3(),
     echarts4: echarts4(),
@@ -12,7 +12,29 @@ let options = {
     echarts9: echarts9(),
 }
 
-function echarts1(): { [key: string]: any } {
+export function echarts1Options(data: typeof echarts1Data): { [key: string]: any } {
+    const sortedYAxis = data.yAxis
+        .map((item) => {
+            const key = Object.keys(item)[0];
+            const value = Object.values(item)[0];
+            return { key, value };
+        })
+        .sort((a, b) => a.value - b.value);
+
+    const yAxisLabels = sortedYAxis.map(item => item.key);
+    const yAxisValues = sortedYAxis.map(item => item.value);
+
+    const sortedSeries = data.series
+        .map((item) => {
+            const key = Object.keys(item)[0];
+            const value = Object.values(item)[0];
+            return { key, value };
+        })
+        .filter(item => yAxisLabels.includes(item.key))
+        .sort((a, b) => yAxisLabels.indexOf(a.key) - yAxisLabels.indexOf(b.key));
+
+    const seriesValues = sortedSeries.map(item => item.value);
+
     return {
         grid: {
             left: '2%',
@@ -34,7 +56,7 @@ function echarts1(): { [key: string]: any } {
                     fontSize: '14',
                 }
             },
-            data: ['字段1', '字段2', '字段3', '字段4', '字段5', '字段6', '字段7', '字段8', '字段9']
+            data: yAxisLabels
 
         }, {
             axisTick: 'none',
@@ -45,9 +67,8 @@ function echarts1(): { [key: string]: any } {
                     fontSize: '14',
                 }
             },
-            data: [1514, 1619, 1623, 1968, 2158, 2456, 3506, 4664, 8390]
+            data: yAxisValues
         }, {
-            name: '单位：件',
             nameGap: '50',
             nameTextStyle: {
                 color: 'rgba(255,255,255,.6)',
@@ -61,10 +82,9 @@ function echarts1(): { [key: string]: any } {
             data: [],
         }],
         series: [{
-            name: '条',
             type: 'bar',
             yAxisIndex: 0,
-            data: [25, 30, 34, 40, 43, 48, 52, 56, 70],
+            data: seriesValues,
             label: {
                 normal: {
                     show: true,
@@ -95,11 +115,11 @@ function echarts1(): { [key: string]: any } {
             },
             z: 2
         }, {
-            name: '白框',
+            name: '背景',
             type: 'bar',
             yAxisIndex: 1,
             barGap: '-100%',
-            data: [99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5],
+            data: data.bgdata,
             barWidth: 15,
             itemStyle: {
                 normal: {
@@ -824,28 +844,28 @@ function echarts8(): { [key: string]: any } {
 
 function echarts9(): { [key: string]: any } {
     return {
-        title:{
-          text:'5132',
-          subtext:'总体',
-          x:'center',
-          y:'40%',
-          textStyle:{
-              color:'#fff',
-              fontSize:22,
-              lineHeight:10,
-          },
-          subtextStyle: {
-              color:'#90979c',
-              fontSize:16,
-              lineHeight:10,
-    
-          },
-      },
+        title: {
+            text: '5132',
+            subtext: '总体',
+            x: 'center',
+            y: '40%',
+            textStyle: {
+                color: '#fff',
+                fontSize: 22,
+                lineHeight: 10,
+            },
+            subtextStyle: {
+                color: '#90979c',
+                fontSize: 16,
+                lineHeight: 10,
+
+            },
+        },
         tooltip: {
             trigger: 'item',
             formatter: "{b} : {c} ({d}%)"
         },
-    
+
         visualMap: {
             show: false,
             min: 500,
@@ -861,19 +881,20 @@ function echarts9(): { [key: string]: any } {
             center: ['50%', '50%'],
             color: ['rgb(131,249,103)', '#FBFE27', '#FE5050', '#1DB7E5'], //'#FBFE27','rgb(11,228,96)','#FE5050'
             data: [{
-              "value": 1924,
-              "name": "字段名称1"
-          }, {
-              "value": 1055,
-              "name": "字段名称2"
-          }, {
-              "value": 1532,
-              "name": "字段名称3"}
-            ].sort(function(a, b) {
+                "value": 1924,
+                "name": "字段名称1"
+            }, {
+                "value": 1055,
+                "name": "字段名称2"
+            }, {
+                "value": 1532,
+                "name": "字段名称3"
+            }
+            ].sort(function (a, b) {
                 return a.value - b.value
             }),
             roseType: 'radius',
-    
+
             label: {
                 normal: {
                     formatter: ['{c|{c}万}', '{b|{b}}'].join('\n'),
@@ -881,7 +902,7 @@ function echarts9(): { [key: string]: any } {
                         c: {
                             color: 'rgb(241,246,104)',
                             fontSize: 20,
-                            fontWeight:'bold',
+                            fontWeight: 'bold',
                             lineHeight: 5
                         },
                         b: {
@@ -900,10 +921,9 @@ function echarts9(): { [key: string]: any } {
                     smooth: 0.2,
                     length: 10,
                     length2: 20,
-    
+
                 }
             }
         }]
     }
 }
-export default options

@@ -5,6 +5,7 @@ declare module "*.vue" {
     import Vue from 'vue';
     export default Vue;
   }
+declare module '@/pages/bigScreen/demo01/options/data.js'
 declare module '@/pages/bigScreen/demo11/options/data.js'
 declare module '@/pages/bigScreen/demo14/options/data.js'
 declare module '@/pages/bigScreen/demo15/options/data.js'
