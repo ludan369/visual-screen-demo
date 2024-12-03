@@ -1,8 +1,7 @@
 import * as echarts from "echarts"
-import { echarts1Data } from '@/pages/bigScreen/demo01/options/data'
+import { echarts1Data, echarts2Data } from '@/pages/bigScreen/demo01/options/data'
 
 export let options = {
-    echarts2: echarts2(),
     echarts3: echarts3(),
     echarts4: echarts4(),
     echarts5: echarts5(),
@@ -132,9 +131,9 @@ export function echarts1Options(data: typeof echarts1Data): { [key: string]: any
     }
 }
 
-function echarts2(): { [key: string]: any } {
+export function echarts2Options(data: typeof echarts2Data): { [key: string]: any } {
+    const CHART_COLORS = ['#8bd46e', '#f5804d', '#248ff7'];
     return {
-
         tooltip: {
             trigger: 'axis',
             axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -142,7 +141,7 @@ function echarts2(): { [key: string]: any } {
             }
         },
         legend: {
-            data: ['字段1', '字段2', '字段3'],
+            data: data.series.map(item => item.name),
             right: 'center',
             top: 0,
             textStyle: {
@@ -150,7 +149,6 @@ function echarts2(): { [key: string]: any } {
             },
             itemWidth: 12,
             itemHeight: 10,
-            // itemGap: 35
         },
         grid: {
             left: '0',
@@ -161,7 +159,7 @@ function echarts2(): { [key: string]: any } {
         },
         xAxis: {
             type: 'category',
-            data: ['字段1', '字段2', '字段3', '字段3', '字段4', '字段5', '字段6', '字段7', '字段8', '字段9'],
+            data: data.xAxis,
             axisLine: {
                 lineStyle: {
                     color: 'white'
@@ -198,45 +196,20 @@ function echarts2(): { [key: string]: any } {
             axisLine: { show: false },
         },
 
-        series: [{
-            name: '字段1',
+        series: data.series.map((item: any, index: number) => ({
+            name: item.name,
             type: 'bar',
             stack: 'a',
-            barWidth: '30', barGap: 0,
+            barWidth: '30',
+            barGap: 0,
             itemStyle: {
                 normal: {
-                    color: '#8bd46e',
-                }
-            },
-            data: [331, 497, 440, 81, 163, 366, 57, 188, 172, 2295]
-        },
-        {
-            name: '字段2',
-            type: 'bar',
-            stack: 'a',
-            barWidth: '30', barGap: 0,
-            itemStyle: {
-                normal: {
-                    color: '#f5804d',
+                    color: CHART_COLORS[index % CHART_COLORS.length],
                     barBorderRadius: 0,
                 }
             },
-            data: [48, -97, 56, -59, 90, 98, 64, 61, -8, 253]
-        },
-        {
-            name: '字段3',
-            type: 'bar',
-            stack: 'a',
-            barWidth: '30', barGap: 0,
-            itemStyle: {
-                normal: {
-                    color: '#248ff7',
-                    barBorderRadius: 0,
-                }
-            },
-            data: [-13, -21, -112, 5, 0, -5, 72, -3, 8, -69]
-        }
-        ]
+            data: item.data
+        }))
     }
 }
 

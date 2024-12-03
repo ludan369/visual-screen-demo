@@ -94,11 +94,11 @@
 <script setup lang="ts">
 import { ref, onMounted, reactive } from 'vue'
 import * as echarts from "echarts"
-import {options, echarts1Options} from '@/pages/bigScreen/demo01/options/options'
+import { options, echarts1Options, echarts2Options } from '@/pages/bigScreen/demo01/options/options'
 import ScreenAdapter from '@/components/bigScreen/ScreenAdapter.vue'
 import HeaderTitle from '@/pages/bigScreen/components/head/HeaderTitle.vue'
 import BoxContent from '@/pages/bigScreen/components/box/BoxContent.vue'
-import { echarts1Data } from '@/pages/bigScreen/demo01/options/data.js'
+import { echarts1Data, echarts2Data } from '@/pages/bigScreen/demo01/options/data.js'
 import axios from '@/axios'
 
 let tableData = reactive([
@@ -125,7 +125,7 @@ onMounted(() => {
     chart1.setOption(echarts1Options(echarts1Data))
 
     let chart2 = echarts.init(echarts2.value);
-    chart2.setOption(options.echarts2)
+    chart2.setOption(echarts2Options(echarts2Data))
 
     let chart3 = echarts.init(echarts3.value);
     chart3.setOption(options.echarts3)
